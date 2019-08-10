@@ -213,14 +213,6 @@ Error message and password prompt
 
 <li>Dopamine</li>
 
-<li>Draft of 'Agomelatonin'</li>
-
-<li>Draft of 'Antidepressants'</li>
-
-<li>Draft of 'HabitFormation'</li>
-
-<li>Draft of 'IntranasalInsulin'</li>
-
 <li>EffectiveTherapy</li>
 
 <li>footer</li>
@@ -9461,7 +9453,7 @@ Error message and password prompt
 <div created="20190730195820129" modified="20190730195820129" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
 </div>
-<div created="20190810150128510" list="" modified="20190810165209262" title="$:/StoryList">
+<div created="20190810150128510" list="Index" modified="20190810165258259" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9731,18 +9723,6 @@ Error message and password prompt
 * the retina also has dopaminergic neurons, which release dopamine into extracellular fluid during the day to increase sensitivity to color, which is probably involved with psychedelic visual acuity and is probably the downstream mechanism of coluracetam
 * bananas secrete dopamine for their own purposes</pre>
 </div>
-<div modified="20190810164933368" title="Draft of 'Agomelatonin'">
-<pre></pre>
-</div>
-<div modified="20190810164950930" title="Draft of 'Antidepressants'">
-<pre></pre>
-</div>
-<div modified="20190810164621455" title="Draft of 'HabitFormation'">
-<pre></pre>
-</div>
-<div modified="20190810164738743" title="Draft of 'IntranasalInsulin'">
-<pre></pre>
-</div>
 <div created="20190730195803764" modified="20190810164514212" tags="Noteworthy Psychology" title="EffectiveTherapy">
 <pre>[[Randomized controlled trial to evaluate the effects of personalized prediction and adaptation tools on treatment outcome in outpatient psychotherapy: study protocol (2017)|https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5571503/]]
 
@@ -9974,7 +9954,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 * dual n-back mechanisms?
 </pre>
 </div>
-<div created="20190810142007037" modified="20190810165003624" tags="" title="Index">
+<div created="20190810142007037" modified="20190810171054509" tags="Meta" title="Index">
 <pre>Noteworthy:
 &lt;&lt;list-links filter:&quot;[tag[Noteworthy]]&quot;&gt;&gt;
 
@@ -9985,7 +9965,20 @@ Untagged:
 &lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;
 
 Drugs:
-&lt;&lt;list-links filter:&quot;[tag[Hypermnesiacs]] [tag[Drugs]]&quot;&gt;&gt;</pre>
+&lt;ul&gt;
+&lt;$list filter=&quot;[tag[Drugs]]&quot;&gt;
+&lt;li&gt;{{||$:/core/ui/TagTemplate}}
+&lt;ul&gt;
+&lt;$list filter=&quot;[all[current]tagging[]]&quot;&gt;
+&lt;li&gt;&lt;$link/&gt;&lt;/li&gt;
+&lt;/$list&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/$list&gt;
+&lt;/ul&gt;
+
+Meta:
+&lt;&lt;list-links filter:&quot;[tag[Meta]]&quot;&gt;&gt;</pre>
 </div>
 <div created="20190810151742469" modified="20190810164736550" tags="Hypermnesiacs" title="IntranasalInsulin">
 <pre>[[Safety of intranasal human insulin: A review.|https://www.ncbi.nlm.nih.gov/pubmed/29508509]] (2018)
