@@ -167,6 +167,8 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/edit/references--661878351</li>
+
 <li>$:/state/showeditpreview</li>
 
 <li>$:/state/tab--1963855381</li>
@@ -201,7 +203,7 @@ Error message and password prompt
 
 <li>AtypicalAntidepressantToxicity</li>
 
-<li>Bacopa monnieri</li>
+<li>BacopaMonnieri</li>
 
 <li>EffectiveTherapy</li>
 
@@ -9416,14 +9418,17 @@ Error message and password prompt
 <div created="20190730195519526" modified="20190804160042551" title="$:/SiteTitle">
 <pre>technillogue's memex</pre>
 </div>
+<div created="20190810150152551" modified="20190810150152551" title="$:/state/edit/references--661878351">
+<pre>show</pre>
+</div>
 <div created="20190730200459107" modified="20190810145348361" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
 <div created="20190730195811423" modified="20190730200346768" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
 </div>
-<div created="20190730195537892" modified="20190810144057851" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Info</pre>
+<div created="20190730195537892" modified="20190810150308663" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Settings</pre>
 </div>
 <div created="20190730195539665" modified="20190730195539665" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
@@ -9434,7 +9439,7 @@ Error message and password prompt
 <div created="20190730195820129" modified="20190730195820129" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
 </div>
-<div list="Hypermnesiacs" title="$:/StoryList">
+<div created="20190810150128510" list="footer PRL-8-53 Hypermnesiacs BacopaMonnieri" modified="20190810150500713" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9662,7 +9667,7 @@ Error message and password prompt
 
 [[Wikipedia: Imipramine|https://en.wikipedia.org/wiki/Imipramine]]</pre>
 </div>
-<div created="20190810144904921" modified="20190810145241999" tags="Hypermnesiacs" title="Bacopa monnieri">
+<div created="20190810144904921" modified="20190810150154385" tags="Hypermnesiacs" title="BacopaMonnieri">
 <pre>Only listing studies with young adults. Takes at least six weeks for effects to be notable.
 
   * [[Efficacy of Standardized Extract of Bacopa monnieri (Bacognize®) on Cognitive Functions of Medical Students: A Six-Week, Randomized Placebo-Controlled Trial|https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5075615/]] (2016)
@@ -9756,27 +9761,19 @@ Less relevant
 * n=58
 * &quot;Among intake variables, initial impairment and sex predicted dropout explaining 6% of the variance. The network analysis identified four additional predictors: Expected force of being excited, outstrength of experiencing social support, betweenness of feeling nervous, and instrength of being active.&quot;</pre>
 </div>
-<div created="20170215223235012" modified="20190810145833633" tags="$:/tags/ViewTemplate" title="footer">
+<div created="20170215223235012" modified="20190810151205202" tags="$:/tags/ViewTemplate" title="footer">
 <pre>\define comments(name)         
-&lt;a class=&quot;twitter-timeline&quot; data-dnt=&quot;true&quot; href=&quot;https://twitter.com/search?q=%23nomadicaltw%20%23$name$&quot;&gt;Comments&lt;/a&gt;
+&lt;a class=&quot;twitter-timeline&quot; data-dnt=&quot;true&quot; href=&quot;https://twitter.com/search?q=%23nomadicaltw%20%23$name$&quot;&gt;View twitter comments&lt;/a&gt; or 
+&lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot; data-text=&quot;&quot; data-url=&quot;http://nomadical.tiddlyspot.com/#$name$&quot; data-hashtags=&quot;$name$, nomadicaltw&quot;  data-dnt=&quot;true&quot; data-show-count=&quot;false&quot;&gt;
+share on twitter&lt;/a&gt;.
+
 \end
+
 &lt;$macrocall $name=&quot;comments&quot; name=&lt;&lt;currentTiddler&gt;&gt;/&gt;
-
-&lt;&lt;twitterShareButton&gt;&gt;
-&lt;hr&gt;
-&lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot; data-text=&quot;&quot; data-url=&quot;http://nomadical.tiddlyspot.com/#&lt;&lt;currentTiddler&gt;&gt;&quot; data-hashtags=&quot;&lt;&lt;currentTiddler&gt;&gt;, nomadicaltw&quot;  data-dnt=&quot;true&quot; data-show-count=&quot;false&quot;&gt;
-comment w twitter
-&lt;/a&gt;
-
-&lt;a href=&quot;https://twitter.com/search?src=typd&amp;q=%23nomadicaltw%20%23&lt;&lt;currentTiddler&gt;&gt;&quot;&gt;view comments&lt;/a&gt;
-&lt;br&gt;
 
 &lt;!---backlinks---&gt;
 &lt;$list filter=&quot;[&lt;currentTiddler&gt;backlinks[]limit[1]]&quot; variable=&quot;PlsNo&quot;&gt;
 sections that link here: &lt;&lt;list-links &quot;[&lt;currentTiddler&gt;backlinks[]]&quot;&gt;&gt;
-&lt;/$list&gt;
-&lt;$list filter=&quot;[is[current]tags[]tag[comedown]]&quot;&gt;
-This section is part of &lt;$link&gt;&lt;&lt;currentTiddler&gt;&gt;.&lt;/$link&gt;
 &lt;/$list&gt;
 
 &lt;!---navigation--&gt;
@@ -9801,13 +9798,13 @@ This section is part of &lt;$link&gt;&lt;&lt;currentTiddler&gt;&gt;.&lt;/$link&g
 * The time it took participants to reach 95% of their asymptote of automaticity ranged from 18 to 254 days
 </pre>
 </div>
-<div created="20190810135039349" modified="20190810150126213" tags="" title="Hypermnesiacs">
+<div created="20190810135039349" modified="20190810150207726" tags="" title="Hypermnesiacs">
 <pre>!!! [[PRL-8-53]]
 {{PRL-8-53}}
 
-!!! [[Bacopa monnieri]]
+!!! [[BacopaMonnieri]]
 
-{{Bacopa monnieri}}
+{{BacopaMonnieri}}
 
 !!!!To research:
 
