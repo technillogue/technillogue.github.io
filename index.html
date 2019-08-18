@@ -9559,7 +9559,7 @@ Error message and password prompt
 <div created="20190730195820129" modified="20190730195820129" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
 </div>
-<div created="20190818200541706" list="Index" modified="20190818200920498" title="$:/StoryList">
+<div created="20190818200541706" list="Index NSI-189" modified="20190818201411106" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -10118,7 +10118,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 * dual n-back mechanisms?
 </pre>
 </div>
-<div created="20190810142007037" modified="20190818201217612" tags="Meta" title="Index">
+<div created="20190810142007037" modified="20190818201426658" tags="Meta" title="Index">
 <pre>\define listChildren(tag)
 &lt;$list filter=&quot;[tag[$tag$]]&quot;&gt;
 &lt;!-- Change the following line to display whatever it is you want
@@ -10129,10 +10129,14 @@ to be displayed for each child tiddler--&gt;
 &lt;/ul&gt;
 \end
 
+!Noteworthy
+&lt;&lt;list-links filter:&quot;[tag[Noteworthy]has[created]!sort[created]]&quot;&gt;&gt;
 !Science
 &lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Science&quot; /&gt;&lt;/ul&gt;
+
 !Misc
 &lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Misc&quot;/&gt;&lt;/ul&gt;
+
 !Untagged:
 &lt;ul&gt;&lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;&lt;/ul&gt;</pre>
 </div>
