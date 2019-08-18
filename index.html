@@ -10123,15 +10123,16 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 * dual n-back mechanisms?
 </pre>
 </div>
-<div created="20190810142007037" modified="20190818202928781" tags="Meta" title="Index">
+<div created="20190810142007037" modified="20190818202928781" tags="Meta" title="_Index">
 <pre>\define listChildren(tag)
-&lt;$list filter=&quot;[tag[$tag$]has[created]!sort[created]&quot;&gt;
+&lt;!--&lt;$list filter=&quot;[tag[$tag$]has[created]!sort[created]]&quot;&gt;
 &lt;!-- Change the following line to display whatever it is you want
 to be displayed for each child tiddler--&gt;
 &lt;li&gt;&lt;$link/&gt;&lt;/li&gt;
 &lt;ul&gt;
 &lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
 &lt;/ul&gt;
+--!&gt;
 \end
 
 !Noteworthy
