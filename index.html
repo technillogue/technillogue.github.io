@@ -9545,8 +9545,8 @@ Error message and password prompt
 <div created="20190810150152551" modified="20190810150152551" title="$:/state/edit/references--661878351">
 <pre>show</pre>
 </div>
-<div created="20190730200459107" modified="20190819010109675" title="$:/state/showeditpreview">
-<pre>no</pre>
+<div created="20190730200459107" modified="20190819200926188" title="$:/state/showeditpreview">
+<pre>yes</pre>
 </div>
 <div created="20190818204301709" modified="20190818215808975" title="$:/state/sidebar">
 <pre>yes</pre>
@@ -9554,8 +9554,8 @@ Error message and password prompt
 <div created="20190730195811423" modified="20190818193904517" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Toolbars</pre>
 </div>
-<div created="20190730195537892" modified="20190818193902333" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Appearance</pre>
+<div created="20190730195537892" modified="20190819195858907" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Saving</pre>
 </div>
 <div created="20190730195539665" modified="20190730195539665" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
@@ -9566,7 +9566,7 @@ Error message and password prompt
 <div created="20190730195820129" modified="20190730195820129" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
 </div>
-<div created="20190819194255932" list="Index PsychScratchpad PharmaScratchpad Drug Pharmacology Endocrinology Psychology Science" modified="20190819194601516" title="$:/StoryList">
+<div created="20190819200117022" list="Roadmap footer $:/ControlPanel Index" modified="20190819200117022" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -10643,21 +10643,26 @@ https://www.lesswrong.com/posts/u5RLu5F3zKTB3Qjnu/subagents-trauma-and-rationali
 
 </pre>
 </div>
-<div created="20190804160104842" modified="20190812154601339" tags="Meta" title="Roadmap">
+<div created="20190804160104842" modified="20190819201057946" tags="Meta" title="Roadmap">
 <pre>* migrate content here
 ** my contributions to previous wiki
 ** neurpharm_writing
 ** gkeep notes
 ** gdrive notes
 ** previous github pages
-* fix indexes and tagging (each tag tiddler has a link and folded transclusion of each child) 
+* fix indexes and tagging each tag tiddler has a link and folded transclusion of each child
+** each tag tiddler has a link and folded transclusion of each child
 ** maybe redesign with the atomic unit being an individual richly tagged link (e.g. to a study) with a description or summary and the current tiddlers instead  being curated filter views (&quot;here are all studies tagged as relevant to antidepressants and heptatoxicity, not one AtypicalAntidepressantToxicity tiddler&quot;)
-* better flow for adding a new link
+** somehow make refactoring tags easier
+** ideally have a graph representation of tiddler categories and links
+*** ideally have some semantic web sort of this for e.g. bio topics of &quot;this inhibits/stimulates that&quot;, &quot;this {up,down}regulates that&quot;, &quot;this is metabolized to that by such and such enzyme with such and such catalyst&quot;, or just &quot;these are the pharmacokinetic properties any drug can have&quot;, and be able to visualize those relationships while also tagging individual studies with those relationships
+*** more generally, relationships like &quot;`[[Quark]]s are a type of [[Fermion] are a type of [[ElementaryPartical]], Quarks plus Gluons make Protons and Neutrons, which follow StrongForce, which is of four basic Forces in the StandardModel`&quot;, and be able to visualize the categories as a tree and X-composed-of-Y-and-Z relationships as a graph
+*** even more generally, &quot;this idea is based upon this simpler idea&quot;
+* better flow for adding a new link from other tabs, automatically grabbing study metadata, and making it easier to select passages to copy into the tiddler
 * ~~migrate~~ prettify tag navigation code
 * ~~show~~ fix twitter comments about tiddlers
-* also allow mastadon/plemora comments about tiddlers
-* sync tiddlers with gkeep
-
+* also allow mastadon/plemora comments about tiddlers instead of only twitter. maybe show them inline?
+* sync tagged gkeep notes with tiddlers using https://github.com/kiwiz/gkeepapi 
 * PCA</pre>
 </div>
 <div created="20190819194445866" modified="20190819194445866" title="Science">
