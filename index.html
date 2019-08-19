@@ -169,6 +169,18 @@ Error message and password prompt
 
 <li>$:/config/TimestampDisable</li>
 
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/close-others</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/fold-bar</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/fold-others</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/open-window</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/permalink</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/permaview</li>
+
 <li>$:/core</li>
 
 <li>$:/DefaultTiddlers</li>
@@ -215,6 +227,10 @@ Error message and password prompt
 
 <li>$:/state/edit/references--661878351</li>
 
+<li>$:/state/folded/$:/ControlPanel</li>
+
+<li>$:/state/folded/TiddlywikiScatchpad</li>
+
 <li>$:/state/showeditpreview</li>
 
 <li>$:/state/sidebar</li>
@@ -232,6 +248,8 @@ Error message and password prompt
 <li>$:/state/tabs/controlpanel/toolbars-1345989671</li>
 
 <li>$:/StoryList</li>
+
+<li>$:/tags/ViewToolbar</li>
 
 <li>$:/temp/HidePluginWarning</li>
 
@@ -537,8 +555,8 @@ Error message and password prompt
 <div created="20190818194038154" modified="20190818194038154" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/control-panel">
 <pre>hide</pre>
 </div>
-<div created="20190818193912661" modified="20190818193912661" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/fold-all">
-<pre>show</pre>
+<div created="20190818193912661" modified="20190819220631503" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/fold-all">
+<pre>hide</pre>
 </div>
 <div created="20190818193908718" modified="20190818194120124" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/home">
 <pre>hide</pre>
@@ -566,6 +584,24 @@ Error message and password prompt
 </div>
 <div created="20190818193957988" modified="20190818194153146" title="$:/config/TimestampDisable">
 <pre>no</pre>
+</div>
+<div created="20190819220604004" modified="20190819220604004" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/close-others">
+<pre>show</pre>
+</div>
+<div created="20190819220726446" modified="20190819220802703" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/fold-bar">
+<pre>hide</pre>
+</div>
+<div created="20190819220606852" modified="20190819220606852" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/fold-others">
+<pre>show</pre>
+</div>
+<div created="20190819220601132" modified="20190819220603050" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/open-window">
+<pre>hide</pre>
+</div>
+<div created="20190819220808504" modified="20190819220808504" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/permalink">
+<pre>show</pre>
+</div>
+<div created="20190819220557899" modified="20190819220807687" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/permaview">
+<pre>hide</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.20-prerelease">
 <pre>{
@@ -9879,6 +9915,12 @@ Error message and password prompt
 <div created="20190810150152551" modified="20190810150152551" title="$:/state/edit/references--661878351">
 <pre>show</pre>
 </div>
+<div created="20190819220700470" modified="20190819220756510" title="$:/state/folded/$:/ControlPanel">
+<pre>show</pre>
+</div>
+<div created="20190819220700470" modified="20190819220759468" title="$:/state/folded/TiddlywikiScatchpad">
+<pre>show</pre>
+</div>
 <div created="20190730200459107" modified="20190819200926188" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
@@ -9891,8 +9933,8 @@ Error message and password prompt
 <div created="20190819214256551" modified="20190819214256551" title="$:/state/tab--2112689675">
 <pre>$:/core/ui/ControlPanel/Advanced</pre>
 </div>
-<div created="20190730195537892" modified="20190819214312825" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Plugins</pre>
+<div created="20190730195537892" modified="20190819220551127" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
 <div created="20190730195539665" modified="20190730195539665" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
@@ -9900,10 +9942,13 @@ Error message and password prompt
 <div created="20190810135005842" modified="20190818215835943" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div created="20190730195820129" modified="20190730195820129" title="$:/state/tabs/controlpanel/toolbars-1345989671">
-<pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
+<div created="20190730195820129" modified="20190819220642386" title="$:/state/tabs/controlpanel/toolbars-1345989671">
+<pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
 <div created="20190819214239294" list="TiddlywikiScatchpad $:/ControlPanel" modified="20190819220238683" title="$:/StoryList">
+<pre></pre>
+</div>
+<div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
 <pre></pre>
 </div>
 <div created="20190819220224387" modified="20190819220224387" title="$:/temp/HidePluginWarning">
