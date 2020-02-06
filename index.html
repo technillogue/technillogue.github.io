@@ -600,8 +600,6 @@ Error message and password prompt
 
 <li>DopaminePathways</li>
 
-<li>Draft of 'BeyondMonoamineHypothesis'</li>
-
 <li>Draft of 'Psychology'</li>
 
 <li>Drug</li>
@@ -704,9 +702,9 @@ Error message and password prompt
 
 <li>PRL-8-53</li>
 
-<li>PsychedelicMechanisms</li>
+<li>Psychedelic</li>
 
-<li>Psychedelics</li>
+<li>PsychedelicMechanisms</li>
 
 <li>Psychology</li>
 
@@ -10457,7 +10455,7 @@ Error message and password prompt
 <div created="20190730195820129" modified="20190819220642386" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200206211210997" list="Antidepressant [[Draft of 'BeyondMonoamineHypothesis']]" modified="20200206215729811" title="$:/StoryList">
+<div created="20200206211210997" list="Psychedelic BeyondMonoamineHypothesis PsychedelicMechanisms" modified="20200206220018522" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
@@ -11977,7 +11975,7 @@ https://www.additudemag.com/download/best-adhd-books-for-adults/
 [[Blessed is the Flame: An introduction to concentration camp resistance and anarcho-nihilism|https://theanarchistlibrary.org/library/serafinski-blessed-is-the-flame]]
 </pre>
 </div>
-<div created="20190810164947498" modified="20200206215928832" tags="Drug" title="Antidepressant">
+<div created="20190810164947498" modified="20200206215953457" tags="Drug" title="Antidepressant">
 <pre>* [[Neural basis of major depressive disorder: Beyond monoamine hypothesis|http://onlinelibrary.wiley.com/doi/10.1111/pcn.12604/full]] (2017)
 ** Antidepressants (primarily SSRIs) recover the negative effects of glucocorticoids on neural precursor cells indirectly via the neuron–noradrenaline–CREB pathway and/or the astrocytes–FGF2 pathway. Interestingly, although common antidepressants work as inhibitors of monoamine transporters, ''the BDNF–mTOR pathway and the astrocytes–FGF2 pathway may be __monoamine-independent__. This suggests the possibility that antidepressants may have unknown target proteins other than monoamine transporters in their action mechanisms''.
 * [[https://i.imgur.com/oEFnFrx.png]]
@@ -11986,6 +11984,9 @@ https://www.additudemag.com/download/best-adhd-books-for-adults/
 * [[Enhancing AMPA to NMDA throughput as a convergent mechanism for antidepressant action|https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4234070]] (2006)
 ** The therapeutic effects of monoaminergic antidepressants and ketamine ... may be mediated by increased AMPA to NMDA throughput in critical neuronal circuits. ... monoaminergic antidepressants work indirectly and gradually
 
+
+BDNF-TrkB signaling
+[[https://www.wikipathways.org/index.php/Pathway:WP3676]]
 
 [[AntidepressantSpeculation]]
 
@@ -12488,57 +12489,38 @@ implicit:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20200203233044854" modified="20200206205436667" tags="NeuropharmWriting WIP Pharmacology" title="BeyondMonoamineHypothesis" type="text/vnd.tiddlywiki">
-<pre>this is based on an irc rant about why i disagree with things like  http://slatestarcodex.com/2017/10/10/ssc-journal-club-serotonin-receptors/ , with the general point being that although psychedelics and SSRIs use the same systems and interact with one another. the downstream mechanisms are very different, and we cannot infer serotonin receptor subtype effects without considering [[SecondMessengers]]
+<div created="20200203233044854" modified="20200206220005165" tags="NeuropharmWriting WIP Pharmacology" title="BeyondMonoamineHypothesis" type="text/vnd.tiddlywiki">
+<pre>this is based on an irc rant about why i disagree with things like  http://slatestarcodex.com/2017/10/10/ssc-journal-club-serotonin-receptors/  . briefly:
 
-Related: [[PsychedelicMechanisms]], [[Antidepressant]] 
+* psychedelics don't hit 5-HT2A in the same way as serotonin, they they active PLA2 instead of PLC. 
+* SSRIs don't just hit 5-HT1A. maybe there are 1A/2B interactions. maybe this increases AMPA signaling, or maybe that happens through some other way. mTOR/BDNF are probably involved, but there's reasonable evidence SSRIs have serotonin-independent effects, including on mTOR/BDNF. 
+* therefore, we cannot infer serotonin subtype effects from serotonergic drugs in this way.
 
-!!psychs
+some of this is outdated.
 
-LSD exhibits functional selectivity at the 5-HT2A and 5HT2C receptors in that it activates the signal transduction enzyme phospholipase A2 instead of activating the enzyme phospholipase C as the endogenous ligand serotonin does. 
-[[Functional selectivity and classical concepts of quantitative pharmacology|https://www.ncbi.nlm.nih.gov/pubmed/16803859]]
+see also: [[SecondMessengers]], in which i try to review signaling cascades in more depth.  
 
-5-HT2AR-mGluR2 complex is necessary for the neuropsychological responses induced by hallucinogens.
-[[Metabotropic glutamate mGlu2 receptor is necessary for the pharmacological and behavioral effects induced by hallucinogenic 5-HT2A receptor agonists.|https://www.ncbi.nlm.nih.gov/pubmed/21276828]]
+more notes: [[PsychedelicMechanisms]], {{Antidepressant||$:/core/ui/TagTemplate}}
 
-(however, 2C-B has a lower 5-HT2A affinity...)
+!![[Psychedelic]]
+
+{{Psychedelic}}
 
 
-!! antidepressants
+!! [[Antidepressant]]
 
-* [[Enhancing AMPA to NMDA throughput as a convergent mechanism for antidepressant action|https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4234070]] (2006)
-** The therapeutic effects of monoaminergic antidepressants and ketamine ... may be mediated by increased AMPA to NMDA throughput in critical neuronal circuits. ... monoaminergic antidepressants work indirectly and gradually
+{{Antidepressant}}
 
-* [[Neural basis of major depressive disorder: Beyond monoamine hypothesis|http://onlinelibrary.wiley.com/doi/10.1111/pcn.12604/full]] (2017)
-** Antidepressants (primarily SSRIs) recover the negative effects of glucocorticoids on neural precursor cells indirectly via the neuron–noradrenaline–CREB pathway and/or the astrocytes–FGF2 pathway. Interestingly, although common antidepressants work as inhibitors of monoamine transporters, ''the BDNF–mTOR pathway and the astrocytes–FGF2 pathway may be __monoamine-independent__. This suggests the possibility that antidepressants may have unknown target proteins other than monoamine transporters in their action mechanisms''.
+
 
 
 --- 
 
-epistemic status: very questionable things mixed with less questionable things
-
-Supposing [[Requirement of hippocampal neurogenesis for the behavioral effects of antidepressants|https://www.ncbi.nlm.nih.gov/pubmed/12907793]] (2003) is true (big if).
 
 
-* chronic stress and HPA dysregulation cause hippocampal atrophy and inhibition of neurogenesis which further breaks HPA negative feedback
-* meaning the onset period for antidepressants is actually the time it takes for new neurons to grow rather than 5-HT tolerance (so maybe [[NSI-189]] and [[Dihexa]] (neurogenetics) have more theoretical backing as antidepressants than they're given credit)
-* so the pathway is: antidepressant → weird shit (“matrix metalloproteinases/receptor tyrosine kinases-extracellular signal-regulated kinases-early growth response 1 pathway”) → increased fibroblast growth factor 2 (specifically FGF2 is the crucial one and not BDNF!) → (?increased survival of immature new cells → hippocampal atrophy from inescapable stress is attenuated?) → HPA dysregulation is fixed**
-* [[https://i.imgur.com/oEFnFrx.png]]
-* in retrospect, the neurogenesis claim is lower confidence, but i'm not sure there's enough evidence to throw out neurogenesis-related findings entirely
-
-
-BDNF-TrkB signaling
-[[https://www.wikipathways.org/index.php/Pathway:WP3676]]
 
 ----
-
-Counterpoint: [[Somato-Dendritic Regulation of Raphe Serotonin Neurons; A Key to Antidepressant Action|https://www.frontiersin.org/articles/10.3389/fnins.2018.00982/full]] (2018)
-
-
-* The therapeutic effects induced by serotonin-selective reuptake inhibitor (SSRI) antidepressants are initially triggered by blocking SERT but rely on consequences of chronic exposure, i.e., a selective desensitization of somatodendritic 5-HT1A autoreceptors. 
-* Agonist stimulation of 5-HT2B receptors mimicked behavioral and neurogenic SSRI actions, and increased extracellular serotonin in dorsal raphe. By contrast, a lack of effects of SSRIs was observed in the absence of 5-HT2B receptors (knockout-KO), even restricted to serotonergic neurons (Htr2b5-HTKO mice). The absence of 5-HT2B receptors in serotonergic neurons is associated with a higher 5-HT1A-autoreceptor reactivity and thus a lower firing activity of these neurons. In agreement, mice with overexpression of 5-HT1A autoreceptor show decreased neuronal activity and increased depression-like behavior that is resistant to SSRI treatment. 
-* We propose thus that the serotonergic tone results from the opposite control exerted by somatodendritic (Gi-coupled) 5-HT1A and (Gq-coupled) 5-HT2B receptors on dorsal raphe neurons. Therefore, 5-HT2B receptors may contribute to SSRI therapeutic effects by their positive regulation of adult raphe serotonergic neurons. 
-** I like the version with &quot;may contribute&quot; more than &quot;rely&quot;</pre>
+</pre>
 </div>
 <div created="20190820153206433" modified="20190820155838879" tags="Neuroscience" title="BrainAnatomy">
 <pre></pre>
@@ -12657,41 +12639,6 @@ but what level of stagnation is acceptable?
 
 
 * the retina also has dopaminergic neurons, which release dopamine into extracellular fluid during the day to increase sensitivity to color, which is probably involved with psychedelic visual acuity and is probably the downstream mechanism of coluracetam</pre>
-</div>
-<div created="20200203233044854" draft.of="BeyondMonoamineHypothesis" draft.title="BeyondMonoamineHypothesis" modified="20200206215849733" tags="NeuropharmWriting WIP Pharmacology" title="Draft of 'BeyondMonoamineHypothesis'" type="text/vnd.tiddlywiki">
-<pre>this is based on an irc rant about why i disagree with things like  http://slatestarcodex.com/2017/10/10/ssc-journal-club-serotonin-receptors/  . briefly:
-
-* psychedelics don't hit 5-HT2A in the same way as serotonin, they they active PLA2 instead of PLC. 
-* SSRIs don't just hit 5-HT1A. maybe there are 1A/2B interactions. maybe this increases AMPA signaling, or maybe that happens through some other way. mTOR/BDNF are probably involved, but there's reasonable evidence SSRIs have serotonin-independent effects, including on mTOR/BDNF. 
-* therefore, we cannot infer serotonin subtype effects from serotonergic drugs in this way.
-
-some of this is outdated.
-
-see also: [[SecondMessengers]], in which i try to review signaling cascades in more depth.  
-
-more notes: [[PsychedelicMechanisms]], {{Antidepressant||$:/core/ui/TagTemplate}}
-
-!![[Psychedelic]]
-
-{{Psychedelic}}
-
-
-!! [[Antidepressant]]
-
-{{Antidepressant}}
-
-
-
-
---- 
-
-
-
-BDNF-TrkB signaling
-[[https://www.wikipathways.org/index.php/Pathway:WP3676]]
-
-----
-</pre>
 </div>
 <div title="Draft of 'Psychology'">
 <pre></pre>
@@ -14094,6 +14041,18 @@ money
 ** People with higher initial scores did not have significant improvements.
 * Potential mechanism of action: [[HDAC inhibiton|https://www.reddit.com/r/Nootropics/comments/5bqrpm/i_figured_out_prl853s_mechanism_of_action/|HDAC inhibition]]</pre>
 </div>
+<div created="20200206215340861" modified="20200206220031234" tags="Drug" title="Psychedelic">
+<pre>
+* [[Functional selectivity and classical concepts of quantitative pharmacology|https://www.ncbi.nlm.nih.gov/pubmed/16803859]] (2007)
+
+** LSD exhibits functional selectivity at the 5-HT2A and 5HT2C receptors in that it activates the signal transduction enzyme phospholipase A2 instead of activating the enzyme phospholipase C as the endogenous ligand serotonin does. 
+
+
+5-HT2AR-mGluR2 complex is necessary for the neuropsychological responses induced by hallucinogens.
+[[Metabotropic glutamate mGlu2 receptor is necessary for the pharmacological and behavioral effects induced by hallucinogenic 5-HT2A receptor agonists.|https://www.ncbi.nlm.nih.gov/pubmed/21276828]]
+
+(however, 2C-B has a lower 5-HT2A affinity...)</pre>
+</div>
 <div created="20190831151639888" modified="20200206214453635" tags="Psychedelic Neuroscience Pharmacology" title="PsychedelicMechanisms">
 <pre>[[Tolerance and Tachyphylaxis to Head Twitches Induced by the 5-HT2A Agonist 25CN-NBOH in Mice|https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5808243/]] (2018)
 
@@ -14113,18 +14072,6 @@ activity of O-H-LSD or other metabolites?
 https://en.wikipedia.org/wiki/Phospholipase_A2#Regulation
 
 </pre>
-</div>
-<div created="20200206215340861" modified="20200206215340861" tags="" title="Psychedelics">
-<pre>
-* [[Functional selectivity and classical concepts of quantitative pharmacology|https://www.ncbi.nlm.nih.gov/pubmed/16803859]] (2007)
-
-** LSD exhibits functional selectivity at the 5-HT2A and 5HT2C receptors in that it activates the signal transduction enzyme phospholipase A2 instead of activating the enzyme phospholipase C as the endogenous ligand serotonin does. 
-
-
-5-HT2AR-mGluR2 complex is necessary for the neuropsychological responses induced by hallucinogens.
-[[Metabotropic glutamate mGlu2 receptor is necessary for the pharmacological and behavioral effects induced by hallucinogenic 5-HT2A receptor agonists.|https://www.ncbi.nlm.nih.gov/pubmed/21276828]]
-
-(however, 2C-B has a lower 5-HT2A affinity...)</pre>
 </div>
 <div created="20190819194509800" modified="20190819194509800" tags="Science" title="Psychology">
 <pre></pre>
