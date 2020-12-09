@@ -13473,15 +13473,15 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 <div created="20190820164209889" modified="20190820164227192" tags="Diencephalon" title="Hypothalamus">
 <pre>part of the [[HPA]] axis</pre>
 </div>
-<div created="20190810142007037" modified="20200204010050614" tags="Meta" title="Index">
+<div created="20190810142007037" modified="20201209062433307" tags="Meta" title="Index">
 <pre>\define listChildren(tag)
-&lt;$list filter=&quot;[tag[$tag$]has[created]!sort[created]]&quot;&gt;
-&lt;!-- Change the following line to display whatever it is you want
-to be displayed for each child tiddler--&gt;
-&lt;li&gt;&lt;$link/&gt; (WC: &lt;$count filter=&quot;[all[current]get[text]split[ ]]&quot;/&gt;)
+&lt;$list filter=&quot;[tag[$tag$]has[created]tag[!hide]!sort[created]]&quot;&gt;
+&lt;!-- Change the following line to display whatever it is you want to be displayed for each child tiddler--&gt;
+&lt;li&gt;
+  &lt;$link/&gt; (WC: &lt;$count filter=&quot;[all[current]get[text]split[ ]]&quot;/&gt;)
 &lt;/li&gt;
 &lt;ul&gt;
-&lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
+  &lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
 &lt;/ul&gt;
 \end
 
