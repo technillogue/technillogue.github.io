@@ -760,6 +760,8 @@ Error message and password prompt
 
 <li>show</li>
 
+<li>show-&lt;&lt;item&gt;&gt;</li>
+
 <li>SleepDeprivationAntidepressantTherapy</li>
 
 <li>SleepMemory</li>
@@ -10503,7 +10505,7 @@ Error message and password prompt
 <div created="20190730195820129" modified="20190819220642386" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20201219235716687" list="[[Writing Copy]] Index BestOf Writing Presentations" modified="20201220011520533" title="$:/StoryList">
+<div created="20201219235716687" list="Index BestOf Writing Presentations" modified="20201220011520533" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
@@ -12546,17 +12548,17 @@ implicit:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20201220000747050" modified="20201220011846336" tags="Noteworthy" title="BestOf">
+<div created="20201220000747050" modified="20201220012414543" tags="Noteworthy" title="BestOf">
 <pre>Click to unfold:
 
 
 &lt;$list filter=&quot;[tag&lt;currentTiddler&gt;]&quot; variable=&quot;item&quot;&gt;
-&lt;$set name=&quot;state&quot; value=&quot;show-&lt;&lt;item&gt;&gt;&quot;&gt;
-&lt;$reveal type=&quot;nomatch&quot;  state=&lt;&lt;state&gt;&gt;  text=&quot;show&quot;&gt;
+&lt;$set name=&quot;state&quot; value=&quot;$:/state/&lt;&lt;item&gt;&gt;&quot;&gt;
+&lt;$reveal type=&quot;nomatch&quot;  state=&quot;&lt;&lt;state&gt;&gt;&quot;  text=&quot;show&quot;&gt;
 &lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;show&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/right-arrow}} &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt; 
 &lt;/$reveal&gt;
-&lt;$reveal type=&quot;match&quot; state=&lt;&lt;state&gt;&gt; text=&quot;show&quot;&gt;
-&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;hide&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/down-arrow}}  &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt;
+&lt;$reveal type=&quot;match&quot; state=&quot;&lt;&lt;state&gt;&gt;&quot; text=&quot;show&quot;&gt;
+&lt;h3&gt;&lt;$button set=&quot;&lt;&lt;state&gt;&gt;&quot; setTo=&quot;hide&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/down-arrow}}  &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt;
 
 &lt;$transclude tiddler=&lt;&lt;item&gt;&gt; mode=&quot;block&quot;/&gt;
 
@@ -14834,6 +14836,9 @@ prenatal and early life cortisol is probably the epigenetic mechanism involved i
 &gt;. Interestingly, ADHD was comorbid 38% of the time, which was slightly higher than the non-PTSD group (22%), but not significantly, providing some empirical support to the clinically-observed notion that children with PTSD may be misdiagnosed with ADHD because of the overlap in concentration difficulties.</pre>
 </div>
 <div created="20201220005742438" modified="20201220010336093" title="show">
+<pre>show</pre>
+</div>
+<div created="20201220011849388" modified="20201220011901478" title="show-&lt;&lt;item&gt;&gt;">
 <pre>show</pre>
 </div>
 <div created="20191126214925792" modified="20191126221939353" tags="Neuroscience Antidepressant Depression" title="SleepDeprivationAntidepressantTherapy">
