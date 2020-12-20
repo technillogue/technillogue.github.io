@@ -10355,7 +10355,7 @@ Error message and password prompt
 <div created="20190730195519526" modified="20190816212540089" title="$:/SiteTitle">
 <pre>technillogue's grimoire</pre>
 </div>
-<div created="20201220012416702" modified="20201220012418475" title="$:/state/&lt;&lt;item&gt;&gt;">
+<div created="20201220012416702" modified="20201220012653337" title="$:/state/&lt;&lt;item&gt;&gt;">
 <pre>show</pre>
 </div>
 <div created="20190819214354727" modified="20190819214354727" title="$:/state/add-plugin-info/$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html/$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/plugins/tiddlywiki/blog">
@@ -12551,17 +12551,20 @@ implicit:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20201220000747050" modified="20201220012553448" tags="Noteworthy" title="BestOf">
-<pre>Click to unfold:
-&lt;$set name=&quot;a&quot; value=&quot;b&quot;&gt;
+<div created="20201220000747050" modified="20201220012845212" tags="Noteworthy" title="BestOf">
+<pre>&lt;$set name=&quot;a&quot; value=&quot;b&quot;&gt;
 &lt;&lt;a&gt;&gt;
 &lt;$set name=&quot;b&quot; value=&quot;&lt;&lt;a&gt;&gt;-suffix&quot;&gt;
 &lt;&lt;b&gt;&gt;
 &lt;/$set&gt;
 &lt;/$set&gt;
 
+Click to unfold:
+
 &lt;$list filter=&quot;[tag&lt;currentTiddler&gt;]&quot; variable=&quot;item&quot;&gt;
+item: &lt;&lt;item&gt;&gt;
 &lt;$set name=&quot;state&quot; value=&quot;$:/state/&lt;&lt;item&gt;&gt;&quot;&gt;
+&lt;br/&gt;state: &lt;&lt;state&gt;&gt; 
 &lt;$reveal type=&quot;nomatch&quot;  state=&quot;&lt;&lt;state&gt;&gt;&quot;  text=&quot;show&quot;&gt;
 &lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;show&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/right-arrow}} &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt; 
 &lt;/$reveal&gt;
