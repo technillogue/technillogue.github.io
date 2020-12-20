@@ -12761,58 +12761,59 @@ but what level of stagnation is acceptable?
 
 [[Novel Treatment with Neuroprotective and Antiviral Properties against a Neuroinvasive Human Respiratory Virus|https://jvi.asm.org/content/88/3/1548]] (2013) -- memantine </pre>
 </div>
-<div created="20200129020906028" modified="20201220020115921" tags="WIP Tech Systems Noteworthy" title="EffectivenessPrinciples" type="text/x-markdown">
+<div created="20200129020906028" modified="20201220021040490" tags="WIP Tech Systems Noteworthy" title="EffectivenessPrinciples" type="text/x-markdown">
 <pre>(created 2019-07-28, edited and moved here 2020-01-28)
 
 what does &quot;data-driven&quot; or &quot;best practices&quot; mean? would should it mean?
 
 what would rigorously systemizing my understanding of being a good engineer, designer, scientist, teacher, or collaborator look like?
 
-a rough sketch: 
+a (very) rough sketch: 
 
-decision-making
-
-*   make any decisions based on first available
-  *   highest quality evidence (more or less: evidence about the individual situation; evidence about the population; longitudinal blinded RCT; open-label RCT, cohort, case study)
-  *   best practices / these generally organizational principles (nontrivial to do in practice)
-  *   personal opinion
-  *   coin flip
-  *   estimate how much resources it would it would cost to obtain any higher step vs how much benefit it would bring
-  *   start with simplest, fastest available that mostly satisfies these rules
-
-* every insight or guideline should be as generalized as possible while still fitting the evidence and acceptable for everyone
-  *   basic example: &quot;start with MVP, then iterate&quot; applies to every level of business, writing or optimization code, or improving people's mental health
-  *   this should be achieved by iteratively trying to generalize any insight about code, mental health, businesses, etc + qualifying/narrowing/discarding anything that doesn't fit the evidence
-  *   this isn't always the best use of time, and it's not obvious when integration is more valuable than collecting experience
-*   this is a living document. if a given principle doesn't work for you, don't do your own thing--change, qualify, or narrow the principle
-*   not every principle is general: many are applicable to specific domains, personalities, etc. principles that cannot be generalized but are still valid should be contextualized, and read/followed/updated only by people for who it is relevant
-*   people not affected by a decision do not participate in discussion unless explicitly asked. decisions are made in smallest units possible.
-*   disagreements are settled by IEEEE-style rough consensus; if timeliness is needed, by BDFL-style veto
-*   such vetos are a sign of system failure and should be optimized against
-humans and their relationships are more important than any policy, process, or anything else
-*   HR and management should be most scrutinized, optimized, etc
-avoid thinking or learning wherever possible, use trivial algorithms wherever you can
-*   make decisions following this document
-*   catch bugs using static analysis
-*   use interfaces that minimize required memorization
+* decision-making:
+  * make any decisions based on the first available
+    * highest quality evidence (more or less: evidence about the individual situation; evidence about the population; longitudinal blinded RCT; open-label RCT, cohort, case study)
+    * best practices / these generally organizational principles (nontrivial to do in practice)
+    * personal opinion
+    * coin flip
+  * estimate how much resources it would it would cost to obtain any higher step vs how much benefit it would bring
+  * start with simplest, fastest available that mostly satisfies these rules
+* generalize:
+  * every insight or guideline should be as generalized as possible while still fitting the evidence and acceptable for everyone
+  * basic example: &quot;start with MVP, then iterate&quot; applies to every level of business, writing or optimization code, or improving people's mental health
+  * this should be achieved by iteratively trying to generalize any insight about code, mental health, businesses, etc + qualifying/narrowing/discarding anything that doesn't fit the evidence
+  * this isn't always the best use of time, and it's not obvious when integration is more valuable than collecting experience
+* meta:
+  * this is a living document. if a given principle doesn't work for you, don't do your own thing--change, qualify, or narrow the principle
+  * not every principle is general: many are applicable to specific domains, personalities, etc. principles that cannot be generalized but are still valid should be contextualized, and read/followed/updated only by people for who it is relevant
+  * people not affected by a decision do not participate in discussion unless explicitly asked. decisions are made in smallest units possible.
+  * disagreements are settled by IEEEE-style rough consensus; if timeliness is needed, by BDFL-style veto
+    * such vetos are a sign of system failure and should be optimized against
+  * if you have a new co-founder, you should both agree 100% about everything in a document such as this. new people should 100% understand every relevant part
+  * when you add to this document, refactor everything
+  * however, refactoring is a type of optimization, and should also undergo cost/benefit analysis
+		* note salient optimizations, triage them, optimize gradually and if necessary
+* humans and their relationships are more important than any policy, process, or anything else
+  * HR and management should be most scrutinized, optimized, etc
+* avoid thinking or learning wherever possible, use trivial algorithms wherever you can
+  * make decisions following this document
+  * catch bugs using static analysis
+* use interfaces that minimize required memorization
 * refactor continuously. a well-organized toolbox of simple powerfully-combinable tools is better than a Swiss army knife with a thousand powerful tools that work out of the box. make every concept and every tool pay rent, have its benefit weighed against its cognitive load
-*   when you add to this document, refactor everything
-*   if you have a new co-founder, you should both agree 100% about everything in a document such as this. new people should 100% understand every relevant part
-*   however, refactoring is a type of optimization, and should also undergo cost/benefit analysis: note salient optimizations, triage them, optimize gradually and if necessary
-  *   don't spend an hour making a task that takes 1h/year 50% faster
-  *   do spend a 160h making a task that takes 16000h/y 1% faster
-  *   don't spend 100$ to make a product sold once a year $50$ cheaper/faster
-  *   do spend $16k making a product that is sold 1.6k times a year $10 cheaper or more profitable
-  *   do spend 2h making a task that takes 1h/year completely automated , so we stop thinking about it at all
-    *   timescales approximate
+* optimization (timescales approximate):
+  * don't spend an hour making a task that takes 1h/year 50% faster
+  * do spend a 160h making a task that takes 16000h/y 1% faster
+  * don't spend 100$ to make a product sold once a year $50 cheaper/faster
+  * do spend $16k making a product that is sold 1.6k times a year $10 cheaper or more profitable
+  * do spend 2h making a task that takes 1h/year completely automated, so we stop thinking about it at all
 
 
 pedagogy
-*   avoid memorising information, learn literacy skills and how to quickly look up information. onboard memory is highly limited, prefer mounting external memory (frequently used data eventually gets cached onboard anyway)
-*   when learning a skill, invest in your tools. interfaces should be as friendly as possible and should come with built-in low-latency exocortexes (labels, tooltips, jump to definition). additionally invest in pleasant tools for seeing state and control flow (debuggers). finally, automate away mistakes (static checkers).
-*   learn things in the optimal order (stay small and specific, then go bigger, then learn edge cases)
-*   do use good memory strategies for learning skills: relate to what you know, use different mediums, use spaced repetition, reflect and summarize continuously. most importantly, know your learning style
-*   for some people, have an overview of the general topic and &quot;zoom in&quot; on what you need to learn or are interested in instead of a linear curriculum</pre>
+* avoid memorising information, learn literacy skills and how to quickly look up information. onboard memory is highly limited, prefer mounting external memory (frequently used data eventually gets cached onboard anyway)
+* when learning a skill, invest in your tools. interfaces should be as friendly as possible and should come with built-in low-latency exocortexes (labels, tooltips, jump to definition). additionally invest in pleasant tools for seeing state and control flow (debuggers). finally, automate away mistakes (static checkers).
+* learn things in the optimal order (stay small and specific, then go bigger, then learn edge cases)
+* do use good memory strategies for learning skills: relate to what you know, use different mediums, use spaced repetition, reflect and summarize continuously. most importantly, know your learning style
+* for some people, have an overview of the general topic and &quot;zoom in&quot; on what you need to learn or are interested in instead of a linear curriculum</pre>
 </div>
 <div created="20200129155456078" modified="20200129160734927" tags="Scratchpad EffectivenessPrinciples" title="EffectivenessScratchpad">
 <pre>* it's difficult to find where the information is in a new domain
