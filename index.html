@@ -310,6 +310,8 @@ Error message and password prompt
 
 <li>$:/state/plugin-info--896887961-$:/plugins/tiddlywiki/markdown---1750897968</li>
 
+<li>$:/state/Presentations</li>
+
 <li>$:/state/showeditpreview</li>
 
 <li>$:/state/sidebar</li>
@@ -331,6 +333,8 @@ Error message and password prompt
 <li>$:/state/tab/sidebar--595412856</li>
 
 <li>$:/state/tabs/controlpanel/toolbars-1345989671</li>
+
+<li>$:/state/Writing Copy</li>
 
 <li>$:/StoryList</li>
 
@@ -828,8 +832,8 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20201220013203855" modified="20201220013203855" title="$:/config/AutoSave">
-<pre>no</pre>
+<div created="20201220013203855" modified="20201220013216940" title="$:/config/AutoSave">
+<pre>yes</pre>
 </div>
 <div created="20190818194107460" modified="20190818194107460" title="$:/config/Manager/Show">
 <pre>tags</pre>
@@ -10473,8 +10477,8 @@ Error message and password prompt
 <div created="20190820153532312" modified="20190820153532313" title="$:/state/folded/VentralTegmentalArea">
 <pre>hide</pre>
 </div>
-<div created="20201220012857453" modified="20201220012903247" tags="" title="$:/state/Images">
-<pre></pre>
+<div created="20201220012857453" modified="20201220013950577" tags="" title="$:/state/Images">
+<pre>show</pre>
 </div>
 <div created="20200206213001229" modified="20200206213002330" title="$:/state/peek-stylesheets/open/--1833323649$:/themes/tiddlywiki/snowwhite/base">
 <pre>no</pre>
@@ -10484,6 +10488,9 @@ Error message and password prompt
 </div>
 <div created="20190903172321651" modified="20190903172404497" title="$:/state/plugin-info--896887961-$:/plugins/tiddlywiki/markdown---1750897968">
 <pre>contents</pre>
+</div>
+<div created="20201220013727491" modified="20201220013953502" title="$:/state/Presentations">
+<pre>show</pre>
 </div>
 <div created="20190730200459107" modified="20200910165236469" title="$:/state/showeditpreview">
 <pre>no</pre>
@@ -10518,7 +10525,10 @@ Error message and password prompt
 <div created="20190730195820129" modified="20190819220642386" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20201219235716687" list="$:/ControlPanel BestOf $:/state/&lt;&lt;item&gt;&gt; Writing Presentations" modified="20201220013158769" title="$:/StoryList">
+<div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
+<pre>show</pre>
+</div>
+<div created="20201219235716687" list="BestOf Writing Presentations" modified="20201220014301481" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
@@ -12561,31 +12571,25 @@ implicit:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20201220000747050" modified="20201220013141879" tags="Noteworthy" title="BestOf">
-<pre>&lt;$set name=&quot;a&quot; value=&quot;b&quot;&gt;
-&lt;&lt;a&gt;&gt;
-&lt;$set name=&quot;b&quot; value=&quot;&lt;&lt;a&gt;&gt;-suffix&quot;&gt;
-&lt;&lt;b&gt;&gt;
-&lt;/$set&gt;
-&lt;/$set&gt;
+<div created="20201220000747050" modified="20201220014030232" tags="Noteworthy" title="BestOf">
+<pre>\define stateify() $:/state/$(item)$
 
 Click to unfold:
 
 &lt;$list filter=&quot;[tag&lt;currentTiddler&gt;]&quot; variable=&quot;item&quot;&gt;
-item: &lt;&lt;item&gt;&gt;
-&lt;$set name=&quot;state&quot; value=&quot;$:/state/&lt;item&gt;&quot;&gt;
-&lt;br/&gt;state: &lt;$link to=&lt;&lt;state&gt;&gt;&gt;&lt;&lt;state&gt;&gt;&lt;/$link&gt;
-&lt;&lt;state&gt;&gt;
-&lt;$reveal type=&quot;nomatch&quot;  state=&quot;&lt;&lt;state&gt;&gt;&quot;  text=&quot;show&quot;&gt;
+&lt;$set name=&quot;state&quot; value=&lt;&lt;stateify&gt;&gt;&gt;
+&lt;$set name=&lt;&lt;state&gt;&gt; value=&quot;hide&quot;&gt;
+
+&lt;$reveal type=&quot;nomatch&quot;  state=&lt;&lt;state&gt;&gt;  text=&quot;show&quot;&gt;
 &lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;show&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/right-arrow}} &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt; 
 &lt;/$reveal&gt;
-&lt;$reveal type=&quot;match&quot; state=&quot;&lt;&lt;state&gt;&gt;&quot; text=&quot;show&quot;&gt;
-&lt;h3&gt;&lt;$button set=&quot;&lt;&lt;state&gt;&gt;&quot; setTo=&quot;hide&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/down-arrow}}  &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt;
+&lt;$reveal type=&quot;match&quot; state=&lt;&lt;state&gt;&gt; text=&quot;show&quot;&gt;
+&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;hide&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/down-arrow}}  &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt;
 
 &lt;$transclude tiddler=&lt;&lt;item&gt;&gt; mode=&quot;block&quot;/&gt;
 
 &lt;/$reveal&gt;
-
+&lt;/$set&gt;
 &lt;/$set&gt;
 &lt;/$list&gt;
 </pre>
@@ -13595,8 +13599,27 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 
 * In contrast [to huperzine], oral administration of IDRA 21 significantly improved performance on [24 trials of a delayed non-matching-to-sample task with a list of six objects presented in succession], especially on the longest delay.</pre>
 </div>
-<div created="20201219235038076" modified="20201220011256943" tags="BestOf" title="Images">
-<pre>hide</pre>
+<div created="20201219235038076" modified="20201220014838596" tags="BestOf" title="Images">
+<pre>[img[https://technillogue.github.io/images/duck.jpg]]
+
+[img[https://technillogue.github.io/images/ceci.jpg]]
+
+[img[https://technillogue.github.io/images/prediction-accuracy.png]]
+
+[img[https://technillogue.github.io/images/election.png]]
+
+[img[https://technillogue.github.io/images/line.jpg]]
+
+[img[https://technillogue.github.io/images/feelings.jpg]]
+
+[img[https://technillogue.github.io/images/treehouse.jpg]]
+
+[img[https://technillogue.github.io/images/treehouses.jpg]]
+
+[img[https://technillogue.github.io/images/snow-fire.jpg]]
+
+[img[https://technillogue.github.io/images/black-lives-matter-protest-in-times-sq.jpg]]
+</pre>
 </div>
 <div created="20190810142007037" modified="20201220010530567" tags="Meta" title="Index">
 <pre>\define listChildren(tag)
@@ -14421,8 +14444,10 @@ https://alifeofproductivity.com/top-lessons-learned-a-year-of-productivity/
 
 </pre>
 </div>
-<div created="20201220001930721" modified="20201220011258817" tags="BestOf" title="Presentations">
-<pre>hide</pre>
+<div created="20201220001930721" modified="20201220015019033" tags="BestOf" title="Presentations">
+<pre>* [[Avoid Thinking Whenever Possible|https://technillogue.github.io/presentations/think-less]] (2019)
+* [[Artificial and Biological Neural Networks|https://technillogue.github.io/presentations/artificial-and-biological-neural-networks.html]] (2018)
+* [[Ribosomes as Finite State Machines|https://technillogue.github.io/presentations/ribosomes-as-FST]] (2018)</pre>
 </div>
 <div created="20190903165308508" modified="20190903165330418" tags="Priorities Personal [[2nd September 2019]]" title="Priorities-09-02">
 <pre>abstract
