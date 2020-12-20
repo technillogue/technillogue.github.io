@@ -156,6 +156,8 @@ Error message and password prompt
 
 <p>This <a class="tc-tiddlylink-external" href="https://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
 
+<li>$:/config/AutoSave</li>
+
 <li>$:/config/Manager/Show</li>
 
 <li>$:/config/Manager/Sort</li>
@@ -826,6 +828,9 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
+<div created="20201220013203855" modified="20201220013203855" title="$:/config/AutoSave">
+<pre>no</pre>
+</div>
 <div created="20190818194107460" modified="20190818194107460" title="$:/config/Manager/Show">
 <pre>tags</pre>
 </div>
@@ -10504,8 +10509,8 @@ Error message and password prompt
 <div created="20190730195537892" modified="20200907234517217" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
 </div>
-<div created="20190730195539665" modified="20190730195539665" title="$:/state/tab-2065006209">
-<pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
+<div created="20190730195539665" modified="20201220013202338" title="$:/state/tab-2065006209">
+<pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
 <div created="20190810135005842" modified="20201209062527024" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
@@ -10513,7 +10518,7 @@ Error message and password prompt
 <div created="20190730195820129" modified="20190819220642386" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20201219235716687" list="Index BestOf Writing Presentations" modified="20201220012917827" title="$:/StoryList">
+<div created="20201219235716687" list="$:/ControlPanel BestOf $:/state/&lt;&lt;item&gt;&gt; Writing Presentations" modified="20201220013158769" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
@@ -12556,7 +12561,7 @@ implicit:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20201220000747050" modified="20201220013052791" tags="Noteworthy" title="BestOf">
+<div created="20201220000747050" modified="20201220013141879" tags="Noteworthy" title="BestOf">
 <pre>&lt;$set name=&quot;a&quot; value=&quot;b&quot;&gt;
 &lt;&lt;a&gt;&gt;
 &lt;$set name=&quot;b&quot; value=&quot;&lt;&lt;a&gt;&gt;-suffix&quot;&gt;
@@ -12568,8 +12573,9 @@ Click to unfold:
 
 &lt;$list filter=&quot;[tag&lt;currentTiddler&gt;]&quot; variable=&quot;item&quot;&gt;
 item: &lt;&lt;item&gt;&gt;
-&lt;$set name=&quot;state&quot; value=&quot;$:/state/&lt;&lt;item&gt;&gt;&quot;&gt;
-&lt;br/&gt;state: &lt;$link to=&lt;&lt;state&gt;&gt;&gt;&lt;&lt;state&gt;&gt;&lt;/$list&gt;
+&lt;$set name=&quot;state&quot; value=&quot;$:/state/&lt;item&gt;&quot;&gt;
+&lt;br/&gt;state: &lt;$link to=&lt;&lt;state&gt;&gt;&gt;&lt;&lt;state&gt;&gt;&lt;/$link&gt;
+&lt;&lt;state&gt;&gt;
 &lt;$reveal type=&quot;nomatch&quot;  state=&quot;&lt;&lt;state&gt;&gt;&quot;  text=&quot;show&quot;&gt;
 &lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;show&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/right-arrow}} &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt; 
 &lt;/$reveal&gt;
