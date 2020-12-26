@@ -602,6 +602,8 @@ Error message and password prompt
 
 <li>Aug31RestrictionPriorities</li>
 
+<li>backups</li>
+
 <li>BacopaMonnieri</li>
 
 <li>BasalGanglia</li>
@@ -627,8 +629,6 @@ Error message and password prompt
 <li>Draft of '9-Me-BC'</li>
 
 <li>Draft of 'Index'</li>
-
-<li>Draft of 'New Tiddler'</li>
 
 <li>Draft of 'Psychedelic'</li>
 
@@ -705,6 +705,8 @@ Error message and password prompt
 <li>Meta</li>
 
 <li>Midbrain</li>
+
+<li>Misc</li>
 
 <li>MiscNeurosci</li>
 
@@ -10541,7 +10543,7 @@ Error message and password prompt
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20201226185644973" list="Science [[Draft of 'New Tiddler']] BestOf [[Draft of 'Index']] BrainAnatomy" modified="20201226194533352" title="$:/StoryList">
+<div created="20201226185644973" list="backups [[Draft of 'Index']] BrainAnatomy" modified="20201226194549107" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
@@ -11289,8 +11291,8 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190819214322594" modified="20190903172250113" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>markdown</pre>
 </div>
-<div created="20190820131939822" modified="20201226194532220" title="$:/temp/search">
-<pre>Science</pre>
+<div created="20190820131939822" modified="20201226194608933" title="$:/temp/search">
+<pre>Misc</pre>
 </div>
 <div created="20190903172309883" modified="20190903172309883" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html" url="https://tiddlywiki.com/library/v5.1.19/index.html">
 <pre>loaded</pre>
@@ -12566,6 +12568,58 @@ implicit:
 
 </pre>
 </div>
+<div created="20201226194419158" modified="20201226194650769" tags="hide" title="backups">
+<pre>
+\define stateify() $:/state/$(item)$
+
+Click to unfold:
+
+&lt;$list filter=&quot;[tag&lt;currentTiddler&gt;]&quot; variable=&quot;item&quot;&gt;
+&lt;$set name=&quot;state&quot; value=&lt;&lt;stateify&gt;&gt;&gt;
+&lt;$set name=&lt;&lt;state&gt;&gt; value=&quot;hide&quot;&gt;
+
+&lt;$reveal type=&quot;nomatch&quot;  state=&lt;&lt;state&gt;&gt;  text=&quot;show&quot;&gt;
+&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;show&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/right-arrow}} &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt; 
+&lt;/$reveal&gt;
+&lt;$reveal type=&quot;match&quot; state=&lt;&lt;state&gt;&gt; text=&quot;show&quot;&gt;
+&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;hide&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/down-arrow}}  &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt;
+
+&lt;$transclude tiddler=&lt;&lt;item&gt;&gt; mode=&quot;block&quot;/&gt;
+
+&lt;/$reveal&gt;
+&lt;/$set&gt;
+&lt;/$set&gt;
+&lt;/$list&gt;
+
+
+
+
+\define listChildren(tag)
+&lt;$list filter=&quot;[tag[$tag$]has[created]!tag[hide]!sort[created]]&quot;&gt;
+&lt;!-- Change the following line to display whatever it is you want to be displayed for each child tiddler--&gt;
+&lt;li&gt;
+  &lt;$link/&gt; (WC: &lt;$count filter=&quot;[all[current]get[text]split[ ]]&quot;/&gt;)
+&lt;/li&gt;
+&lt;ul&gt;
+  &lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
+&lt;/ul&gt;
+&lt;/$list&gt;
+\end
+
+
+!Noteworthy
+&lt;&lt;list-links filter:&quot;[tag[Noteworthy]has[created]!sort[created]]&quot;&gt;&gt;
+
+!Science
+&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Science&quot;/&gt;&lt;/ul&gt;
+
+!Misc
+&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Misc&quot;/&gt;&lt;/ul&gt;
+
+!Untagged:
+&lt;ul&gt;&lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;&lt;/ul&gt;
+</pre>
+</div>
 <div created="20190810144904921" modified="20190818200641771" tags="Hypermnesiac" title="BacopaMonnieri">
 <pre>Only listing studies with young adults. Takes at least six weeks for effects to be notable.
 
@@ -12766,64 +12820,14 @@ but what level of stagnation is acceptable?
 <div modified="20201223181140900" title="Draft of '9-Me-BC'">
 <pre></pre>
 </div>
-<div created="20190810142007037" draft.of="Index" draft.title="Index" modified="20201226194525351" tags="Meta" title="Draft of 'Index'">
+<div created="20190810142007037" draft.of="Index" draft.title="Index" modified="20201226194646179" tags="Meta" title="Draft of 'Index'">
 <pre>&lt;$macrocall
 	$name=&quot;toc-tabbed-internal-nav&quot;
 	tag=&quot;Index&quot;
 	selectedTiddler=&quot;$:/temp/toc/selectedTiddler&quot;
 	unselectedText=&quot;&lt;p&gt;Select a topic in the table of contents. Click the arrow to expand topics.&lt;/p&gt;&quot;
 	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
-/&gt;
-
-
-\define listChildren(tag)
-&lt;$list filter=&quot;[tag[$tag$]has[created]!tag[hide]!sort[created]]&quot;&gt;
-&lt;!-- Change the following line to display whatever it is you want to be displayed for each child tiddler--&gt;
-&lt;li&gt;
-  &lt;$link/&gt; (WC: &lt;$count filter=&quot;[all[current]get[text]split[ ]]&quot;/&gt;)
-&lt;/li&gt;
-&lt;ul&gt;
-  &lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
-&lt;/ul&gt;
-&lt;/$list&gt;
-\end
-
-
-!Noteworthy
-&lt;&lt;list-links filter:&quot;[tag[Noteworthy]has[created]!sort[created]]&quot;&gt;&gt;
-
-!Science
-&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Science&quot;/&gt;&lt;/ul&gt;
-
-!Misc
-&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Misc&quot;/&gt;&lt;/ul&gt;
-
-!Untagged:
-&lt;ul&gt;&lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;&lt;/ul&gt;</pre>
-</div>
-<div created="20201226194419158" draft.of="New Tiddler" draft.title="backups" modified="20201226194428044" tags="hide" title="Draft of 'New Tiddler'">
-<pre>
-\define stateify() $:/state/$(item)$
-
-Click to unfold:
-
-&lt;$list filter=&quot;[tag&lt;currentTiddler&gt;]&quot; variable=&quot;item&quot;&gt;
-&lt;$set name=&quot;state&quot; value=&lt;&lt;stateify&gt;&gt;&gt;
-&lt;$set name=&lt;&lt;state&gt;&gt; value=&quot;hide&quot;&gt;
-
-&lt;$reveal type=&quot;nomatch&quot;  state=&lt;&lt;state&gt;&gt;  text=&quot;show&quot;&gt;
-&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;show&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/right-arrow}} &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt; 
-&lt;/$reveal&gt;
-&lt;$reveal type=&quot;match&quot; state=&lt;&lt;state&gt;&gt; text=&quot;show&quot;&gt;
-&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;hide&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/down-arrow}}  &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt;
-
-&lt;$transclude tiddler=&lt;&lt;item&gt;&gt; mode=&quot;block&quot;/&gt;
-
-&lt;/$reveal&gt;
-&lt;/$set&gt;
-&lt;/$set&gt;
-&lt;/$list&gt;
-</pre>
+/&gt;</pre>
 </div>
 <div modified="20200206220403969" title="Draft of 'Psychedelic'">
 <pre></pre>
@@ -14050,6 +14054,9 @@ To return to:
 <div created="20190820163817519" modified="20190820163818910" tags="BrainAnatomy" title="Midbrain">
 <pre></pre>
 </div>
+<div created="20201226194619623" modified="20201226194625693" tags="Index" title="Misc">
+<pre></pre>
+</div>
 <div created="20190810160703264" modified="20190820153813477" tags="Neuroscience" title="MiscNeurosci">
 <pre>[[The association between resting functional connectivity and creativity|https://www.ncbi.nlm.nih.gov/pubmed/22235031]] (2012)
 
@@ -14216,7 +14223,7 @@ But if the indirect striatal pathway is more inhibited than the direct pathway, 
 <div modified="20190818200612696" tags="Drug" title="Nootropics">
 <pre></pre>
 </div>
-<div created="20190818200722776" modified="20190818200729345" tags="Misc" title="Noteworthy">
+<div created="20190818200722776" modified="20201226194600448" tags="Index" title="Noteworthy">
 <pre></pre>
 </div>
 <div created="20190814155715687" modified="20190818200627150" tags="Nootropics Antidepressant" title="NSI-189">
