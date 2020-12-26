@@ -568,6 +568,8 @@ Error message and password prompt
 
 <li>$:/temp/toc/selectedIndex</li>
 
+<li>$:/temp/toc/selectedNoteworthy</li>
+
 <li>$:/temp/toc/selectedTiddler</li>
 
 <li>$:/theme</li>
@@ -663,8 +665,6 @@ Error message and password prompt
 <li>DopaminePathways</li>
 
 <li>Draft of '9-Me-BC'</li>
-
-<li>Draft of 'backups'</li>
 
 <li>Draft of 'Psychedelic'</li>
 
@@ -878,8 +878,8 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20201220013203855" modified="20201220015154860" title="$:/config/AutoSave">
-<pre>yes</pre>
+<div created="20201220013203855" modified="20201226205437561" title="$:/config/AutoSave">
+<pre>no</pre>
 </div>
 <div created="20190818194107460" modified="20190818194107460" title="$:/config/Manager/Show">
 <pre>tags</pre>
@@ -10567,7 +10567,7 @@ Error message and password prompt
 <div created="20190818204301709" modified="20200424173641034" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20200206212917740" modified="20201226204737661" title="$:/state/tab--1498284803">
+<div created="20200206212917740" modified="20201226210355806" title="$:/state/tab--1498284803">
 <pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
 <div created="20190730195811423" modified="20201226200405758" title="$:/state/tab--1963855381">
@@ -10582,8 +10582,8 @@ Error message and password prompt
 <div created="20190903172312633" modified="20201226200824612" title="$:/state/tab-1342078386">
 <pre>$:/core/ui/ControlPanel/Plugins/Add/Plugins</pre>
 </div>
-<div created="20190730195537892" modified="20201226200813113" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Plugins</pre>
+<div created="20190730195537892" modified="20201226205436301" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Saving</pre>
 </div>
 <div created="20190730195539665" modified="20201220013202338" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
@@ -10594,14 +10594,14 @@ Error message and password prompt
 <div created="20190730195820129" modified="20201226200431368" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
 </div>
-<div created="20201226194752607" modified="20201226194752607" title="$:/state/toc/Index-Misc-1395960319">
+<div created="20201226194752607" modified="20201226210020444" title="$:/state/toc/Index-Misc-1395960319">
+<pre>close</pre>
+</div>
+<div created="20201226194720448" modified="20201226210310067" title="$:/state/toc/Index-Noteworthy-1395960319">
 <pre>open</pre>
 </div>
-<div created="20201226194720448" modified="20201226194720448" title="$:/state/toc/Index-Noteworthy-1395960319">
-<pre>open</pre>
-</div>
-<div created="20201226194736659" modified="20201226194736659" title="$:/state/toc/Index-Science-1395960319">
-<pre>open</pre>
+<div created="20201226194736659" modified="20201226210017593" title="$:/state/toc/Index-Science-1395960319">
+<pre>close</pre>
 </div>
 <div created="20201226194754827" modified="20201226194754827" title="$:/state/toc/Index/Misc-Meta-1395960319">
 <pre>open</pre>
@@ -10636,7 +10636,7 @@ Error message and password prompt
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20201226202836464" list="[[Draft of 'backups']] Index Noteworthy" modified="20201226204848569" title="$:/StoryList">
+<div created="20201226202836464" list="Index Noteworthy" modified="20201226211932722" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -10645,8 +10645,8 @@ Error message and password prompt
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
 <pre></pre>
 </div>
-<div created="20200206212920369" modified="20201226204726837" title="$:/temp/advancedsearch">
-<pre>templates</pre>
+<div created="20200206212920369" modified="20201226210415616" title="$:/temp/advancedsearch">
+<pre>toc-</pre>
 </div>
 <div created="20190819220224387" modified="20190819220224387" title="$:/temp/HidePluginWarning">
 <pre>yes</pre>
@@ -11387,14 +11387,17 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190819214322594" modified="20201226200933142" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre></pre>
 </div>
-<div created="20190820131939822" modified="20201226202004151" title="$:/temp/search">
+<div created="20190820131939822" modified="20201226210315786" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20190903172309883" modified="20190903172309883" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html" url="https://tiddlywiki.com/library/v5.1.19/index.html">
 <pre>loaded</pre>
 </div>
-<div created="20201226194949960" modified="20201226204839008" title="$:/temp/toc/selectedIndex">
+<div created="20201226194949960" modified="20201226210236521" title="$:/temp/toc/selectedIndex">
 <pre>Noteworthy</pre>
+</div>
+<div created="20201226210224051" modified="20201226211929933" title="$:/temp/toc/selectedNoteworthy">
+<pre>BestOf</pre>
 </div>
 <div created="20201226194324138" modified="20201226194808089" title="$:/temp/toc/selectedTiddler">
 <pre>BestOf</pre>
@@ -12740,7 +12743,7 @@ Click to unfold:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20201220000747050" modified="20201226202040024" tags="Noteworthy" title="BestOf">
+<div created="20201220000747050" modified="20201226211940208" priority="-1" tags="Noteworthy" title="BestOf">
 <pre>&lt;$set name=&quot;$:/temp/toc/selectedBest&quot; value=&quot;Presentations&quot;&gt;
 &lt;$macrocall
 	$name=&quot;toc-tabbed-internal-nav&quot;
@@ -12919,57 +12922,6 @@ but what level of stagnation is acceptable?
 </div>
 <div modified="20201223181140900" title="Draft of '9-Me-BC'">
 <pre></pre>
-</div>
-<div created="20201226194419158" draft.of="backups" draft.title="backups" modified="20201226202838745" tags="hide" title="Draft of 'backups'">
-<pre>\define stateify() $:/state/$(item)$
-
-Click to unfold:
-
-&lt;$list filter=&quot;[tag&lt;currentTiddler&gt;]&quot; variable=&quot;item&quot;&gt;
-&lt;$set name=&quot;state&quot; value=&lt;&lt;stateify&gt;&gt;&gt;
-&lt;$set name=&lt;&lt;state&gt;&gt; value=&quot;hide&quot;&gt;
-
-&lt;$reveal type=&quot;nomatch&quot;  state=&lt;&lt;state&gt;&gt;  text=&quot;show&quot;&gt;
-&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;show&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/right-arrow}} &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt; 
-&lt;/$reveal&gt;
-&lt;$reveal type=&quot;match&quot; state=&lt;&lt;state&gt;&gt; text=&quot;show&quot;&gt;
-&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;hide&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/down-arrow}}  &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt;
-
-&lt;$transclude tiddler=&lt;&lt;item&gt;&gt; mode=&quot;block&quot;/&gt;
-
-&lt;/$reveal&gt;
-&lt;/$set&gt;
-&lt;/$set&gt;
-&lt;/$list&gt;
-
-
-
-
-\define listChildren(tag)
-&lt;$list filter=&quot;[tag[$tag$]has[created]!tag[hide]!sort[created]]&quot;&gt;
-&lt;!-- Change the following line to display whatever it is you want to be displayed for each child tiddler--&gt;
-&lt;li&gt;
-  &lt;$link/&gt; (WC: &lt;$count filter=&quot;[all[current]get[text]split[ ]]&quot;/&gt;)
-&lt;/li&gt;
-&lt;ul&gt;
-  &lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
-&lt;/ul&gt;
-&lt;/$list&gt;
-\end
-
-
-!Noteworthy
-&lt;&lt;list-links filter:&quot;[tag[Noteworthy]has[created]!sort[created]]&quot;&gt;&gt;
-
-!Science
-&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Science&quot;/&gt;&lt;/ul&gt;
-
-!Misc
-&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Misc&quot;/&gt;&lt;/ul&gt;
-
-!Untagged:
-&lt;ul&gt;&lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;&lt;/ul&gt;
-</pre>
 </div>
 <div modified="20200206220403969" title="Draft of 'Psychedelic'">
 <pre></pre>
@@ -13803,26 +13755,23 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 [img[https://technillogue.github.io/images/black-lives-matter-protest-in-times-sq.jpg]]
 </pre>
 </div>
-<div created="20190810142007037" modified="20201226205338858" tags="Meta" title="Index">
-<pre>&lt;$set name=&quot;$:/temp/toc/selectedIndex&quot; value=&quot;Noteworthy&quot;&gt;
-&lt;$vars 
-   compare-by-wc=&quot;[get[priority]]&quot;
+<div created="20190810142007037" modified="20201226211913934" tags="Meta" title="Index">
+<pre>&lt;$vars 
+   compare-by-wc=&quot;[get[text]split[ ]count[]]&quot;
+  not-working =&quot;sortsub:number&lt;compare-by-wc&gt;&quot;
 &gt;
 
-else[get[text]split[ ]count[]]
-
-sortsub:number&lt;comapre-by-wc&gt;
+&lt;!-- it would be cool to hack toc to not put a link to empty tiddlers, but it's super confusing --&gt;
 
 &lt;$macrocall
 	$name=&quot;toc-tabbed-external-nav&quot;
 	tag=&quot;Index&quot;
-         sort=&quot;sort[priority]&quot;
 	selectedTiddler=&quot;$:/temp/toc/selectedIndex&quot;
 	unselectedText=&quot;&lt;p&gt;Select a topic in the table of contents. Click the arrow to expand topics.&lt;/p&gt;&quot;
 	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
+         sort=&quot;nsort[priority]&quot;
         template=&quot;$:/core/templates/full&quot;
-/&gt;
-&lt;/$set&gt;</pre>
+/&gt;</pre>
 </div>
 <div created="20190910122440304" modified="20190910134842677" tags="Misc" title="IndividualDevOps">
 <pre>&lt;&lt;&lt;
@@ -14345,13 +14294,16 @@ But if the indirect striatal pathway is more inhibited than the direct pathway, 
 <div modified="20190818200612696" tags="Drug" title="Nootropics">
 <pre></pre>
 </div>
-<div created="20190818200722776" modified="20201226205157249" priority="100" tags="Index" title="Noteworthy">
+<div created="20190818200722776" modified="20201226211924034" priority="-1" tags="Index" title="Noteworthy">
 <pre>&lt;$macrocall
 	$name=&quot;toc-tabbed-internal-nav&quot;
 	tag=&lt;&lt;currentTiddler&gt;&gt;
 	selectedTiddler=&quot;$:/temp/toc/selectedNoteworthy&quot;
 	unselectedText=&quot;&lt;p&gt;Select an item in the table of contents.&lt;/p&gt;&quot;
 	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
+         sort=&quot;nsort[priority]&quot;
+        template=&quot;$:/core/templates/full&quot;
+
 /&gt;</pre>
 </div>
 <div created="20190814155715687" modified="20190818200627150" tags="Nootropics Antidepressant" title="NSI-189">
@@ -15578,7 +15530,7 @@ one thing is just prioritizing more clearly and using explicit, and ideally spec
 
 </pre>
 </div>
-<div created="20201226201200694" modified="20201226201230411" tags="Index" title="Untagged">
+<div created="20201226201200694" modified="20201226210213534" tags="Misc" title="Untagged">
 <pre>&lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;</pre>
 </div>
 <div title="Untitled">
