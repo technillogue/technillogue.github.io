@@ -562,6 +562,8 @@ Error message and password prompt
 
 <li>$:/temp/toc/selectedIndex</li>
 
+<li>$:/temp/toc/selectedNoteworthy</li>
+
 <li>$:/temp/toc/selectedTiddler</li>
 
 <li>$:/theme</li>
@@ -638,7 +640,7 @@ Error message and password prompt
 
 <li>BasalGanglia</li>
 
-<li>BestOf</li>
+<li>Best Content</li>
 
 <li>BeyondMonoamineHypothesis</li>
 
@@ -10617,7 +10619,7 @@ Error message and password prompt
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20201226200103987" list="BestOf TherapeuticWork Noteworthy Untagged AnarchistLiterature Index" modified="20201226202022943" title="$:/StoryList">
+<div created="20201226200103987" list="backups Noteworthy Untagged AnarchistLiterature Index" modified="20201226202213182" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -11376,6 +11378,9 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 </div>
 <div created="20201226194949960" modified="20201226201156861" title="$:/temp/toc/selectedIndex">
 <pre>Meta</pre>
+</div>
+<div created="20201226202120048" modified="20201226202204249" title="$:/temp/toc/selectedNoteworthy">
+<pre>Best Content</pre>
 </div>
 <div created="20201226194324138" modified="20201226194808089" title="$:/temp/toc/selectedTiddler">
 <pre>BestOf</pre>
@@ -12648,8 +12653,36 @@ implicit:
 
 </pre>
 </div>
-<div created="20201226194419158" modified="20201226194650769" tags="hide" title="backups">
-<pre>\define stateify() $:/state/$(item)$
+<div created="20201226194419158" modified="20201226202621995" tags="hide" title="backups">
+<pre>\define listChildren(tag)
+&lt;$list filter=&quot;[tag[$tag$]has[created]!tag[hide]!sort[created]]&quot;&gt;
+&lt;!-- Change the following line to display whatever it is you want to be displayed for each child tiddler--&gt;
+&lt;li&gt;
+  &lt;$link/&gt; (WC: &lt;$count filter=&quot;[all[current]get[text]split[ ]count]&quot;/&gt;)
+&lt;/li&gt;
+&lt;ul&gt;
+  &lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
+&lt;/ul&gt;
+&lt;/$list&gt;
+\end
+
+
+!Noteworthy
+&lt;&lt;list-links filter:&quot;[tag[Noteworthy]has[created]!sort[created]]&quot;&gt;&gt;
+
+!Science
+&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Science&quot;/&gt;&lt;/ul&gt;
+
+!Misc
+&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Misc&quot;/&gt;&lt;/ul&gt;
+
+!Untagged:
+&lt;ul&gt;&lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;&lt;/ul&gt;
+
+
+---
+
+\define stateify() $:/state/$(item)$
 
 Click to unfold:
 
@@ -12671,32 +12704,6 @@ Click to unfold:
 &lt;/$list&gt;
 
 
-
-
-\define listChildren(tag)
-&lt;$list filter=&quot;[tag[$tag$]has[created]!tag[hide]!sort[created]]&quot;&gt;
-&lt;!-- Change the following line to display whatever it is you want to be displayed for each child tiddler--&gt;
-&lt;li&gt;
-  &lt;$link/&gt; (WC: &lt;$count filter=&quot;[all[current]get[text]split[ ]]&quot;/&gt;)
-&lt;/li&gt;
-&lt;ul&gt;
-  &lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
-&lt;/ul&gt;
-&lt;/$list&gt;
-\end
-
-
-!Noteworthy
-&lt;&lt;list-links filter:&quot;[tag[Noteworthy]has[created]!sort[created]]&quot;&gt;&gt;
-
-!Science
-&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Science&quot;/&gt;&lt;/ul&gt;
-
-!Misc
-&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Misc&quot;/&gt;&lt;/ul&gt;
-
-!Untagged:
-&lt;ul&gt;&lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;&lt;/ul&gt;
 </pre>
 </div>
 <div created="20190810144904921" modified="20190818200641771" tags="Hypermnesiac" title="BacopaMonnieri">
@@ -12721,11 +12728,11 @@ Click to unfold:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20201220000747050" modified="20201226202040024" tags="Noteworthy" title="BestOf">
+<div created="20201220000747050" modified="20201226202147662" tags="Noteworthy" title="Best Content">
 <pre>&lt;$set name=&quot;$:/temp/toc/selectedBest&quot; value=&quot;Presentations&quot;&gt;
 &lt;$macrocall
 	$name=&quot;toc-tabbed-internal-nav&quot;
-	tag=&quot;BestOf&quot;
+	tag=&quot;Best Content&quot;
 	selectedTiddler=&quot;$:/temp/toc/selectedBest&quot;
 	unselectedText=&quot;&lt;p&gt;Select an item in the table of contents.&lt;/p&gt;&quot;
 	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
@@ -13711,7 +13718,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 
 * In contrast [to huperzine], oral administration of IDRA 21 significantly improved performance on [24 trials of a delayed non-matching-to-sample task with a list of six objects presented in succession], especially on the longest delay.</pre>
 </div>
-<div created="20201219235038076" modified="20201220014838596" tags="BestOf" title="Images">
+<div created="20201219235038076" modified="20201226202147668" tags="[[Best Content]]" title="Images">
 <pre>[img[https://technillogue.github.io/images/duck.jpg]]
 
 [img[https://technillogue.github.io/images/ceci.jpg]]
@@ -14539,7 +14546,7 @@ https://alifeofproductivity.com/top-lessons-learned-a-year-of-productivity/
 
 </pre>
 </div>
-<div created="20201220001930721" modified="20201220015019033" tags="BestOf" title="Presentations">
+<div created="20201220001930721" modified="20201226202147669" tags="[[Best Content]]" title="Presentations">
 <pre>* [[Avoid Thinking Whenever Possible|https://technillogue.github.io/presentations/think-less]] (2019)
 * [[Artificial and Biological Neural Networks|https://technillogue.github.io/presentations/artificial-and-biological-neural-networks.html]] (2018)
 * [[Ribosomes as Finite State Machines|https://technillogue.github.io/presentations/ribosomes-as-FST]] (2018)</pre>
@@ -15836,7 +15843,7 @@ obviously increased blood sugar also does that, but the dopamine/ghrelin dimers 
 
 other interesting things to consider: beta-arrestin, dFosB, GSK-3, BDNF/mTOR, GABA/MOR -&gt; MSN/NAc -&gt; DA dynamics.</pre>
 </div>
-<div created="20201220011358882" modified="20201220011403783" tags="BestOf" title="Writing">
+<div created="20201220011358882" modified="20201226202147670" tags="[[Best Content]]" title="Writing">
 <pre>* [[Published Shitposts Excerpt|http://metatron.press/omega/fiction/em-yaakov-liberman/]] (2017)
 * [[Different Shitposts Excerpt in TW format|https://technillogue.github.io/works/shitposts-tw.html]] (2017)
 * [[The Madman Shoots Lasers From his Eyes: Heliocentricism and the Marketplace|https://technillogue.github.io/works/heliocentrism.pdf]] (2016)</pre>
