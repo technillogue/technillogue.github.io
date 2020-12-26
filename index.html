@@ -334,6 +334,20 @@ Error message and password prompt
 
 <li>$:/state/tabs/controlpanel/toolbars-1345989671</li>
 
+<li>$:/state/toc/Index-Misc-1395960319</li>
+
+<li>$:/state/toc/Index-Noteworthy-1395960319</li>
+
+<li>$:/state/toc/Index-Science-1395960319</li>
+
+<li>$:/state/toc/Index/Misc-Meta-1395960319</li>
+
+<li>$:/state/toc/Index/Misc-Scratchpad-1395960319</li>
+
+<li>$:/state/toc/Index/Noteworthy-BestOf-1395960319</li>
+
+<li>$:/state/toc/Index/Noteworthy-EffectivenessPrinciples-1395960319</li>
+
 <li>$:/state/Writing</li>
 
 <li>$:/state/Writing Copy</li>
@@ -627,8 +641,6 @@ Error message and password prompt
 <li>DopaminePathways</li>
 
 <li>Draft of '9-Me-BC'</li>
-
-<li>Draft of 'Index'</li>
 
 <li>Draft of 'Psychedelic'</li>
 
@@ -10537,13 +10549,34 @@ Error message and password prompt
 <div created="20190730195820129" modified="20190819220642386" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
+<div created="20201226194752607" modified="20201226194752607" title="$:/state/toc/Index-Misc-1395960319">
+<pre>open</pre>
+</div>
+<div created="20201226194720448" modified="20201226194720448" title="$:/state/toc/Index-Noteworthy-1395960319">
+<pre>open</pre>
+</div>
+<div created="20201226194736659" modified="20201226194736659" title="$:/state/toc/Index-Science-1395960319">
+<pre>open</pre>
+</div>
+<div created="20201226194754827" modified="20201226194754827" title="$:/state/toc/Index/Misc-Meta-1395960319">
+<pre>open</pre>
+</div>
+<div created="20201226194756558" modified="20201226194756558" title="$:/state/toc/Index/Misc-Scratchpad-1395960319">
+<pre>open</pre>
+</div>
+<div created="20201226194723735" modified="20201226194723735" title="$:/state/toc/Index/Noteworthy-BestOf-1395960319">
+<pre>open</pre>
+</div>
+<div created="20201226194731914" modified="20201226194731914" title="$:/state/toc/Index/Noteworthy-EffectivenessPrinciples-1395960319">
+<pre>open</pre>
+</div>
 <div created="20201220015029719" modified="20201220015031120" title="$:/state/Writing">
 <pre>hide</pre>
 </div>
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20201226185644973" list="backups [[Draft of 'Index']] BrainAnatomy" modified="20201226194549107" title="$:/StoryList">
+<div created="20201226185644973" list="Index BrainAnatomy" modified="20201226194549107" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
@@ -11297,8 +11330,8 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190903172309883" modified="20190903172309883" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html" url="https://tiddlywiki.com/library/v5.1.19/index.html">
 <pre>loaded</pre>
 </div>
-<div created="20201226194324138" modified="20201226194416966" title="$:/temp/toc/selectedTiddler">
-<pre>Presentations</pre>
+<div created="20201226194324138" modified="20201226194808089" title="$:/temp/toc/selectedTiddler">
+<pre>BestOf</pre>
 </div>
 <div created="20200206212115177" modified="20200206212841782" title="$:/theme">
 <pre>$:/themes/tiddlywiki/snowwhite</pre>
@@ -12820,15 +12853,6 @@ but what level of stagnation is acceptable?
 <div modified="20201223181140900" title="Draft of '9-Me-BC'">
 <pre></pre>
 </div>
-<div created="20190810142007037" draft.of="Index" draft.title="Index" modified="20201226194646179" tags="Meta" title="Draft of 'Index'">
-<pre>&lt;$macrocall
-	$name=&quot;toc-tabbed-internal-nav&quot;
-	tag=&quot;Index&quot;
-	selectedTiddler=&quot;$:/temp/toc/selectedTiddler&quot;
-	unselectedText=&quot;&lt;p&gt;Select a topic in the table of contents. Click the arrow to expand topics.&lt;/p&gt;&quot;
-	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
-/&gt;</pre>
-</div>
 <div modified="20200206220403969" title="Draft of 'Psychedelic'">
 <pre></pre>
 </div>
@@ -13664,31 +13688,14 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 [img[https://technillogue.github.io/images/black-lives-matter-protest-in-times-sq.jpg]]
 </pre>
 </div>
-<div created="20190810142007037" modified="20201226185628549" tags="Meta" title="Index">
-<pre>\define listChildren(tag)
-&lt;$list filter=&quot;[tag[$tag$]has[created]!tag[hide]!sort[created]]&quot;&gt;
-&lt;!-- Change the following line to display whatever it is you want to be displayed for each child tiddler--&gt;
-&lt;li&gt;
-  &lt;$link/&gt; (WC: &lt;$count filter=&quot;[all[current]get[text]split[ ]]&quot;/&gt;)
-&lt;/li&gt;
-&lt;ul&gt;
-  &lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
-&lt;/ul&gt;
-&lt;/$list&gt;
-\end
-
-
-!Noteworthy
-&lt;&lt;list-links filter:&quot;[tag[Noteworthy]has[created]!sort[created]]&quot;&gt;&gt;
-
-!Science
-&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Science&quot;/&gt;&lt;/ul&gt;
-
-!Misc
-&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Misc&quot;/&gt;&lt;/ul&gt;
-
-!Untagged:
-&lt;ul&gt;&lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;&lt;/ul&gt;</pre>
+<div created="20190810142007037" modified="20201226194823382" tags="Meta" title="Index">
+<pre>&lt;$macrocall
+	$name=&quot;toc-tabbed-internal-nav&quot;
+	tag=&quot;Index&quot;
+	selectedTiddler=&quot;$:/temp/toc/selectedIndex&quot;
+	unselectedText=&quot;&lt;p&gt;Select a topic in the table of contents. Click the arrow to expand topics.&lt;/p&gt;&quot;
+	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
+/&gt;</pre>
 </div>
 <div created="20190910122440304" modified="20190910134842677" tags="Misc" title="IndividualDevOps">
 <pre>&lt;&lt;&lt;
