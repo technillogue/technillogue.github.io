@@ -12581,8 +12581,17 @@ implicit:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20201220000747050" modified="20201226194040113" tags="Noteworthy" title="BestOf">
-<pre>\define stateify() $:/state/$(item)$
+<div created="20201220000747050" modified="20201226194320860" tags="Noteworthy" title="BestOf">
+<pre>&lt;$macrocall
+	$name=&quot;toc-tabbed-internal-nav&quot;
+	tag=&quot;BestOf&quot;
+	selectedTiddler=&quot;$:/temp/toc/selectedTiddler&quot;
+	unselectedText=&quot;&lt;p&gt;Select a topic in the table of contents. Click the arrow to expand a topic.&lt;/p&gt;&quot;
+	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
+/&gt;
+
+
+\define stateify() $:/state/$(item)$
 
 Click to unfold:
 
