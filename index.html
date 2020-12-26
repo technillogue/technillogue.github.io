@@ -624,8 +624,6 @@ Error message and password prompt
 
 <li>Draft of '9-Me-BC'</li>
 
-<li>Draft of 'BestOf'</li>
-
 <li>Draft of 'Index'</li>
 
 <li>Draft of 'Psychedelic'</li>
@@ -10539,7 +10537,7 @@ Error message and password prompt
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20201226185644973" list="$:/core/modules/macros/changecount.js [[Draft of 'BestOf']] [[Draft of 'Index']] BrainAnatomy" modified="20201226191429296" title="$:/StoryList">
+<div created="20201226185644973" list="BestOf [[Draft of 'Index']] BrainAnatomy" modified="20201226191429296" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
@@ -12583,7 +12581,7 @@ implicit:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20201220000747050" modified="20201220015120495" tags="Noteworthy" title="BestOf">
+<div created="20201220000747050" modified="20201226194040113" tags="Noteworthy" title="BestOf">
 <pre>\define stateify() $:/state/$(item)$
 
 Click to unfold:
@@ -12774,29 +12772,6 @@ but what level of stagnation is acceptable?
 </div>
 <div modified="20201223181140900" title="Draft of '9-Me-BC'">
 <pre></pre>
-</div>
-<div created="20201220000747050" draft.of="BestOf" draft.title="BestOf" modified="20201226190550690" tags="Noteworthy" title="Draft of 'BestOf'">
-<pre>\define stateify() $:/state/$(item)$
-
-Click to unfold:
-
-&lt;$list filter=&quot;[tag&lt;currentTiddler&gt;]&quot; variable=&quot;item&quot;&gt;
-&lt;$set name=&quot;state&quot; value=&lt;&lt;stateify&gt;&gt;&gt;
-&lt;$set name=&lt;&lt;state&gt;&gt; value=&quot;hide&quot;&gt;
-
-&lt;$reveal type=&quot;nomatch&quot;  state=&lt;&lt;state&gt;&gt;  text=&quot;show&quot;&gt;
-&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;show&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/right-arrow}} &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt; 
-&lt;/$reveal&gt;
-&lt;$reveal type=&quot;match&quot; state=&lt;&lt;state&gt;&gt; text=&quot;show&quot;&gt;
-&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;hide&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/down-arrow}}  &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt;
-
-&lt;$transclude tiddler=&lt;&lt;item&gt;&gt; mode=&quot;block&quot;/&gt;
-
-&lt;/$reveal&gt;
-&lt;/$set&gt;
-&lt;/$set&gt;
-&lt;/$list&gt;
-</pre>
 </div>
 <div created="20190810142007037" draft.of="Index" draft.title="Index" modified="20201226191132997" tags="Meta" title="Draft of 'Index'">
 <pre>\define listChildren(tag)
