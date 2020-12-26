@@ -624,6 +624,10 @@ Error message and password prompt
 
 <li>Draft of '9-Me-BC'</li>
 
+<li>Draft of 'BestOf'</li>
+
+<li>Draft of 'Index'</li>
+
 <li>Draft of 'Psychedelic'</li>
 
 <li>Draft of 'Psychology'</li>
@@ -10502,8 +10506,8 @@ Error message and password prompt
 <div created="20190818204301709" modified="20200424173641034" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20200206212917740" modified="20201220001137334" title="$:/state/tab--1498284803">
-<pre>$:/core/ui/AdvancedSearch/Standard</pre>
+<div created="20200206212917740" modified="20201226191424014" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
 <div created="20190730195811423" modified="20200206212835842" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Theme</pre>
@@ -10535,14 +10539,14 @@ Error message and password prompt
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div list="Index" title="$:/StoryList">
+<div created="20201226185644973" list="$:/core/modules/macros/changecount.js [[Draft of 'BestOf']] [[Draft of 'Index']] BrainAnatomy" modified="20201226191429296" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
 <pre></pre>
 </div>
-<div created="20200206212920369" modified="20201220001140848" title="$:/temp/advancedsearch">
-<pre>[tag</pre>
+<div created="20200206212920369" modified="20201226191426865" title="$:/temp/advancedsearch">
+<pre>changecount</pre>
 </div>
 <div created="20190819220224387" modified="20190819220224387" title="$:/temp/HidePluginWarning">
 <pre>yes</pre>
@@ -11283,7 +11287,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190819214322594" modified="20190903172250113" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>markdown</pre>
 </div>
-<div created="20190820131939822" modified="20201226185539219" title="$:/temp/search">
+<div created="20190820131939822" modified="20201226191417648" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20190903172309883" modified="20190903172309883" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html" url="https://tiddlywiki.com/library/v5.1.19/index.html">
@@ -12621,7 +12625,7 @@ see also: [[SecondMessengers]], in which i try to review signaling cascades in m
 
 {{Antidepressant}}</pre>
 </div>
-<div created="20190820153206433" modified="20190820155838879" tags="Neuroscience" title="BrainAnatomy">
+<div created="20190820153206433" modified="20201226185654168" tags="hide Neuroscience" title="BrainAnatomy">
 <pre></pre>
 </div>
 <div created="20190901222451094" modified="20190901224413773" tags="Physiology Pharmacology Neuroscience" title="Chronobiotics">
@@ -12770,6 +12774,59 @@ but what level of stagnation is acceptable?
 </div>
 <div modified="20201223181140900" title="Draft of '9-Me-BC'">
 <pre></pre>
+</div>
+<div created="20201220000747050" draft.of="BestOf" draft.title="BestOf" modified="20201226190550690" tags="Noteworthy" title="Draft of 'BestOf'">
+<pre>\define stateify() $:/state/$(item)$
+
+Click to unfold:
+
+&lt;$list filter=&quot;[tag&lt;currentTiddler&gt;]&quot; variable=&quot;item&quot;&gt;
+&lt;$set name=&quot;state&quot; value=&lt;&lt;stateify&gt;&gt;&gt;
+&lt;$set name=&lt;&lt;state&gt;&gt; value=&quot;hide&quot;&gt;
+
+&lt;$reveal type=&quot;nomatch&quot;  state=&lt;&lt;state&gt;&gt;  text=&quot;show&quot;&gt;
+&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;show&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/right-arrow}} &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt; 
+&lt;/$reveal&gt;
+&lt;$reveal type=&quot;match&quot; state=&lt;&lt;state&gt;&gt; text=&quot;show&quot;&gt;
+&lt;h3&gt;&lt;$button set=&lt;&lt;state&gt;&gt; setTo=&quot;hide&quot; class=&quot;tc-btn-invisible&quot;&gt;{{$:/core/images/down-arrow}}  &lt;$link to=&lt;&lt;item&gt;&gt;&gt;&lt;&lt;item&gt;&gt;&lt;/$link&gt;&lt;/$button&gt;&lt;/h3&gt;
+
+&lt;$transclude tiddler=&lt;&lt;item&gt;&gt; mode=&quot;block&quot;/&gt;
+
+&lt;/$reveal&gt;
+&lt;/$set&gt;
+&lt;/$set&gt;
+&lt;/$list&gt;
+</pre>
+</div>
+<div created="20190810142007037" draft.of="Index" draft.title="Index" modified="20201226191132997" tags="Meta" title="Draft of 'Index'">
+<pre>\define listChildren(tag)
+&lt;$list filter=&quot;[tag[$tag$]has[created]!tag[hide]!sort[created]]&quot;&gt;
+&lt;!-- Change the following line to display whatever it is you want to be displayed for each child tiddler--&gt;
+
+
+set a state shadow tiddler to word count
+reveal link only if it's 
+&lt;li&gt;
+  &lt;$link/&gt; (WC: &lt;$count filter=&quot;[all[current]get[text]split[ ]]&quot;/&gt;)
+&lt;/li&gt;
+&lt;ul&gt;
+  &lt;$macrocall $name=&quot;listChildren&quot; tag=&lt;&lt;currentTiddler&gt;&gt; /&gt;
+&lt;/ul&gt;
+&lt;/$list&gt;
+\end
+
+
+!Noteworthy
+&lt;&lt;list-links filter:&quot;[tag[Noteworthy]has[created]!sort[created]]&quot;&gt;&gt;
+
+!Science
+&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Science&quot;/&gt;&lt;/ul&gt;
+
+!Misc
+&lt;ul&gt;&lt;$macrocall $name=&quot;listChildren&quot; tag=&quot;Misc&quot;/&gt;&lt;/ul&gt;
+
+!Untagged:
+&lt;ul&gt;&lt;&lt;list-links filter:&quot;[untagged[]has[created]!sort[created]] -[prefix[$]] -Index -footer&quot;&gt;&gt;&lt;/ul&gt;</pre>
 </div>
 <div modified="20200206220403969" title="Draft of 'Psychedelic'">
 <pre></pre>
