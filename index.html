@@ -230,7 +230,25 @@ Error message and password prompt
 
 <li>$:/isEncrypted</li>
 
+<li>$:/plugins/ihm/templates/collapse</li>
+
+<li>$:/plugins/ihm/templates/expand</li>
+
 <li>$:/plugins/ihm/tidgraph</li>
+
+<li>$:/plugins/ihm/tidgraph/changelog</li>
+
+<li>$:/plugins/ihm/tidgraph/documentation</li>
+
+<li>$:/plugins/ihm/tidgraph/readme</li>
+
+<li>$:/plugins/ihm/tidgraph/stylesheet</li>
+
+<li>$:/plugins/ihm/tidgraph/tidgraph.png</li>
+
+<li>$:/plugins/ihm/tidgraph/utils.js</li>
+
+<li>$:/plugins/ihm/widgets/tidgraph.js</li>
 
 <li>$:/plugins/tiddlywiki/markdown</li>
 
@@ -10161,13 +10179,32 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[$:/plugins/ihm/tidgraph]]</pre>
+# [[$:/plugins/ihm/tidgraph/documentation]]
+# [[$:/plugins/ihm/tidgraph/readme]]
+# [[$:/plugins/ihm/tidgraph/changelog]]
+# [[$:/plugins/ihm/tidgraph/stylesheet]]</pre>
 </div>
 <div created="20201226213108830" modified="20201226213118884" title="$:/Import!!popup-Untitled 1">
 <pre>yes</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
+</div>
+<div created="20151120174133063" modified="20151120180705805" tags="" title="$:/plugins/ihm/templates/collapse" type="text/vnd.tiddlywiki">
+<pre>&lt;svg version=&quot;1.1&quot;  xmlns=&quot;http://www.w3.org/2000/svg&quot;  x=&quot;0px&quot;
+	 y=&quot;0px&quot; width=&quot;14px&quot; height=&quot;14px&quot; &gt;
+&lt;circle cx=&quot;7&quot; cy=&quot;7&quot; r=&quot;6&quot;  stroke=&quot;#aeb0b5&quot; stroke-width=&quot;1&quot; fill=&quot;#aeb0b5&quot;/&gt;
+&lt;polyline points=&quot;4,7 10,7&quot; fill=&quot;none&quot; stroke=&quot;white&quot;/&gt;
+&lt;/svg&gt;
+</pre>
+</div>
+<div created="20151120174133063" modified="20151120180705805" tags="" title="$:/plugins/ihm/templates/expand" type="text/vnd.tiddlywiki">
+<pre>&lt;svg version=&quot;1.1&quot;  xmlns=&quot;http://www.w3.org/2000/svg&quot;  x=&quot;0px&quot;
+	 y=&quot;0px&quot; width=&quot;14px&quot; height=&quot;14px&quot; &gt;
+&lt;circle cx=&quot;7&quot; cy=&quot;7&quot; r=&quot;6&quot;  stroke=&quot;#aeb0b5&quot; stroke-width=&quot;1&quot; fill=&quot;#aeb0b5&quot;/&gt;
+&lt;polyline points=&quot;4,7 10,7 7,7 7,10 7,4&quot; fill=&quot;none&quot; stroke=&quot;white&quot;/&gt;
+&lt;/svg&gt;
+</pre>
 </div>
 <div author="ihm4u" core-version="&gt;=5.1.9" dependents="" description="Tidgraph - Easy tiddler graphs for TW5" list="readme changelog documentation" plugin-type="plugin" source="https://ihm4u.github.io/tw5plugs" title="$:/plugins/ihm/tidgraph" type="application/json" version="0.9.6">
 <pre>{
@@ -10235,6 +10272,261 @@ Error message and password prompt
         }
     }
 }</pre>
+</div>
+<div created="20151024161547099" creator="ihm4u" modified="20151031061347109" modifier="ihm4u" tags="" title="$:/plugins/ihm/tidgraph/changelog">
+<pre>For the complete changelog see
+
+https://ihm4u.github.io/tw5plugs/#Tidgraph%20-%20Changelog
+</pre>
+</div>
+<div title="$:/plugins/ihm/tidgraph/documentation">
+<pre>!!Example
+The following example shows a tiddler which tags 7 children:
+
+``&lt;$tidgraph start=&quot;Virtues&quot; /&gt;``
+
+looks like this:
+
+{{$:/plugins/ihm/tidgraph/tidgraph.png}}
+
+!!Usage
+Simple usage:
+
+``&lt;$tidgraph start=&quot;MyRootTiddler&quot; /&gt;``
+
+The map will start with MyRootTiddler on the left, and show all its children recursively. The default maximum depth is 10 levels, it can be changed with the `maxdepth` attribute.
+
+All  options:
+
+|!Attribute |!Description|!Default |
+|`start`      |Initial tiddler that starts the map | none |
+|`startat`   |First level to display. 0 is the root tiddler named in the `start` attribute. 1 is the next level, etc. | 0 |
+|`maxdepth`   |Maximum depth to display.| 10 |
+|`mode` |//tagging// or //linking// or custom. This is how to identify the children of a node. With //tagging// Tiddlers that tag other tiddlers become their parent. With //linking// tiddlers that link to other tiddlers become their parent. A custom mode can be specified by a `$:/config/tidgraph/modes/MyMode` tiddler where `MyMode` is the name of the mode. The subfilter can be also specified directly; e.g. `mode=&quot;fields[]&quot;`. See [[Custom Mode Demo|https://ihm4u.github.io/tw5plugs/#Custom%20Mode%20Demo]] for an example | //tagging//  |
+|`nodetitle` |Field to use as title for the node. | //title// (or //caption// if present) |
+|`tooltip` |List of fields to use for node tooltip. The first field with a non empty value is used. | //summary// |
+|`filter` |Only tiddlers matching filter will be used | none |
+|`nocollapse` |Disable ability to collapse nodes. The graph allows node collapsing by default. | false |
+|`nodetemplate` |One or mode node templates to make node look like you want. See the [[Node Templates Demo|https://ihm4u.github.io/tw5plugs/#Node%20Templates%20Demo]] for examples of how to use them. | none |
+|`layout` |`E` for East (Vertical) or `S` for south (Horizontal) layout. | E |
+
+!CSS classes
+You can also change colors, and other styles with the following CSS classes.
+
+|!Class |!Description |
+|tgr-node |Style for each node. If you want to change the color of the links inside the node use the `.tgr-node a` selector. |
+|tgr-edge |Style for the SVG path that connects the nodes. The old name was tgr-link. |
+|tgr-arrow |Style for the SVG polyline that draws the arrow at the end of the link |
+</pre>
+</div>
+<div created="20151024054526558" modified="20151024065317719" tags="" title="$:/plugins/ihm/tidgraph/readme">
+<pre>!!How
+Simply put this in your tiddler:
+
+``&lt;$tidgraph start=&quot;MyRootTiddler&quot; /&gt;``
+
+There are other options covered in the [[documentation|$:/plugins/ihm/tidgraph/documentation]].
+
+!!Features
+* No third-party libraries
+* Light weight
+* Rendering of map/graph with HTML5 and SVG (no heavy png or jpg images)
+* Automatic map/graph creation, no need for dragging/connecting/etc
+* Figures out tree-graph by means of tags or links, or custom modes 
+* Collapse/expand nodes
+* User defined Node Templates!!
+
+!!Limitations
+* Layout is horizontal from left to right, if needed a vertical layout will be added later
+</pre>
+</div>
+<div tags="$:/tags/Stylesheet" title="$:/plugins/ihm/tidgraph/stylesheet" type="text/css">
+<pre>/*Eliminate border in table and cells*/
+.ihm-tgr-table {
+   border-collapse: collapse;
+   border: none;
+   background-color: transparent;
+   padding: 0;
+   margin: 0;
+}
+
+.ihm-tgr-tablediv {
+   /* We need this margin to prevent spurius vertical scroll
+   * in tgr-container. It needs to have the SAME pixel value
+   * as top and left in tgr-svg-int class so that the SVG
+   * arrows match properly (this assures same origin coordinates
+   * for table and svg)
+   */
+   margin: 10px; 
+}
+
+.tgr-container table  td {
+   border: none;
+   background-color: transparent;
+}
+
+/*nice round box around tiddlers*/
+.tgr-container td  a  {
+ 
+}
+
+.tgr-container {
+   position:relative; 
+   left:0px; 
+   top:0px; 
+   background-color: transparent;
+   overflow: auto; /* This is needed to scroll on big maps */
+   z-index:1;
+}
+.tgr-svg-int { 
+	z-index: -1;
+	position:absolute;
+	background-color:transparent;
+	opacity: 1;
+   left: 10px;
+   top: 10px;
+}
+
+/* SVG arrows */
+.ihm-tgr-link {
+   fill: none;
+   stroke-width: 2;
+   stroke: #aeb0b5;
+}
+
+.tgr-edge-weak {
+   stroke-dasharray: 3,5;
+}
+
+.tgr-arrow {
+   fill: #aeb0b5;
+   stroke-width: 0;
+}
+
+.ihm-tgr-node-container {
+   position: relative;
+}
+
+.ihm-tgr-node-container-east {
+   margin: 6px 10px;
+}
+
+.ihm-tgr-node-container-south {
+   margin: 16px 4px;
+   display: inline-block; /*FIXME*/
+}
+
+.ihm-tgr-node-container p {
+   margin-top: 0px;
+   margin-bottom: 0px;
+}
+
+.ihm-tgr-node {
+   background-color: #dce4ef;
+   border-radius: 15px;
+   padding: 0.1em 0.4em;
+   /* border: 0px dashed #cd2026; */
+   box-shadow: 4px 4px 5px #888888;
+   text-align: center;
+   vertical-align: middle;
+   font-size: 1em;
+   color: #0071bc;
+}
+
+/* Collapse feature */
+.ihm-tgr-collapse {
+    position: absolute;
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    right: -14px;
+}
+
+.ihm-tgr-collapse-east {
+    top: 50%;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+.ihm-tgr-collapse-south {
+    left: 50%;
+    transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
+a.ihm-tgr-collapse:hover {
+    text-decoration: none;
+    background: #999999;
+}
+
+/* Vertical layout divs */
+.ihm-tgr-divtable {
+   display: table;
+}
+
+.ihm-tgr-node-group {
+   display: table-row;
+}
+
+.ihm-tgr-node-cell {
+   display: table-cell;
+   vertical-align: top;
+   text-align: center;
+}
+</pre>
+</div>
+<div created="20151024064703806" modified="20151024064720670" title="$:/plugins/ihm/tidgraph/tidgraph.png" type="image/png">
+<pre>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
+</pre>
+</div>
+<div module-type="library" title="$:/plugins/ihm/tidgraph/utils.js" type="application/javascript">
+<pre>/*\
+title: $:/plugins/ihm/tidgraph/utils.js
+type: application/javascript
+module-type: library
+
+Internal utility functions for tidgraph plugin.
+
+\*/
+(function(){function u(a){var c=a.getBoundingClientRect(),b=document.body,e=document.documentElement,g=c.top-(a.scrollTop||window.pageYOffset||e.scrollTop||b.scrollTop)-(e.clientTop||b.clientTop||0);a=c.left-(a.scrollLeft||window.pageXOffset||e.scrollLeft||b.scrollLeft)-(e.clientLeft||b.clientLeft||0);return{top:g,left:a,width:c.width,height:c.height,right:a+c.width,bottom:g+c.height}}function q(a,c,b){b=b||function(a,b,c){if(a)return!0};a=$tw.utils.parseStringArray(a);for(var e=a.length,g=c.length,
+f=0;f&lt;g;f++)for(var h=0;h&lt;e;h++){var d=$tw.wiki.getTiddler(c[f]);if(d&amp;&amp;(d=d.getFieldString(a[h]),b(d,a[h],c[f])))return d}return&quot;&quot;}function x(a){var c=!1;return(a=q(&quot;_tgr_node_class _tgr_node_class_add&quot;,[a.id,a.template],function(a,e,g){if(a)return c=&quot;_tgr_node_class_add&quot;===e?!0:!1,!0}))&amp;&amp;&quot;tgr-default&quot;!==a?c?&quot;ihm-tgr-node tgr-node &quot;+a:a:&quot;ihm-tgr-node tgr-node&quot;}function w(a,c,b){var e;a=u(a);if(&quot;string&quot;===typeof b){if(e=document.querySelector(b),null==e)return null}else b instanceof HTMLElement&amp;&amp;(e=
+b);var g=u(e);b=g.bottom-a.top;e=g.left-a.left;var f=g.right-a.left;a=g.top-a.top;g=&quot;&quot;;switch(c.toUpperCase()){case &quot;L&quot;:g=[Math.round(e),Math.round(b/2+a/2)];break;case &quot;R&quot;:g=[Math.round(f),Math.round(b/2+a/2)];break;case &quot;T&quot;:g=[Math.round(f/2+e/2),Math.round(a)];break;case &quot;B&quot;:g=[Math.round(f/2+e/2),Math.round(b)]}return g}function y(a,c,b,e,g){var f;a:{var h=u(c),d=u(b);f=h.left+h.width/2;var h=h.top+h.height/2,n=d.left+d.width/2,d=d.top+d.height/2;switch(e){case &quot;E&quot;:f=4&gt;n-f?[&quot;R&quot;,&quot;R&quot;]:[&quot;R&quot;,&quot;L&quot;];
+break a;case &quot;S&quot;:f=4&gt;d-h?[&quot;B&quot;,&quot;B&quot;]:[&quot;B&quot;,&quot;T&quot;];break a}f=void 0}d=w(a,f[0],c);a=w(a,f[1],b);var m,l,h=10,n=&quot;&quot;;g&amp;&amp;(n=' class=&quot;tgr-edge-weak&quot;');if(null==c||null==b)return error(&quot;can't connect null element&quot;);if(null==d)return error(&quot;port not found for &quot;+c.tagName+&quot; - &quot;+c.innerHTML);if(null==a)return error(&quot;port not found for &quot;+b.tagName+&quot; - &quot;+b.innerHTML);c=Math.abs(a[1]-d[1]);b=Math.abs(a[0]-d[0]);switch(e){case &quot;E&quot;:return a[1]&gt;d[1]&amp;&amp;(m=c/2),a[1]&lt;d[1]&amp;&amp;(m=-c/2),5&gt;c&amp;&amp;(m=0),&quot;L&quot;==f[1]&amp;&amp;(l=-10),&quot;R&quot;==f[1]&amp;&amp;
+(l=10,h=20),'&lt;path d=&quot;M'+d[0]+&quot;,&quot;+d[1]+&quot; Q&quot;+(d[0]+h)+&quot;,&quot;+d[1]+&quot;  &quot;+(d[0]+h)+&quot;,&quot;+(d[1]+m)+&quot; Q&quot;+(d[0]+h)+&quot;,&quot;+a[1]+&quot;  &quot;+(a[0]+l)+&quot;,&quot;+a[1]+'&quot;'+n+' marker-end=&quot;url(#tgr-arrow)&quot;/&gt;';case &quot;S&quot;:return a[0]&gt;d[0]&amp;&amp;(l=b/2),a[0]&lt;d[0]&amp;&amp;(l=-b/2),5&gt;b&amp;&amp;(l=0),&quot;T&quot;==f[1]&amp;&amp;(m=-10,h=10),&quot;B&quot;==f[1]&amp;&amp;(m=10,h=20),'&lt;path d=&quot;M'+d[0]+&quot;,&quot;+d[1]+&quot; Q&quot;+d[0]+&quot;,&quot;+(d[1]+h)+&quot;  &quot;+(d[0]+l)+&quot;,&quot;+(d[1]+h)+&quot; Q&quot;+a[0]+&quot;,&quot;+(d[1]+h)+&quot;  &quot;+a[0]+&quot;,&quot;+(a[1]+m)+'&quot;'+n+' marker-end=&quot;url(#tgr-arrow)&quot;/&gt;'}}function v(a,c){var b;switch(c.mode){case &quot;tagging&quot;:b=
+&quot;[[&quot;+a+&quot;]tagging[]]+&quot;+c.filter;break;case &quot;linking&quot;:b=&quot;[[&quot;+a+&quot;]links[]!is[missing]]+&quot;+c.filter;break;default:b=&quot;[[&quot;+a+&quot;]&quot;+c.mode+&quot;]+&quot;+c.filter}return $tw.wiki.filterTiddlers(b)}function z(a,c,b){switch(b.mode.toLowerCase()){case &quot;tagging&quot;:return(b=$tw.wiki.getTiddler(a))?b.hasTag(c):!1;default:return b=v(c,b),-1!==b.indexOf(a)}}function A(a,c){function b(b,l,k){h=l;d=b;n=encodeURIComponent(h);m=encodeURIComponent(d);g=document.getElementById(c.id+&quot;-&quot;+n);f=document.getElementById(c.id+&quot;-&quot;+m);g&amp;&amp;f&amp;&amp;
+e.push(y(a,g,f,c.layout,k))}var e=[],g,f,h,d,n,m;p(c.root,function(a,c,d){(c=a.parent)&amp;&amp;b(a.id,c.id)},{},{skipvisited:!0});for(var l=c.outliers.length,k=0;k&lt;l;k++)b(c.outliers[k][0],c.outliers[k][1],!0);return e.join(&quot; &quot;)}function p(a,c,b,e){e=e||{};var g=e.done||[],f=e.getCh||function(a){return a.collapse?[]:a.children},h=e.lvl||0,d=void 0===e.skipvisited?!0:e.skipvisited;e.leave=e.leave||!1;if(d&amp;&amp;-1!==g.indexOf(a))return b;g.push(a);f=f(a);d=f.length;b=b||{};e.lvl=h+1;e.done=g;if(!1===c(a,b,h))return e.leave=
+!0,b;for(a=0;a&lt;d;a++)if(b=p(f[a],c,b,e),e.leave)return b;e.lvl--;return b}function B(a,c,b,e){e=e||{};var g=e.getCh||function(a){return a.collapse?[]:a.children},f=e.getId||function(a){return a.id},h=void 0===e.skipvisited?!0:e.skipvisited,d=e.maxdepth||Number.MAX_VALUE;b=b||{};var n=[],m=[],l=[],k=0;n.push(a);l[f(a)]=void 0;do{a=n.length;for(var q=0;q&lt;a;q++){var r=n.shift(),p;p=h?-1===m.indexOf(r)?!1:!0:!1;if(!p&amp;&amp;!1===c(r,l[f(r)],b,k))return b;m.push(r);p=g(r);n=n.concat(p);p&amp;&amp;p.forEach(function(a){var b=
+l[f(a)];b?f(b)!==f(r)&amp;&amp;e.outlier&amp;&amp;e.outlier(a,r):l[f(a)]=r})}k++}while(0!==n.length&amp;&amp;k&lt;=d);return b}function C(a,c){return p(a,function(a,c){c.cnt++;return!0},{cnt:0},{skipvisited:c}).cnt-1}function D(a,c,b){function e(a,b){if(-1!==$tw.utils.parseStringArray(b).indexOf(c.toString()))return!0}b=$tw.utils.parseStringArray(b);var g=q(&quot;_tgr_node_template&quot;,[a]),f=[];$tw.utils.each(b,function(b){var c=$tw.wiki.getTiddler(b),c=c?c.getFieldString(&quot;_tgr_node_filter&quot;):&quot;&quot;,d=$tw.wiki.filterTiddlers(c);c&amp;&amp;-1===
+d.indexOf(a)&amp;&amp;f.push(b)});0&lt;f.length&amp;&amp;$tw.utils.removeArrayEntries(b,f);g||q(&quot;_tgr_node_filter&quot;,b,function(b,c,d){c=$tw.wiki.filterTiddlers(b);if(b&amp;&amp;-1!==c.indexOf(a))if(b=$tw.wiki.getTiddler(d).getFieldString(&quot;_tgr_node_level&quot;)){if(e(d,b))return g=d,!0}else return g=d,!0});g||q(&quot;_tgr_node_level&quot;,b,function(a,b,c){if(e(c,a))return g=c,!0});if(!g)for(var h=b.length,d=0;d&lt;h;d++){var n=$tw.wiki.getTiddler(b[d]);if(n&amp;&amp;!n.hasField(&quot;_tgr_node_level&quot;)&amp;&amp;!n.hasField(&quot;_tgr_node_filter&quot;)){g=b[d];break}}g||(g=
+&quot;tgr-default&quot;);return g}function t(a,c,b,e){if(!(this instanceof t))throw&quot;Error: call new tnode(id=&quot;+c+&quot;)&quot;;this.parent=a;this.id=c;this.children=[];this.collapse=!1;this.widget=e;this.template=void 0;a=D(c,b,e.nodetemplate);&quot;tgr-default&quot;!==a&amp;&amp;(this.transcluder=b=&quot;$:/temp/tidgraph/&quot;+e.tidtree.id+&quot;/&quot;+c,this.template=a,$tw.wiki.addTiddler(new $tw.Tiddler({title:b,text:&quot;{{&quot;+c+&quot;||&quot;+a+&quot;}}&quot;})),-1===e.templatesInUse.indexOf(a)&amp;&amp;e.templatesInUse.push(a))}exports.buildTable=function(a,c){function b(a,b){return $tw.utils.domMaker(a,
+$tw.utils.extend(b,{document:c.document}))}function e(a){var d=encodeURIComponent(a.id),e;var f=a.id;e=$tw.wiki.tiddlerExists(f)?c.nodetitle?q(c.nodetitle,[f]):q(&quot;caption title&quot;,[f]):f;var g=$tw.wiki.tiddlerExists(a.id)?&quot;tc-tiddlylink-resolves&quot;:&quot;tc-tiddlylink-missing&quot;,g=&quot;tc-tiddlylink &quot;+g,f=x(a);a.template?a=b(&quot;div&quot;,{&quot;class&quot;:f,innerHTML:$tw.wiki.renderTiddler(&quot;text/html&quot;,a.transcluder)}):(a=b(&quot;a&quot;,{&quot;class&quot;:g,text:e,attributes:{href:&quot;#&quot;+d}}),a=b(&quot;div&quot;,{&quot;class&quot;:f,children:[a]}));return a}function g(a,
+d){var e=1+C(a,!0),f=encodeURIComponent(a.id),g=q(c.tooltip,[a.id]),k;!1===c.nocollapse&amp;&amp;a.children&amp;&amp;0&lt;a.children.length?(k=$tw.wiki.renderTiddler(&quot;text/html&quot;,&quot;$:/plugins/ihm/templates/&quot;+(a.collapse?&quot;expand&quot;:&quot;collapse&quot;)).replace(/^&lt;p&gt;/,&quot;&lt;span&gt;&quot;).replace(/&lt;\/p&gt;$/,&quot;&lt;/span&gt;&quot;),k=b(&quot;span&quot;,{&quot;class&quot;:&quot;ihm-tgr-collapse &quot;+(&quot;E&quot;==a.widget.tidtree.layout?&quot;ihm-tgr-collapse-east&quot;:&quot;ihm-tgr-collapse-south&quot;)+&quot; tc-tiddlylink&quot;,innerHTML:k}),$tw.utils.addEventListeners(k,[{name:&quot;click&quot;,handlerObject:a,handlerMethod:&quot;collapseClickEvent&quot;}]),
+k=[d,k]):k=[d];f=b(&quot;div&quot;,{&quot;class&quot;:&quot;ihm-tgr-node-container &quot;+(&quot;E&quot;==a.widget.tidtree.layout?&quot;ihm-tgr-node-container-east&quot;:&quot;ihm-tgr-node-container-south&quot;),children:k,attributes:{id:c.id+&quot;-&quot;+f,title:g}});return&quot;E&quot;===c.layout?b(&quot;td&quot;,{attributes:{rowspan:e},children:[f]}):b(&quot;div&quot;,{attributes:{&quot;class&quot;:&quot;ihm-tgr-node-cell&quot;},children:[f]})}var f;f=&quot;E&quot;==c.layout?b(&quot;table&quot;,{&quot;class&quot;:&quot;ihm-tgr-table&quot;,attributes:{id:c.id+&quot;-table&quot;}}):b(&quot;div&quot;,{&quot;class&quot;:&quot;ihm-tgr-divtable&quot;,attributes:{id:c.id+&quot;-table&quot;}});(function(a){switch(c.layout){case &quot;E&quot;:p(c.root,
+function(d,f,m){m&gt;=c.startat&amp;&amp;(f=e(d),d=g(d,f),d=b(&quot;tr&quot;,{children:[d]}),a.appendChild(d));return!0},{},{skipvisited:!0});break;case &quot;S&quot;:p(c.root,function(d,f,m){if(m&gt;=c.startat){var l=e(d),l=g(d,l),k=f.nodegroup[f.nodegroup.length-1];k?m&gt;=f.lastdepth?k.appendChild(l):m&lt;f.lastdepth&amp;&amp;(f.nodegroup.pop(),k=f.nodegroup[f.nodegroup.length-1],k.appendChild(l)):a.appendChild(l);!d.collapse&amp;&amp;0&lt;d.children.length&amp;&amp;(d=b(&quot;div&quot;,{&quot;class&quot;:&quot;ihm-tgr-node-group&quot;}),f.nodegroup.push(d),l.appendChild(d))}f.lastdepth=m;
+return!0},{nodegroup:[],lastdepth:-1},{skipvisited:!0})}})(f);return f};exports.error=function(a){return'&lt;span style=&quot;color:green; font-size:1.5em&quot;&gt;\u26a0 Tidgraph: &lt;/span&gt;&lt;span style=&quot;color:red&quot;&gt;'+a+&quot;&lt;/span&gt;&quot;};exports.buildSVG=function(a,c){var b=document.getElementById(c.id+&quot;-table&quot;);if(b)return getComputedStyle(b),'&lt;svg  xmlns=&quot;http://www.w3.org/2000/svg&quot; height=&quot;'+a.offsetHeight+'px&quot; width=&quot;'+a.offsetWidth+'px&quot; style=&quot;overflow: visible&quot;&gt;&lt;g class=&quot;ihm-tgr-link tgr-link tgr-edge&quot; style=&quot;overflow: visible&quot;&gt; &lt;defs&gt; &lt;marker id=&quot;tgr-arrow&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;1&quot; refY=&quot;5&quot; markerUnits=&quot;strokeWidth&quot; orient=&quot;auto&quot; markerWidth=&quot;8&quot; markerHeight=&quot;6&quot;&gt; &lt;polyline class=&quot;ihm-tgr-arrow tgr-arrow&quot; points=&quot;0,0 10,5 0,10 0,5&quot; style=&quot;opacity:1;&quot; /&gt;&lt;/marker&gt;&lt;/defs&gt; '+
+A(a,c)+&quot;&lt;/g&gt; &lt;/svg&gt;&quot;};exports.isDescendant=function(a,c,b){if(z(a,c,b))return!0;var e=!1;p(c,function(b,c,h){if(b===a)return e=!0,!1},{},{skipvisited:!0,getCh:function(a){return v(a,b)}});return e};exports.makeTidTree=function(a,c,b){b=b||{};var e=!1;c.outliers=[];var g=new t(void 0,a,0,b.widget);B(a,function(a,c,d,e){if(c){a:{for(var g=d.visited,l=g.length,k=0;k&lt;l;k++)if(g[k].id===c){c=g[k];break a}c=void 0}a=c.addChild(a,e,b.widget);d.visited.push(a)}return!0},{visited:[g]},{getId:function(a){return a},
+getCh:function(a){return v(a,c)},maxdepth:c.maxdepth,skipvisited:!0,outlier:function(a,b){e=!1;$tw.utils.each(c.outliers,function(c){c[0]===a&amp;&amp;c[1]===b&amp;&amp;(e=!0)});e||c.outliers.push([a,b])}});return g};t.prototype.addChild=function(a,c,b){a=new t(this,a,c,b);this.children.push(a);return a};t.prototype.toString=function(){return&quot;tnode(id=&quot;+this.id+&quot;)&quot;};t.prototype.collapseClickEvent=function(a){this.collapse=!this.collapse;this.widget.paint()}})();
+</pre>
+</div>
+<div module-type="widget" title="$:/plugins/ihm/widgets/tidgraph.js" type="application/javascript">
+<pre>/*\
+title: $:/plugins/ihm/widgets/tidgraph.js
+type: application/javascript
+module-type: widget
+
+Tidgraph widget to render HTML5/SVG graph of tiddlers
+
+\*/
+(function(){var e=require(&quot;$:/core/modules/widgets/widget.js&quot;).widget,c=function(b,f){this.initialise(b,f)},d=require(&quot;$:/plugins/ihm/tidgraph/utils.js&quot;);c.prototype=new e;c.prototype.render=function(b,f){this.tidtree&amp;&amp;this.delTempTiddlers();this.parentDomNode=b;this.nextSiblingDomNode=f;this.computeAttributes();this.execute();-1===[&quot;tagging&quot;,&quot;linking&quot;].indexOf(this.mode)&amp;&amp;(this.mode=$tw.wiki.getTiddlerText(&quot;$:/config/tidgraph/modes/&quot;+this.mode)||this.mode);this.tidtree=[];this.tidtree.mode=this.mode;
+this.tidtree.maxdepth=this.maxdepth;this.tidtree.startat=this.startat;this.tidtree.nodetitle=this.nodetitle;this.tidtree.tooltip=this.tooltip;this.tidtree.filter=this.filter;this.tidtree.nocollapse=this.nocollapse;this.tidtree.document=this.document;this.tidtree.nodetemplate=this.nodetemplate;this.tidtree.layout=this.layout;this.templatesInUse=$tw.utils.parseStringArray(this.nodetemplate);this.tidtree.id=(new Date).valueOf();if($tw.wiki.getTiddler(this.startTid)){this.div=this.document.createElement(&quot;div&quot;);
+this.div.className=&quot;tgr-container tgr&quot;;this.tablediv=this.document.createElement(&quot;div&quot;);this.tablediv.className=&quot;ihm-tgr-tablediv&quot;;this.table=void 0;this.div.appendChild(this.tablediv);this.svgdiv=this.document.createElement(&quot;div&quot;);this.svgdiv.className=&quot;tgr-svg-int&quot;;this.div.appendChild(this.svgdiv);this.parentDomNode.insertBefore(this.div,this.nextSiblingDomNode);this.domNodes.push(this.div);this.tidtree.root=d.makeTidTree(this.startTid,this.tidtree,{widget:this});this.paint();var a=this,c=function(){a.svgdiv.innerHTML=
+d.buildSVG(a.tablediv,a.tidtree);a.oldresize&amp;&amp;a.oldresize()},e=function(){a.svgdiv.innerHTML=d.buildSVG(a.tablediv,a.tidtree)};this.div.onscroll=function(){a.scroll_to||clearTimeout(a.scroll_to);a.scroll_to=setTimeout(e,100)};this.onresize_updated||(window.onresize&amp;&amp;void 0==this.oldresize&amp;&amp;(this.oldresize=window.onresize),window.onresize=function(){a.resize_to||clearTimeout(a.resize_to);a.resize_to=setTimeout(c,100)},this.onresize_updated=!0)}};c.prototype.delTempTiddlers=function(){var b=$tw.wiki.filterTiddlers(&quot;[prefix[$:/temp/tidgraph/&quot;+
+this.tidtree.id+&quot;]]&quot;);$tw.utils.each(b,function(b){$tw.wiki.deleteTiddler(b)})};c.prototype.paint=function(){this.sidebar=$tw.wiki.getTiddlerText(&quot;$:/state/sidebar&quot;);var b=d.buildTable(this.startTid,this.tidtree);this.table?this.tablediv.replaceChild(b,this.table):this.tablediv.appendChild(b);this.svgdiv.innerHTML=d.buildSVG(this.tablediv,this.tidtree);this.table=b};c.prototype.execute=function(){this.startTid=this.getAttribute(&quot;start&quot;);this.mode=this.getAttribute(&quot;mode&quot;,&quot;tagging&quot;);this.maxdepth=
+parseInt(this.getAttribute(&quot;maxdepth&quot;,&quot;10&quot;));this.startat=this.getAttribute(&quot;startat&quot;,&quot;0&quot;);this.nodetitle=this.getAttribute(&quot;nodetitle&quot;);this.tooltip=this.getAttribute(&quot;tooltip&quot;,&quot;summary&quot;);this.filter=this.getAttribute(&quot;filter&quot;,&quot;[!is[system]]&quot;);this.nocollapse=this.hasAttribute(&quot;nocollapse&quot;);this.nodetemplate=this.getAttribute(&quot;nodetemplate&quot;,&quot;&quot;);this.layout=this.getAttribute(&quot;layout&quot;,&quot;E&quot;);-1==[&quot;E&quot;,&quot;S&quot;].indexOf(this.layout)&amp;&amp;(this.layout=&quot;E&quot;)};c.prototype.refresh=function(b){var c=!1,a;this.computeAttributes();
+this.execute();for(a in b)if((b=document.getElementById(this.tidtree.id+&quot;-&quot;+encodeURIComponent(a))||d.isDescendant(a,this.startTid,this.tidtree)||-1!==this.templatesInUse.indexOf(a))||(b=(b=$tw.wiki.getTiddler(a))&amp;&amp;b.hasTag(&quot;$:/tags/Stylesheet&quot;)?!0:!1),b||-1!==a.indexOf(&quot;$:/config/tidgraph/modes&quot;)){c=!0;break}$tw.wiki.getTiddlerText(&quot;$:/state/sidebar&quot;)!==this.sidebar&amp;&amp;(c=!0);return c?(this.refreshSelf(),!0):!1};exports.tidgraph=c})();
+</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="Markdown parser" list="readme usage" plugin-type="plugin" title="$:/plugins/tiddlywiki/markdown" type="application/json" version="5.1.19">
 <pre>{
@@ -10762,7 +11054,7 @@ Error message and password prompt
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20201226202836464" list="$:/Import $:/plugins/ihm/tidgraph $:/ControlPanel Graph $:/TagManager QuantifiedSelf BestOf Index AnarchistLiterature [[Websites I Like]] Misc Science Hypermnesiac Noteworthy EffectivenessPrinciples" modified="20201226213242130" title="$:/StoryList">
+<div created="20201226202836464" list="$:/Manager $:/ControlPanel Graph $:/TagManager QuantifiedSelf BestOf Index AnarchistLiterature [[Websites I Like]] Misc Science Hypermnesiac Noteworthy EffectivenessPrinciples" modified="20201226213555066" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
