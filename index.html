@@ -13803,15 +13803,20 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 [img[https://technillogue.github.io/images/black-lives-matter-protest-in-times-sq.jpg]]
 </pre>
 </div>
-<div created="20190810142007037" modified="20201226205142417" tags="Meta" title="Index">
+<div created="20190810142007037" modified="20201226205338858" tags="Meta" title="Index">
 <pre>&lt;$set name=&quot;$:/temp/toc/selectedIndex&quot; value=&quot;Noteworthy&quot;&gt;
 &lt;$vars 
-   compare-by-wc=&quot;[get[priority]else[get[text]split[ ]count[]]]&quot;
+   compare-by-wc=&quot;[get[priority]]&quot;
 &gt;
+
+else[get[text]split[ ]count[]]
+
+sortsub:number&lt;comapre-by-wc&gt;
+
 &lt;$macrocall
 	$name=&quot;toc-tabbed-external-nav&quot;
 	tag=&quot;Index&quot;
-         sort=&quot;sortsub:number&lt;comapre-by-wc&gt;&quot;
+         sort=&quot;sort[priority]&quot;
 	selectedTiddler=&quot;$:/temp/toc/selectedIndex&quot;
 	unselectedText=&quot;&lt;p&gt;Select a topic in the table of contents. Click the arrow to expand topics.&lt;/p&gt;&quot;
 	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
@@ -14340,7 +14345,7 @@ But if the indirect striatal pathway is more inhibited than the direct pathway, 
 <div modified="20190818200612696" tags="Drug" title="Nootropics">
 <pre></pre>
 </div>
-<div created="20190818200722776" modified="20201226204933959" priority="-1" tags="Index" title="Noteworthy">
+<div created="20190818200722776" modified="20201226205157249" priority="100" tags="Index" title="Noteworthy">
 <pre>&lt;$macrocall
 	$name=&quot;toc-tabbed-internal-nav&quot;
 	tag=&lt;&lt;currentTiddler&gt;&gt;
