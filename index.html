@@ -162,6 +162,8 @@ Error message and password prompt
 
 <li>$:/config/Manager/Sort</li>
 
+<li>$:/config/Manager/System</li>
+
 <li>$:/config/NewJournal/Tags</li>
 
 <li>$:/config/NewJournal/Title</li>
@@ -209,6 +211,8 @@ Error message and password prompt
 <li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/permaview</li>
 
 <li>$:/core</li>
+
+<li>$:/core/macros/toc</li>
 
 <li>$:/core/templates/full</li>
 
@@ -263,6 +267,8 @@ Error message and password prompt
 <li>$:/state/add-plugin-info/$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html/$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/plugins/tiddlywiki/tiddlyweb</li>
 
 <li>$:/state/add-plugin-info/$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html/$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/plugins/tiddlywiki/twitter</li>
+
+<li>$:/state/edit_index</li>
 
 <li>$:/state/edit/references--1211665211</li>
 
@@ -319,6 +325,8 @@ Error message and password prompt
 <li>$:/state/folded/MSNDynamics</li>
 
 <li>$:/state/folded/Noteworthy</li>
+
+<li>$:/state/folded/Priority Manager</li>
 
 <li>$:/state/folded/QuantifiedSelf</li>
 
@@ -385,6 +393,8 @@ Error message and password prompt
 <li>$:/state/toc/Index/Noteworthy-Hypermnesiac-1395960319</li>
 
 <li>$:/state/toc/Index/Science-Pharmacology-1395960319</li>
+
+<li>$:/state/toc/Index/Science/Pharmacology-ADHD-1395960319</li>
 
 <li>$:/state/toc/Index/Science/Pharmacology-Drug-1395960319</li>
 
@@ -694,6 +704,8 @@ Error message and password prompt
 
 <li>Draft of '9-Me-BC'</li>
 
+<li>Draft of 'footer'</li>
+
 <li>Draft of 'Psychedelic'</li>
 
 <li>Draft of 'Psychology'</li>
@@ -709,6 +721,8 @@ Error message and password prompt
 <li>EffectiveTherapy</li>
 
 <li>EffectSizes</li>
+
+<li>Eiscanoids</li>
 
 <li>Endocrinology</li>
 
@@ -816,6 +830,8 @@ Error message and password prompt
 
 <li>Priorities-09-02 </li>
 
+<li>Priority Manager</li>
+
 <li>PRL-8-53</li>
 
 <li>Psychedelic</li>
@@ -841,6 +857,8 @@ Error message and password prompt
 <li>SecondMessengers</li>
 
 <li>SensesWM</li>
+
+<li>Signal</li>
 
 <li>SleepDeprivationAntidepressantTherapy</li>
 
@@ -873,6 +891,8 @@ Error message and password prompt
 <li>Tianeptine</li>
 
 <li>TiddlywikiScatchpad</li>
+
+<li>Tools</li>
 
 <li>ToRead</li>
 
@@ -914,8 +934,11 @@ Error message and password prompt
 <div created="20190818194107460" modified="20190818194107460" title="$:/config/Manager/Show">
 <pre>tags</pre>
 </div>
-<div created="20190818194058727" modified="20190818194058727" title="$:/config/Manager/Sort">
-<pre>tags</pre>
+<div created="20190818194058727" modified="20210104201617942" title="$:/config/Manager/Sort">
+<pre>priority</pre>
+</div>
+<div created="20210104201555329" modified="20210104201555714" title="$:/config/Manager/System">
+<pre>system</pre>
 </div>
 <div created="20190902160238242" modified="20190902160239200" title="$:/config/NewJournal/Tags">
 <pre>Journal Personal</pre>
@@ -10137,10 +10160,219 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20201226204741442" modified="20201226204756116" tags="" title="$:/core/templates/full">
-<pre>! &lt;$link to=&lt;&lt;currentTiddler&gt;&gt;&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
-&lt;$transclude/&gt;
+<div created="20210104204846910" modified="20210104204846910" tags="$:/tags/Macro" title="$:/core/macros/toc">
+<pre>\define toc-caption()
+&lt;$set name=&quot;tv-wikilinks&quot; value=&quot;no&quot;&gt;
+  &lt;$transclude field=&quot;caption&quot;&gt;
+    &lt;$view field=&quot;title&quot;/&gt;
+  &lt;/$transclude&gt;
+&lt;/$set&gt;
+\end
+
+\define toc-body(tag,sort:&quot;&quot;,itemClassFilter,exclude,path)
+&lt;ol class=&quot;tc-toc&quot;&gt;
+  &lt;$list filter=&quot;&quot;&quot;[all[shadows+tiddlers]tag&lt;__tag__&gt;!has[draft.of]$sort$] -[&lt;__tag__&gt;] -[enlist&lt;__exclude__&gt;]&quot;&quot;&quot;&gt;
+    &lt;$vars item=&lt;&lt;currentTiddler&gt;&gt; path={{{ [&lt;__path__&gt;addsuffix[/]addsuffix&lt;__tag__&gt;] }}}&gt;
+      &lt;$set name=&quot;excluded&quot; filter=&quot;&quot;&quot;[enlist&lt;__exclude__&gt;] [&lt;__tag__&gt;]&quot;&quot;&quot;&gt;
+        &lt;$set name=&quot;toc-item-class&quot; filter=&lt;&lt;__itemClassFilter__&gt;&gt; emptyValue=&quot;toc-item-selected&quot; value=&quot;toc-item&quot;&gt;
+          &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;
+            &lt;$list filter=&quot;[all[current]toc-link[no]]&quot; emptyMessage=&quot;&lt;$link&gt;&lt;$view field='caption'&gt;&lt;$view field='title'/&gt;&lt;/$view&gt;&lt;/$link&gt;&quot;&gt;
+              &lt;&lt;toc-caption&gt;&gt;
+            &lt;/$list&gt;
+            &lt;$macrocall $name=&quot;toc-body&quot; tag=&lt;&lt;item&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&lt;&lt;__itemClassFilter__&gt;&gt; exclude=&lt;&lt;excluded&gt;&gt; path=&lt;&lt;path&gt;&gt;/&gt;
+          &lt;/li&gt;
+        &lt;/$set&gt;
+      &lt;/$set&gt;
+    &lt;/$vars&gt;
+  &lt;/$list&gt;
+&lt;/ol&gt;
+\end
+
+\define toc(tag,sort:&quot;&quot;,itemClassFilter:&quot; &quot;)
+&lt;$macrocall $name=&quot;toc-body&quot;  tag=&lt;&lt;__tag__&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&lt;&lt;__itemClassFilter__&gt;&gt; /&gt;
+\end
+
+\define toc-linked-expandable-body(tag,sort:&quot;&quot;,itemClassFilter,exclude,path)
+&lt;!-- helper function --&gt;
+&lt;$qualify name=&quot;toc-state&quot; title={{{ [[$:/state/toc]addsuffix&lt;__path__&gt;addsuffix[-]addsuffix&lt;currentTiddler&gt;] }}}&gt;
+  &lt;$set name=&quot;toc-item-class&quot; filter=&lt;&lt;__itemClassFilter__&gt;&gt; emptyValue=&quot;toc-item-selected&quot; value=&quot;toc-item&quot;&gt;
+    &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;
+    &lt;$link&gt;
+      &lt;$reveal type=&quot;nomatch&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+        &lt;$button setTitle=&lt;&lt;toc-state&gt;&gt; setTo=&quot;open&quot; class=&quot;tc-btn-invisible tc-popup-keep&quot;&gt;
+          {{$:/core/images/right-arrow}}
+        &lt;/$button&gt;
+      &lt;/$reveal&gt;
+      &lt;$reveal type=&quot;match&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+        &lt;$button setTitle=&lt;&lt;toc-state&gt;&gt; setTo=&quot;close&quot; class=&quot;tc-btn-invisible tc-popup-keep&quot;&gt;
+          {{$:/core/images/down-arrow}}
+        &lt;/$button&gt;
+      &lt;/$reveal&gt;
+      &lt;&lt;toc-caption&gt;&gt;
+    &lt;/$link&gt;
+    &lt;$reveal type=&quot;match&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+      &lt;$macrocall $name=&quot;toc-expandable&quot; tag=&lt;&lt;currentTiddler&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&lt;&lt;__itemClassFilter__&gt;&gt; exclude=&lt;&lt;__exclude__&gt;&gt; path=&lt;&lt;__path__&gt;&gt;/&gt;
+    &lt;/$reveal&gt;
+    &lt;/li&gt;
+  &lt;/$set&gt;
+&lt;/$qualify&gt;
+\end
+
+\define toc-unlinked-expandable-body(tag,sort:&quot;&quot;,itemClassFilter,exclude,path)
+&lt;!-- helper function --&gt;
+&lt;$qualify name=&quot;toc-state&quot; title={{{ [[$:/state/toc]addsuffix&lt;__path__&gt;addsuffix[-]addsuffix&lt;currentTiddler&gt;] }}}&gt;
+  &lt;$set name=&quot;toc-item-class&quot; filter=&lt;&lt;__itemClassFilter__&gt;&gt; emptyValue=&quot;toc-item-selected&quot; value=&quot;toc-item&quot;&gt;
+    &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;
+      &lt;$reveal type=&quot;nomatch&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+        &lt;$button setTitle=&lt;&lt;toc-state&gt;&gt; setTo=&quot;open&quot; class=&quot;tc-btn-invisible tc-popup-keep&quot;&gt;
+          {{$:/core/images/right-arrow}}
+          &lt;&lt;toc-caption&gt;&gt;
+        &lt;/$button&gt;
+      &lt;/$reveal&gt;
+      &lt;$reveal type=&quot;match&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+        &lt;$button setTitle=&lt;&lt;toc-state&gt;&gt; setTo=&quot;close&quot; class=&quot;tc-btn-invisible tc-popup-keep&quot;&gt;
+          {{$:/core/images/down-arrow}}
+          &lt;&lt;toc-caption&gt;&gt;
+        &lt;/$button&gt;
+      &lt;/$reveal&gt;
+      &lt;$reveal type=&quot;match&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+        &lt;$macrocall $name=&quot;toc-expandable&quot; tag=&lt;&lt;currentTiddler&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&lt;&lt;__itemClassFilter__&gt;&gt; exclude=&lt;&lt;__exclude__&gt;&gt; path=&lt;&lt;__path__&gt;&gt;/&gt;
+      &lt;/$reveal&gt;
+    &lt;/li&gt;
+  &lt;/$set&gt;
+&lt;/$qualify&gt;
+\end
+
+\define toc-expandable-empty-message()
+&lt;$macrocall $name=&quot;toc-linked-expandable-body&quot; tag=&lt;&lt;tag&gt;&gt; sort=&lt;&lt;sort&gt;&gt; itemClassFilter=&lt;&lt;itemClassFilter&gt;&gt; exclude=&lt;&lt;excluded&gt;&gt; path=&lt;&lt;path&gt;&gt;/&gt;
+\end
+
+\define toc-expandable(tag,sort:&quot;&quot;,itemClassFilter:&quot; &quot;,exclude,path)
+&lt;$vars tag=&lt;&lt;__tag__&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&lt;&lt;__itemClassFilter__&gt;&gt; path={{{ [&lt;__path__&gt;addsuffix[/]addsuffix&lt;__tag__&gt;] }}}&gt;
+  &lt;$set name=&quot;excluded&quot; filter=&quot;&quot;&quot;[enlist&lt;__exclude__&gt;] [&lt;__tag__&gt;]&quot;&quot;&quot;&gt;
+    &lt;ol class=&quot;tc-toc toc-expandable&quot;&gt;
+      &lt;$list filter=&quot;&quot;&quot;[all[shadows+tiddlers]tag&lt;__tag__&gt;!has[draft.of]$sort$] -[&lt;__tag__&gt;] -[enlist&lt;__exclude__&gt;]&quot;&quot;&quot;&gt;
+        &lt;$list filter=&quot;[all[current]toc-link[no]]&quot; emptyMessage=&lt;&lt;toc-expandable-empty-message&gt;&gt; &gt;
+          &lt;$macrocall $name=&quot;toc-unlinked-expandable-body&quot; tag=&lt;&lt;__tag__&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&quot;&quot;&quot;itemClassFilter&quot;&quot;&quot; exclude=&lt;&lt;excluded&gt;&gt; path=&lt;&lt;path&gt;&gt; /&gt;
+        &lt;/$list&gt;
+      &lt;/$list&gt;
+    &lt;/ol&gt;
+  &lt;/$set&gt;
+&lt;/$vars&gt;
+\end
+
+\define toc-linked-selective-expandable-body(tag,sort:&quot;&quot;,itemClassFilter,exclude,path)
+&lt;$qualify name=&quot;toc-state&quot; title={{{ [[$:/state/toc]addsuffix&lt;__path__&gt;addsuffix[-]addsuffix&lt;currentTiddler&gt;] }}}&gt;
+  &lt;$set name=&quot;toc-item-class&quot; filter=&lt;&lt;__itemClassFilter__&gt;&gt; emptyValue=&quot;toc-item-selected&quot; value=&quot;toc-item&quot; &gt;
+    &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;
+      &lt;$link&gt;
+          &lt;$list filter=&quot;[all[current]tagging[]limit[1]]&quot; variable=&quot;ignore&quot; emptyMessage=&quot;&lt;$button class='tc-btn-invisible'&gt;{{$:/core/images/blank}}&lt;/$button&gt;&quot;&gt;
+          &lt;$reveal type=&quot;nomatch&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+            &lt;$button setTitle=&lt;&lt;toc-state&gt;&gt; setTo=&quot;open&quot; class=&quot;tc-btn-invisible tc-popup-keep&quot;&gt;
+              {{$:/core/images/right-arrow}}
+            &lt;/$button&gt;
+          &lt;/$reveal&gt;
+          &lt;$reveal type=&quot;match&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+            &lt;$button setTitle=&lt;&lt;toc-state&gt;&gt; setTo=&quot;close&quot; class=&quot;tc-btn-invisible tc-popup-keep&quot;&gt;
+              {{$:/core/images/down-arrow}}
+            &lt;/$button&gt;
+          &lt;/$reveal&gt;
+        &lt;/$list&gt;
+        &lt;&lt;toc-caption&gt;&gt;
+      &lt;/$link&gt;
+      &lt;$reveal type=&quot;match&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+        &lt;$macrocall $name=&quot;toc-selective-expandable&quot; tag=&lt;&lt;currentTiddler&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&lt;&lt;__itemClassFilter__&gt;&gt; exclude=&lt;&lt;__exclude__&gt;&gt; path=&lt;&lt;__path__&gt;&gt;/&gt;
+      &lt;/$reveal&gt;
+    &lt;/li&gt;
+  &lt;/$set&gt;
+&lt;/$qualify&gt;
+\end
+
+\define toc-unlinked-selective-expandable-body(tag,sort:&quot;&quot;,itemClassFilter,exclude,path)
+&lt;$qualify name=&quot;toc-state&quot; title={{{ [[$:/state/toc]addsuffix&lt;__path__&gt;addsuffix[-]addsuffix&lt;currentTiddler&gt;] }}}&gt;
+  &lt;$set name=&quot;toc-item-class&quot; filter=&lt;&lt;__itemClassFilter__&gt;&gt; emptyValue=&quot;toc-item-selected&quot; value=&quot;toc-item&quot;&gt;
+    &lt;li class=&lt;&lt;toc-item-class&gt;&gt;&gt;
+      &lt;$list filter=&quot;[all[current]tagging[]limit[1]]&quot; variable=&quot;ignore&quot; emptyMessage=&quot;&lt;$button class='tc-btn-invisible'&gt;{{$:/core/images/blank}}&lt;/$button&gt; &lt;$view field='caption'&gt;&lt;$view field='title'/&gt;&lt;/$view&gt;&quot;&gt;
+        &lt;$reveal type=&quot;nomatch&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+          &lt;$button setTitle=&lt;&lt;toc-state&gt;&gt; setTo=&quot;open&quot; class=&quot;tc-btn-invisible tc-popup-keep&quot;&gt;
+            {{$:/core/images/right-arrow}}
+            &lt;&lt;toc-caption&gt;&gt;
+          &lt;/$button&gt;
+        &lt;/$reveal&gt;
+        &lt;$reveal type=&quot;match&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+          &lt;$button setTitle=&lt;&lt;toc-state&gt;&gt; setTo=&quot;close&quot; class=&quot;tc-btn-invisible tc-popup-keep&quot;&gt;
+            {{$:/core/images/down-arrow}}
+            &lt;&lt;toc-caption&gt;&gt;
+          &lt;/$button&gt;
+        &lt;/$reveal&gt;
+      &lt;/$list&gt;
+      &lt;$reveal type=&quot;match&quot; stateTitle=&lt;&lt;toc-state&gt;&gt; text=&quot;open&quot;&gt;
+        &lt;$macrocall $name=&quot;toc-selective-expandable&quot; tag=&lt;&lt;currentTiddler&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&lt;&lt;__itemClassFilter__&gt;&gt; exclude=&lt;&lt;__exclude__&gt;&gt; path=&lt;&lt;__path__&gt;&gt;/&gt;
+      &lt;/$reveal&gt;
+    &lt;/li&gt;
+  &lt;/$set&gt;
+&lt;/$qualify&gt;
+\end
+
+\define toc-selective-expandable-empty-message()
+&lt;$macrocall $name=&quot;toc-linked-selective-expandable-body&quot; tag=&lt;&lt;tag&gt;&gt; sort=&lt;&lt;sort&gt;&gt; itemClassFilter=&lt;&lt;itemClassFilter&gt;&gt; exclude=&lt;&lt;excluded&gt;&gt; path=&lt;&lt;path&gt;&gt;/&gt;
+\end
+
+\define toc-selective-expandable(tag,sort:&quot;&quot;,itemClassFilter,exclude,path)
+&lt;$vars tag=&lt;&lt;__tag__&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&lt;&lt;__itemClassFilter__&gt;&gt; path={{{ [&lt;__path__&gt;addsuffix[/]addsuffix&lt;__tag__&gt;] }}}&gt;
+  &lt;$set name=&quot;excluded&quot; filter=&quot;&quot;&quot;[enlist&lt;__exclude__&gt;] [&lt;__tag__&gt;]&quot;&quot;&quot;&gt;
+    &lt;ol class=&quot;tc-toc toc-selective-expandable&quot;&gt;
+      &lt;$list filter=&quot;&quot;&quot;[all[shadows+tiddlers]tag&lt;__tag__&gt;!has[draft.of]$sort$] -[&lt;__tag__&gt;] -[enlist&lt;__exclude__&gt;]&quot;&quot;&quot;&gt;
+        &lt;$list filter=&quot;[all[current]toc-link[no]]&quot; variable=&quot;ignore&quot; emptyMessage=&lt;&lt;toc-selective-expandable-empty-message&gt;&gt; &gt;
+          &lt;$macrocall $name=&quot;toc-unlinked-selective-expandable-body&quot; tag=&lt;&lt;__tag__&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&lt;&lt;__itemClassFilter__&gt;&gt; exclude=&lt;&lt;excluded&gt;&gt; path=&lt;&lt;path&gt;&gt;/&gt;
+        &lt;/$list&gt;
+      &lt;/$list&gt;
+    &lt;/ol&gt;
+  &lt;/$set&gt;
+&lt;/$vars&gt;
+\end
+
+\define toc-tabbed-external-nav(tag,sort:&quot;&quot;,selectedTiddler:&quot;$:/temp/toc/selectedTiddler&quot;,unselectedText,missingText,template:&quot;&quot;)
+&lt;$tiddler tiddler={{{ [&lt;__selectedTiddler__&gt;get[text]] }}}&gt;
+  &lt;div class=&quot;tc-tabbed-table-of-contents&quot;&gt;
+    &lt;$linkcatcher to=&lt;&lt;__selectedTiddler__&gt;&gt;&gt;
+      &lt;div class=&quot;tc-table-of-contents&quot;&gt;
+        &lt;$macrocall $name=&quot;toc-selective-expandable&quot; tag=&lt;&lt;__tag__&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; itemClassFilter=&quot;[all[current]] -[&lt;__selectedTiddler__&gt;get[text]]&quot;/&gt;
+      &lt;/div&gt;
+    &lt;/$linkcatcher&gt;
+    &lt;div class=&quot;tc-tabbed-table-of-contents-content&quot;&gt;
+      &lt;$reveal stateTitle=&lt;&lt;__selectedTiddler__&gt;&gt; type=&quot;nomatch&quot; text=&quot;&quot;&gt;
+        &lt;$transclude mode=&quot;block&quot; tiddler=&lt;&lt;__template__&gt;&gt;&gt;
+          &lt;h1&gt;&lt;&lt;toc-caption&gt;&gt;&lt;/h1&gt;
+          &lt;$transclude mode=&quot;block&quot;&gt;$missingText$&lt;/$transclude&gt;
+        &lt;/$transclude&gt;
+      &lt;/$reveal&gt;
+      &lt;$reveal stateTitle=&lt;&lt;__selectedTiddler__&gt;&gt; type=&quot;match&quot; text=&quot;&quot;&gt;
+        $unselectedText$
+      &lt;/$reveal&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/$tiddler&gt;
+\end
+
+\define toc-tabbed-internal-nav(tag,sort:&quot;&quot;,selectedTiddler:&quot;$:/temp/toc/selectedTiddler&quot;,unselectedText,missingText,template:&quot;&quot;)
+&lt;$linkcatcher to=&lt;&lt;__selectedTiddler__&gt;&gt;&gt;
+  &lt;$macrocall $name=&quot;toc-tabbed-external-nav&quot; tag=&lt;&lt;__tag__&gt;&gt; sort=&lt;&lt;__sort__&gt;&gt; selectedTiddler=&lt;&lt;__selectedTiddler__&gt;&gt; unselectedText=&lt;&lt;__unselectedText__&gt;&gt; missingText=&lt;&lt;__missingText__&gt;&gt; template=&lt;&lt;__template__&gt;&gt;/&gt;
+&lt;/$linkcatcher&gt;
+\end
+
 </pre>
+</div>
+<div created="20201226204741442" modified="20210104211450110" tags="" title="$:/core/templates/full">
+<pre>! &lt;$link to=&lt;&lt;currentTiddler&gt;&gt;&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
+&lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;match&quot; text=&quot;true&quot;&gt; 
+priority: &lt;$edit field=&quot;priority&quot;/&gt;
+{{$:/core/ui/EditTemplate/tags}}
+&lt;!--&lt;$set name=&quot;preview&quot; filter=&quot;[is[current]get[text]split[ ]first[100]join[ ]]&quot;&gt;&lt;&lt;preview&gt;&gt;&lt;/$set&gt;--&gt;
+&lt;/$reveal&gt;
+&lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;nomatch&quot; text=&quot;true&quot;&gt; 
+&lt;$transclude/&gt;
+&lt;/$reveal&gt;</pre>
 </div>
 <div created="20190730195524463" modified="20190810144110138" title="$:/DefaultTiddlers">
 <pre>Index</pre>
@@ -10566,6 +10798,9 @@ Error message and password prompt
 <div created="20190819214337411" modified="20190819214337411" title="$:/state/add-plugin-info/$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html/$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/plugins/tiddlywiki/twitter">
 <pre>yes</pre>
 </div>
+<div created="20210104205616875" modified="20210104210827349" title="$:/state/edit_index">
+<pre>true</pre>
+</div>
 <div created="20190820160834173" modified="20190820160834173" title="$:/state/edit/references--1211665211">
 <pre>show</pre>
 </div>
@@ -10650,6 +10885,9 @@ Error message and password prompt
 <div created="20201226212138693" modified="20201226212409948" title="$:/state/folded/Noteworthy">
 <pre>hide</pre>
 </div>
+<div created="20210104203646635" modified="20210104211247912" title="$:/state/folded/Priority Manager">
+<pre>show</pre>
+</div>
 <div created="20201226212409948" modified="20201226212409948" title="$:/state/folded/QuantifiedSelf">
 <pre>hide</pre>
 </div>
@@ -10695,14 +10933,14 @@ Error message and password prompt
 <div created="20190818204301709" modified="20201226212404584" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20200206212917740" modified="20201226210355806" title="$:/state/tab--1498284803">
-<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
+<div created="20200206212917740" modified="20210104210908133" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/System</pre>
 </div>
 <div created="20190730195811423" modified="20201226200405758" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Toolbars</pre>
 </div>
-<div created="20190819214256551" modified="20190902160220778" title="$:/state/tab--2112689675">
-<pre>$:/core/ui/ControlPanel/Basics</pre>
+<div created="20190819214256551" modified="20210104201506711" title="$:/state/tab--2112689675">
+<pre>$:/core/ui/ControlPanel/Advanced</pre>
 </div>
 <div created="20200129021017546" modified="20201226200818242" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Plugins</pre>
@@ -10710,14 +10948,14 @@ Error message and password prompt
 <div created="20190903172312633" modified="20201226200824612" title="$:/state/tab-1342078386">
 <pre>$:/core/ui/ControlPanel/Plugins/Add/Plugins</pre>
 </div>
-<div created="20190730195537892" modified="20201226212837307" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Plugins</pre>
+<div created="20190730195537892" modified="20210104201505190" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Info</pre>
 </div>
 <div created="20190730195539665" modified="20201220013202338" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
-<div created="20190810135005842" modified="20201226214108819" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20190810135005842" modified="20210104211234276" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div created="20190730195820129" modified="20201226200431368" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
@@ -10728,7 +10966,7 @@ Error message and password prompt
 <div created="20201226194720448" modified="20201226210310067" title="$:/state/toc/Index-Noteworthy-1395960319">
 <pre>open</pre>
 </div>
-<div created="20201226194736659" modified="20201226210017593" title="$:/state/toc/Index-Science-1395960319">
+<div created="20201226194736659" modified="20210104210043459" title="$:/state/toc/Index-Science-1395960319">
 <pre>close</pre>
 </div>
 <div created="20201226194754827" modified="20201226212606924" title="$:/state/toc/Index/Misc-Meta-1395960319">
@@ -10746,14 +10984,17 @@ Error message and password prompt
 <div created="20201226202705458" modified="20201226202706523" title="$:/state/toc/Index/Noteworthy-Hypermnesiac-1395960319">
 <pre>close</pre>
 </div>
-<div created="20201226201311288" modified="20201226201311288" title="$:/state/toc/Index/Science-Pharmacology-1395960319">
+<div created="20201226201311288" modified="20210104201039240" title="$:/state/toc/Index/Science-Pharmacology-1395960319">
 <pre>open</pre>
 </div>
-<div created="20201226201317837" modified="20201226201317837" title="$:/state/toc/Index/Science/Pharmacology-Drug-1395960319">
-<pre>open</pre>
+<div created="20210104200953558" modified="20210104201003480" title="$:/state/toc/Index/Science/Pharmacology-ADHD-1395960319">
+<pre>close</pre>
 </div>
-<div created="20201226201319547" modified="20201226201319547" title="$:/state/toc/Index/Science/Pharmacology/Drug-Antidepressant-1395960319">
-<pre>open</pre>
+<div created="20201226201317837" modified="20210104201017268" title="$:/state/toc/Index/Science/Pharmacology-Drug-1395960319">
+<pre>close</pre>
+</div>
+<div created="20201226201319547" modified="20210104201005604" title="$:/state/toc/Index/Science/Pharmacology/Drug-Antidepressant-1395960319">
+<pre>close</pre>
 </div>
 <div created="20201226202716131" modified="20201226202716993" title="$:/state/toc/Noteworthy-BestOf-1280649240">
 <pre>close</pre>
@@ -10764,7 +11005,7 @@ Error message and password prompt
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div list="Archive_twitter_with_Bitlbee" title="$:/StoryList">
+<div created="20210104201027299" list="[[Priority Manager]]" modified="20210104211244037" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -10773,8 +11014,8 @@ Error message and password prompt
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
 <pre></pre>
 </div>
-<div created="20200206212920369" modified="20201226210415616" title="$:/temp/advancedsearch">
-<pre>toc-</pre>
+<div created="20200206212920369" modified="20210104210904524" title="$:/temp/advancedsearch">
+<pre>full</pre>
 </div>
 <div created="20190819220224387" modified="20190819220224387" title="$:/temp/HidePluginWarning">
 <pre>yes</pre>
@@ -11515,17 +11756,17 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190819214322594" modified="20201226212846259" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre></pre>
 </div>
-<div created="20190820131939822" modified="20201226214115054" title="$:/temp/search">
-<pre>Personal</pre>
+<div created="20190820131939822" modified="20210104210956597" title="$:/temp/search">
+<pre></pre>
 </div>
 <div created="20190903172309883" modified="20190903172309883" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html" url="https://tiddlywiki.com/library/v5.1.19/index.html">
 <pre>loaded</pre>
 </div>
-<div created="20201226194949960" modified="20201226214138454" title="$:/temp/toc/selectedIndex">
-<pre>BeyondMonoamineHypothesis</pre>
-</div>
-<div created="20201226210224051" modified="20201226212304899" title="$:/temp/toc/selectedNoteworthy">
+<div created="20201226194949960" modified="20210104210827622" title="$:/temp/toc/selectedIndex">
 <pre>TherapeuticWork</pre>
+</div>
+<div created="20201226210224051" modified="20210104210827993" title="$:/temp/toc/selectedNoteworthy">
+<pre>EffectivenessPrinciples</pre>
 </div>
 <div created="20201226194324138" modified="20201226194808089" title="$:/temp/toc/selectedTiddler">
 <pre>BestOf</pre>
@@ -12293,7 +12534,7 @@ https://en.wikipedia.org/wiki/Allergy_to_cats#Cat_bathing</pre>
 <div created="20190820164319381" modified="20190903125307717" tags="SubcorticalStructures" title="Amygdala">
 <pre></pre>
 </div>
-<div created="20190814205243195" modified="20201226212557262" priority="-1" tags="Misc" title="AnarchistLiterature">
+<div created="20190814205243195" modified="20210104203621676" priority="9" tags="Misc" title="AnarchistLiterature">
 <pre>[[Foucault's introduction to Deleuze and Guittari's Anti-Oedipus|http://aragorn.anarchyplanet.org/fascism/]] (&quot;a guide to the anti-fascist life&quot;)
 
 [[Terror Incognita|https://cloudfront.crimethinc.com/pdfs/terror_incognita_reading.pdf]] (queerness, desire, seduction, and insurrection)
@@ -12353,7 +12594,7 @@ Supposing [[Requirement of hippocampal neurogenesis for the behavioral effects o
 # logs will be in `~/irclogs/rc/#twitter_username`, use grep or whatever to search
 </pre>
 </div>
-<div created="20190803015509289" modified="20190810164859233" tags="Pharmacology" title="AtypicalAntidepressantToxicity">
+<div created="20190803015509289" modified="20210104201229501" tags="Antidepressant" title="AtypicalAntidepressantToxicity">
 <pre>!! [[Tianeptine]]
 
 {{Tianeptine}}
@@ -12881,7 +13122,7 @@ Click to unfold:
 <div created="20190820155725492" modified="20190820155727274" tags="SubcorticalStructures" title="BasalGanglia">
 <pre></pre>
 </div>
-<div created="20201220000747050" modified="20201226212050954" priority="-100" tags="Noteworthy" title="BestOf">
+<div created="20201220000747050" modified="20210104203538748" priority="90" tags="Noteworthy" title="BestOf">
 <pre>&lt;$set name=&quot;$:/temp/toc/selectedBest&quot; value=&quot;Presentations&quot;&gt;
 &lt;$macrocall
 	$name=&quot;toc-tabbed-internal-nav&quot;
@@ -12892,7 +13133,7 @@ Click to unfold:
 /&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20200203233044854" modified="20201226214209116" priority="10" tags="Noteworthy NeuropharmWriting Pharmacology" title="BeyondMonoamineHypothesis" type="text/vnd.tiddlywiki">
+<div created="20200203233044854" modified="20210104203725763" priority="6" tags="Noteworthy NeuropharmWriting Pharmacology" title="BeyondMonoamineHypothesis" type="text/vnd.tiddlywiki">
 <pre>this is based on an irc rant about why i disagree with things like  http://slatestarcodex.com/2017/10/10/ssc-journal-club-serotonin-receptors/  . briefly:
 
 * psychedelics don't hit 5-HT2A in the same way as serotonin, they they active PLA2 instead of PLC. 
@@ -13061,6 +13302,35 @@ but what level of stagnation is acceptable?
 <div modified="20201223181140900" title="Draft of '9-Me-BC'">
 <pre></pre>
 </div>
+<div created="20170215223235012" draft.of="footer" draft.title="footer" modified="20210104210631091" tags="$:/tags/ViewTemplate" title="Draft of 'footer'">
+<pre>\define url(name) &quot;
+\define comments(name)         
+&lt;a class=&quot;twitter-timeline&quot; data-dnt=&quot;true&quot; href=&quot;https://twitter.com/search?q=%23grimoiretw%20%23$name$&quot;&gt;View twitter comments&lt;/a&gt; or 
+&lt;a href=&quot;https://twitter.com/intent/tweet?dnt=true&amp;text=&amp;url=https%3A%2F%2Ftechnillogue.github.io%2F%23$name$&amp;hashtags=grimoiretw%2C$name$&amp;related=technillogue&quot; class=&quot;twitter-share-button&quot;&gt;
+share on twitter&lt;/a&gt;.
+\end
+
+&lt;hr&gt;
+
+&lt;!---backlinks---&gt;
+&lt;$list filter=&quot;[&lt;currentTiddler&gt;backlinks[]limit[1]]&quot; variable=&quot;PlsNo&quot;&gt;
+sections that link here: &lt;&lt;list-links &quot;[&lt;currentTiddler&gt;backlinks[]]&quot;&gt;&gt;
+&lt;/$list&gt;
+
+&lt;!---navigation--&gt;
+&lt;div id=&quot;tagsNavigation&quot;&gt;
+&lt;$list filter='[is[current]tags[]]' variable=CurrentTag&gt;
+&lt;span class=&quot;tagNavigation&quot;&gt;
+&lt;$list variable=PreviousTiddler filter='[tag&lt;CurrentTag&gt;sort[created]before&lt;currentTiddler&gt;]'&gt;&lt;$button&gt;←&lt;$action-navigate $to=&lt;&lt;PreviousTiddler&gt;&gt;/&gt;&lt;/$button&gt;&lt;/$list&gt;
+&lt;$tiddler tiddler=&lt;&lt;CurrentTag&gt;&gt;&gt;&lt;&lt;tag&gt;&gt;&lt;/$tiddler&gt;
+&lt;$list variable=NextTiddler filter='[tag&lt;CurrentTag&gt;sort[created]after&lt;currentTiddler&gt;]'&gt;
+&lt;$button&gt;→&lt;$action-navigate $to=&lt;&lt;NextTiddler&gt;&gt;/&gt;&lt;/$button&gt;&lt;/$list&gt;
+&lt;/span&gt;
+&lt;/$list&gt;
+&lt;/div&gt;
+
+&lt;$macrocall $name=&quot;comments&quot; name=&lt;&lt;currentTiddler&gt;&gt;/&gt;</pre>
+</div>
 <div modified="20200206220403969" title="Draft of 'Psychedelic'">
 <pre></pre>
 </div>
@@ -13070,12 +13340,12 @@ but what level of stagnation is acceptable?
 <div created="20190818200553630" modified="20190818200612694" tags="Pharmacology" title="Drug">
 <pre></pre>
 </div>
-<div created="20200407023627439" modified="20200407145106905" tags="Pharmacology" title="DynorphinScratchpad">
+<div created="20200407023627439" modified="20210104201328288" tags="Signal" title="DynorphinScratchpad">
 <pre>reading https://mad.science.blog/2020/03/24/infectious-loss-of-sense
 
 [[Novel Treatment with Neuroprotective and Antiviral Properties against a Neuroinvasive Human Respiratory Virus|https://jvi.asm.org/content/88/3/1548]] (2013) -- memantine </pre>
 </div>
-<div created="20200129020906028" modified="20201226212259516" priority="2" tags="WIP Tech Systems Noteworthy" title="EffectivenessPrinciples" type="text/x-markdown">
+<div created="20200129020906028" modified="20210104203545315" priority="9" tags="WIP Tech Systems Noteworthy" title="EffectivenessPrinciples" type="text/x-markdown">
 <pre>(created 2019-07-28, edited and moved here 2020-01-28)
 
 what does &quot;data-driven&quot; or &quot;best practices&quot; mean? would should it mean?
@@ -13256,6 +13526,9 @@ lisdexamphetamine 1.52
 &quot;&quot;
 
 </pre>
+</div>
+<div created="20210104203837052" modified="20210104203837936" tags="Signal" title="Eiscanoids">
+<pre></pre>
 </div>
 <div created="20190819194535058" modified="20190819194535058" tags="Science" title="Endocrinology">
 <pre></pre>
@@ -13700,7 +13973,7 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3071421/
 <div created="20201226212742991" modified="20201226213645142" tags="Meta" title="Graph">
 <pre>&lt;$tidgraph start=&quot;Index&quot; /&gt;</pre>
 </div>
-<div created="20190827184659706" modified="20200127215303584" tags="Neuroscience Pharmacology" title="GSK-3">
+<div created="20190827184659706" modified="20210104201302684" tags="Signal Neuroscience" title="GSK-3">
 <pre>Glycogen Synthase Kinase 
 
 * inhibits glycogen synthase (if the synthase is primed by casein kinase 2)
@@ -13823,7 +14096,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 
 </pre>
 </div>
-<div created="20190810135039349" modified="20201226212219568" priority="-1" tags="Nootropics Noteworthy" title="Hypermnesiac">
+<div created="20190810135039349" modified="20210104203618173" priority="9" tags="Nootropics Noteworthy" title="Hypermnesiac">
 <pre>!!! [[PRL-8-53]]
 {{PRL-8-53}}
 
@@ -13896,7 +14169,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 [img[https://technillogue.github.io/images/black-lives-matter-protest-in-times-sq.jpg]]
 </pre>
 </div>
-<div created="20190810142007037" modified="20201226211913934" tags="Meta" title="Index">
+<div created="20190810142007037" modified="20210104210740677" tags="Meta" title="Index">
 <pre>&lt;$vars 
    compare-by-wc=&quot;[get[text]split[ ]count[]]&quot;
   not-working =&quot;sortsub:number&lt;compare-by-wc&gt;&quot;
@@ -13910,9 +14183,13 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 	selectedTiddler=&quot;$:/temp/toc/selectedIndex&quot;
 	unselectedText=&quot;&lt;p&gt;Select a topic in the table of contents. Click the arrow to expand topics.&lt;/p&gt;&quot;
 	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
-         sort=&quot;nsort[priority]&quot;
+         sort=&quot;!nsort[priority]&quot;
         template=&quot;$:/core/templates/full&quot;
-/&gt;</pre>
+/&gt;
+
+&lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;nomatch&quot; text=&quot;true&quot;&gt;&lt;$button set=&quot;$:/state/edit_index&quot; setTo=&quot;true&quot;&gt;Turn on manager mode&lt;/$button&gt;&lt;/$reveal&gt;
+
+&lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;match&quot; text=&quot;true&quot;&gt;&lt;$button set=&quot;$:/state/edit_index&quot; setTo=&quot;false&quot;&gt;Turn off manager mode&lt;/$button&gt;&lt;/$reveal&gt;</pre>
 </div>
 <div created="20190910122440304" modified="20190910134842677" tags="Misc" title="IndividualDevOps">
 <pre>&lt;&lt;&lt;
@@ -14266,7 +14543,7 @@ To return to:
 <div created="20190820163817519" modified="20190820163818910" tags="BrainAnatomy" title="Midbrain">
 <pre></pre>
 </div>
-<div created="20201226194619623" modified="20201226212507717" priority="10" tags="Index" title="Misc">
+<div created="20201226194619623" modified="20210104203629928" priority="1" tags="Index" title="Misc">
 <pre></pre>
 </div>
 <div created="20190810160703264" modified="20190820153813477" tags="Neuroscience" title="MiscNeurosci">
@@ -14435,7 +14712,7 @@ But if the indirect striatal pathway is more inhibited than the direct pathway, 
 <div modified="20190818200612696" tags="Drug" title="Nootropics">
 <pre></pre>
 </div>
-<div created="20190818200722776" modified="20201226212124410" priority="-1" tags="Index" title="Noteworthy">
+<div created="20190818200722776" modified="20210104203516255" priority="100" tags="Index" title="Noteworthy">
 <pre>&lt;$macrocall
 	$name=&quot;toc-tabbed-external-nav&quot;
 	tag=&lt;&lt;currentTiddler&gt;&gt;
@@ -14464,7 +14741,7 @@ https://www.reddit.com/r/Nootropics/comments/8vjeik/first_nsi189_is_wonderful_se
 <div created="20190820163944105" modified="20190820163946046" tags="VentralStriatum" title="OlefactoryTubercle">
 <pre></pre>
 </div>
-<div created="20190904170424529" modified="20190904170529207" tags="Depression Inflammation Pharmacology Eiscanoids" title="Omega-3 fatty acids and the treatment of depression: a review of scientific evidence">
+<div created="20190904170424529" modified="20210104203827051" tags="Antidepressant Depression Inflammation Eiscanoids" title="Omega-3 fatty acids and the treatment of depression: a review of scientific evidence">
 <pre>[[Omega-3 fatty acids and the treatment of depression: a review of scientific evidence|https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5481805/]] (2015)
 
 </pre>
@@ -14780,6 +15057,15 @@ money
 * not mina or renovations
 * not art or writing</pre>
 </div>
+<div created="20210104202305890" modified="20210104211331427" tags="Tools" title="Priority Manager">
+<pre>&lt;$edit tiddler=&quot;$:/core/templates/full&quot;/&gt;
+
+&lt;$list filter=&quot;[!field:priority[]nsort[priority]]&quot;&gt;
+
+&lt;li&gt; &lt;&lt;currentTiddler&gt;&gt; priority: &lt;$edit field=&quot;priority&quot;/&gt; &lt;/li&gt;
+
+&lt;/$list&gt;</pre>
+</div>
 <div created="20190810144835707" modified="20190818200641773" tags="Hypermnesiac" title="PRL-8-53">
 <pre>* [[PRL-8-53 Enhanced Learning and Subsequent Retention in Humans as a Result of Low Oral Doses of New Psychotropic Agent|https://sci-hub.tw/10.1007/BF00432846]]  (1978)
 **  Subjects listened to 12 words. Retention was measured after 24h and 1 week. 
@@ -14794,7 +15080,7 @@ money
 
 (however, 2C-B has a lower 5-HT2A affinity...)</pre>
 </div>
-<div created="20190831151639888" modified="20200206220349288" tags="Scratchpad Psychedelic Neuroscience Pharmacology" title="PsychedelicScratchpad">
+<div created="20190831151639888" modified="20210104201120828" tags="Scratchpad Psychedelic" title="PsychedelicScratchpad">
 <pre>[[Tolerance and Tachyphylaxis to Head Twitches Induced by the 5-HT2A Agonist 25CN-NBOH in Mice|https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5808243/]] (2018)
 
 [[5-HT2A/2C receptor signaling via phospholipase A2 and arachidonic acid is attenuated in mice lacking the serotonin reuptake transporter.|https://www.ncbi.nlm.nih.gov/pubmed/15834538]] (2005)
@@ -14921,13 +15207,13 @@ i could have taken my chest in, become more and more quiet and internally slow t
 
 were it to happen again, i wish to strive to take in my chest, become more and more quiet as the situation gets more and more stressful, observe when i judge others, observe when i make strong judging plans, observe when i loose myself in conversation, observe when i don't want to look at time</pre>
 </div>
-<div created="20190819194445866" modified="20201226212446528" priority="1" tags="Index" title="Science">
+<div created="20190819194445866" modified="20210104203551761" priority="8" tags="Index" title="Science">
 <pre></pre>
 </div>
 <div created="20190818200905632" modified="20190818200907664" tags="Misc" title="Scratchpad">
 <pre></pre>
 </div>
-<div created="20200203234654410" modified="20200206222809457" tags="Pharmacology" title="SecondMessengers">
+<div created="20200203234654410" modified="20210104201302686" tags="Signal" title="SecondMessengers">
 <pre>!! G proteins and G Protein Coupled Receptors
 
 you have your G-protein bound receptor AKA 7-transmembrane receptors. these wiggly bois go through the cell neuronal membrane seven times. 34% of FDA-approved drugs target GPCRs. the archetypical one is adrenergic receptors, but also serotonin (except 5-HT3), dopamine, muscarinic acetylcholine receptors, histamine, melatonin, cannabinoid, estrogen, opioid, orexin, oxytocin, and metabotropic glutamate receptors.
@@ -15156,6 +15442,9 @@ prenatal and early life cortisol is probably the epigenetic mechanism involved i
 
 &gt;. Interestingly, ADHD was comorbid 38% of the time, which was slightly higher than the non-PTSD group (22%), but not significantly, providing some empirical support to the clinically-observed notion that children with PTSD may be misdiagnosed with ADHD because of the overlap in concentration difficulties.</pre>
 </div>
+<div created="20210104201204222" modified="20210104201302676" tags="Pharmacology" title="Signal">
+<pre></pre>
+</div>
 <div created="20191126214925792" modified="20191126221939353" tags="Neuroscience Antidepressant Depression" title="SleepDeprivationAntidepressantTherapy">
 <pre>[[Meta-Analysis of the Antidepressant Effects of Acute Sleep Deprivation|https://www.psychiatrist.com/JCP/article/Pages/2017/v78n08/16r11332.aspx]] (2017)
 
@@ -15363,7 +15652,7 @@ How To Solve It (Polya)
 <div created="20190820153503661" modified="20190820153503661" tags="Midbrain" title="Tegmentum">
 <pre></pre>
 </div>
-<div created="20201222200056694" modified="20201222214937864" tags="WIP Noteworthy" title="TherapeuticWork">
+<div created="20201222200056694" modified="20210104203756222" priority="8" tags="WIP Noteworthy" title="TherapeuticWork">
 <pre>* [[Nonviolent Communication: Feelings and Needs inventory|https://technillogue.github.io/materials/feelings-needs-inventory.pdf]]. see also:
     ** [[the book|https://1lib.us/book/2826939/cc38ec]]
     ** [[the audiobook|https://www.youtube.com/watch?v=CBZUpt1bmnM]]
@@ -15511,6 +15800,9 @@ https://github.com/OokTech/TW5-TWederBob
 https://github.com/OokTech/TW5-Bookmarks
 
 https://github.com/OokTech/TW5-Citations</pre>
+</div>
+<div created="20210104203502989" modified="20210104203504064" tags="Meta" title="Tools">
+<pre></pre>
 </div>
 <div created="20190905145623590" modified="20190906203312869" tags="Scratchpad" title="ToRead">
 <pre>https://slatestarcodex.com/2018/09/19/book-review-the-black-swan/ - stats
@@ -15686,7 +15978,7 @@ one thing is just prioritizing more clearly and using explicit, and ideally spec
 * also projects dopaminergic neurons to Amygalda and Hippocampus
 </pre>
 </div>
-<div created="20201209055623059" modified="20201226212531695" priority="-1" tags="Misc" title="Websites I Like">
+<div created="20201209055623059" modified="20210104203554908" priority="9" tags="Misc" title="Websites I Like">
 <pre>* Internet
 ** http://kickscondor.com/ (https://www.kickscondor.com/wars-of-conflicting-webs/)
 ** http://worrydream.com/ 
