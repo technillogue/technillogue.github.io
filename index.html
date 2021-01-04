@@ -750,6 +750,8 @@ Error message and password prompt
 
 <li>HabitFormation</li>
 
+<li>Hacks</li>
+
 <li>Hippocampus</li>
 
 <li>HPA</li>
@@ -10361,12 +10363,16 @@ Error message and password prompt
 
 </pre>
 </div>
-<div created="20201226204741442" modified="20210104211627049" tags="" title="$:/core/templates/full">
+<div created="20201226204741442" modified="20210104212024299" tags="" title="$:/core/templates/full">
 <pre>! &lt;$link to=&lt;&lt;currentTiddler&gt;&gt;&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
 &lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;match&quot; text=&quot;true&quot;&gt; 
 priority: &lt;$edit field=&quot;priority&quot;/&gt;
 {{$:/core/ui/EditTemplate/tags}}
-&lt;!--&lt;$set name=&quot;preview&quot; filter=&quot;[is[current]get[text]split[ ]first[100]join[ ]]&quot;&gt;&lt;&lt;preview&gt;&gt;&lt;/$set&gt;--&gt;
+&lt;$set name=&quot;preview&quot; filter=&quot;[is[current]get[text]split[ ]first[100]join[ ]]&quot; select=&quot;0&quot;&gt;
+
+&lt;&lt;preview&gt;&gt;
+
+&lt;/$set&gt;
 &lt;/$reveal&gt;
 &lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;nomatch&quot; text=&quot;true&quot;&gt; 
 
@@ -10800,8 +10806,8 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20190819214337411" modified="20190819214337411" title="$:/state/add-plugin-info/$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html/$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/plugins/tiddlywiki/twitter">
 <pre>yes</pre>
 </div>
-<div created="20210104205616875" modified="20210104211602593" title="$:/state/edit_index">
-<pre>false</pre>
+<div created="20210104205616875" modified="20210104212902256" title="$:/state/edit_index">
+<pre>true</pre>
 </div>
 <div created="20190820160834173" modified="20190820160834173" title="$:/state/edit/references--1211665211">
 <pre>show</pre>
@@ -10935,8 +10941,8 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20190818204301709" modified="20201226212404584" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20200206212917740" modified="20210104210908133" title="$:/state/tab--1498284803">
-<pre>$:/core/ui/AdvancedSearch/System</pre>
+<div created="20200206212917740" modified="20210104211847967" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Filter</pre>
 </div>
 <div created="20190730195811423" modified="20201226200405758" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Toolbars</pre>
@@ -10956,7 +10962,7 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20190730195539665" modified="20201220013202338" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
-<div created="20190810135005842" modified="20210104211234276" title="$:/state/tab/sidebar--595412856">
+<div created="20190810135005842" modified="20210104212042111" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div created="20190730195820129" modified="20201226200431368" title="$:/state/tabs/controlpanel/toolbars-1345989671">
@@ -10968,8 +10974,8 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20201226194720448" modified="20201226210310067" title="$:/state/toc/Index-Noteworthy-1395960319">
 <pre>open</pre>
 </div>
-<div created="20201226194736659" modified="20210104210043459" title="$:/state/toc/Index-Science-1395960319">
-<pre>close</pre>
+<div created="20201226194736659" modified="20210104213001009" title="$:/state/toc/Index-Science-1395960319">
+<pre>open</pre>
 </div>
 <div created="20201226194754827" modified="20201226212606924" title="$:/state/toc/Index/Misc-Meta-1395960319">
 <pre>close</pre>
@@ -10977,8 +10983,8 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20201226194756558" modified="20201226201153645" title="$:/state/toc/Index/Misc-Scratchpad-1395960319">
 <pre>close</pre>
 </div>
-<div created="20201226194723735" modified="20201226212413755" title="$:/state/toc/Index/Noteworthy-BestOf-1395960319">
-<pre>close</pre>
+<div created="20201226194723735" modified="20210104212908893" title="$:/state/toc/Index/Noteworthy-BestOf-1395960319">
+<pre>open</pre>
 </div>
 <div created="20201226194731914" modified="20201226195948807" title="$:/state/toc/Index/Noteworthy-EffectivenessPrinciples-1395960319">
 <pre>close</pre>
@@ -11007,7 +11013,7 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20210104201027299" list="Index [[Priority Manager]]" modified="20210104211520243" title="$:/StoryList">
+<div created="20210104211657704" list="[[Priority Manager]] Hacks $:/core/templates/full $:/AdvancedSearch $:/config/SaverFilter Index" modified="20210104213121281" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -11016,8 +11022,8 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
 <pre></pre>
 </div>
-<div created="20200206212920369" modified="20210104210904524" title="$:/temp/advancedsearch">
-<pre>full</pre>
+<div created="20200206212920369" modified="20210104212847638" title="$:/temp/advancedsearch">
+<pre>$:/config/SaverFilter </pre>
 </div>
 <div created="20190819220224387" modified="20190819220224387" title="$:/temp/HidePluginWarning">
 <pre>yes</pre>
@@ -11758,14 +11764,14 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190819214322594" modified="20201226212846259" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre></pre>
 </div>
-<div created="20190820131939822" modified="20210104210956597" title="$:/temp/search">
+<div created="20190820131939822" modified="20210104213036702" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20190903172309883" modified="20190903172309883" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html" url="https://tiddlywiki.com/library/v5.1.19/index.html">
 <pre>loaded</pre>
 </div>
-<div created="20201226194949960" modified="20210104210827622" title="$:/temp/toc/selectedIndex">
-<pre>TherapeuticWork</pre>
+<div created="20201226194949960" modified="20210104213011740" title="$:/temp/toc/selectedIndex">
+<pre>SensesWM</pre>
 </div>
 <div created="20201226210224051" modified="20210104210827993" title="$:/temp/toc/selectedNoteworthy">
 <pre>EffectivenessPrinciples</pre>
@@ -13318,7 +13324,7 @@ but what level of stagnation is acceptable?
 
 [[Novel Treatment with Neuroprotective and Antiviral Properties against a Neuroinvasive Human Respiratory Virus|https://jvi.asm.org/content/88/3/1548]] (2013) -- memantine </pre>
 </div>
-<div created="20200129020906028" modified="20210104203545315" priority="9" tags="WIP Tech Systems Noteworthy" title="EffectivenessPrinciples" type="text/x-markdown">
+<div created="20200129020906028" modified="20210104212934729" priority="7" tags="WIP Tech Systems Noteworthy" title="EffectivenessPrinciples" type="text/x-markdown">
 <pre>(created 2019-07-28, edited and moved here 2020-01-28)
 
 what does &quot;data-driven&quot; or &quot;best practices&quot; mean? would should it mean?
@@ -13402,7 +13408,7 @@ more complex:
 ## putting together existing things i have is useful
 </pre>
 </div>
-<div created="20190730195803764" modified="20190810164514212" tags="Noteworthy Psychology" title="EffectiveTherapy">
+<div created="20190730195803764" modified="20210104212957016" priority="7" tags="Noteworthy Psychology" title="EffectiveTherapy">
 <pre>[[Randomized controlled trial to evaluate the effects of personalized prediction and adaptation tools on treatment outcome in outpatient psychotherapy: study protocol (2017)|https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5571503/]]
 
 * n=423
@@ -13976,6 +13982,15 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3071421/
 * The time it took participants to reach 95% of their asymptote of automaticity ranged from 18 to 254 days
 </pre>
 </div>
+<div created="20210104212149383" modified="20210104212802397" tags="Meta" title="Hacks">
+<pre>Here are some of the features on this wiki:
+
+[[footer]] adds navigating to next/previous items in tags, a tweet button that adds wiki and tiddler tags, and a button to search for tweets tagged with the wiki and tiddler which are probably comments
+
+[[Index]] is just a TOC. I was trying to edit the toc-tabbed-external-nav widget such that empty tiddlers were not linked (since that's pretty counter-intuitive) but couldn't get it to work. it uses the [[$:/core/templates/full]] template to include a title link and, conditional on manager mode, allow editing the tags and priority field and only showing the first 100 words of the tiddler. it stores selected tiddler in a different place than [[Bestof]] so that navigating one doesn't change the other.
+
+[[https://github.com/technillogue/technillogue.github.io]] is forked from the github saver i'm using. i want to migrate to a node.js that saves tiddlers in individual files (and also commits them... perhaps even shows edit history inline? o: o: o:)</pre>
+</div>
 <div created="20190820164300916" modified="20190820164302481" tags="SubcorticalStructures" title="Hippocampus">
 <pre></pre>
 </div>
@@ -14069,7 +14084,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 
 </pre>
 </div>
-<div created="20190810135039349" modified="20210104203618173" priority="9" tags="Nootropics Noteworthy" title="Hypermnesiac">
+<div created="20190810135039349" modified="20210104212943159" priority="8" tags="Nootropics Noteworthy" title="Hypermnesiac">
 <pre>!!! [[PRL-8-53]]
 {{PRL-8-53}}
 
@@ -14120,7 +14135,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 
 * In contrast [to huperzine], oral administration of IDRA 21 significantly improved performance on [24 trials of a delayed non-matching-to-sample task with a list of six objects presented in succession], especially on the longest delay.</pre>
 </div>
-<div created="20201219235038076" modified="20201220014838596" tags="BestOf" title="Images">
+<div created="20201219235038076" modified="20210104212925722" priority="7" tags="BestOf" title="Images">
 <pre>[img[https://technillogue.github.io/images/duck.jpg]]
 
 [img[https://technillogue.github.io/images/ceci.jpg]]
@@ -14142,7 +14157,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 [img[https://technillogue.github.io/images/black-lives-matter-protest-in-times-sq.jpg]]
 </pre>
 </div>
-<div created="20190810142007037" modified="20210104210740677" tags="Meta" title="Index">
+<div created="20190810142007037" modified="20210104212843657" tags="Meta" title="Index">
 <pre>&lt;$vars 
    compare-by-wc=&quot;[get[text]split[ ]count[]]&quot;
   not-working =&quot;sortsub:number&lt;compare-by-wc&gt;&quot;
@@ -14961,7 +14976,7 @@ https://alifeofproductivity.com/top-lessons-learned-a-year-of-productivity/
 
 </pre>
 </div>
-<div created="20201220001930721" modified="20201220015019033" tags="BestOf" title="Presentations">
+<div created="20201220001930721" modified="20210104212916856" priority="8" tags="BestOf" title="Presentations">
 <pre>* [[Avoid Thinking Whenever Possible|https://technillogue.github.io/presentations/think-less]] (2019)
 * [[Artificial and Biological Neural Networks|https://technillogue.github.io/presentations/artificial-and-biological-neural-networks.html]] (2018)
 * [[Ribosomes as Finite State Machines|https://technillogue.github.io/presentations/ribosomes-as-FST]] (2018)</pre>
@@ -15030,14 +15045,15 @@ money
 * not mina or renovations
 * not art or writing</pre>
 </div>
-<div created="20210104202305890" modified="20210104211331427" tags="Tools" title="Priority Manager">
-<pre>&lt;$edit tiddler=&quot;$:/core/templates/full&quot;/&gt;
-
-&lt;$list filter=&quot;[!field:priority[]nsort[priority]]&quot;&gt;
+<div created="20210104202305890" modified="20210104212147531" tags="Tools" title="Priority Manager">
+<pre>&lt;$list filter=&quot;[!field:priority[]nsort[priority]]&quot;&gt;
 
 &lt;li&gt; &lt;&lt;currentTiddler&gt;&gt; priority: &lt;$edit field=&quot;priority&quot;/&gt; &lt;/li&gt;
 
-&lt;/$list&gt;</pre>
+&lt;/$list&gt;
+
+&quot;full&quot;  template:
+&lt;$edit tiddler=&quot;$:/core/templates/full&quot;/&gt;</pre>
 </div>
 <div created="20190810144835707" modified="20190818200641773" tags="Hypermnesiac" title="PRL-8-53">
 <pre>* [[PRL-8-53 Enhanced Learning and Subsequent Retention in Humans as a Result of Low Oral Doses of New Psychotropic Agent|https://sci-hub.tw/10.1007/BF00432846]]  (1978)
@@ -16273,7 +16289,7 @@ obviously increased blood sugar also does that, but the dopamine/ghrelin dimers 
 
 other interesting things to consider: beta-arrestin, dFosB, GSK-3, BDNF/mTOR, GABA/MOR -&gt; MSN/NAc -&gt; DA dynamics.</pre>
 </div>
-<div created="20201220011358882" modified="20201220011403783" tags="BestOf" title="Writing">
+<div created="20201220011358882" modified="20210104212928309" priority="6" tags="BestOf" title="Writing">
 <pre>* [[Published Shitposts Excerpt|http://metatron.press/omega/fiction/em-yaakov-liberman/]] (2017)
 * [[Different Shitposts Excerpt in TW format|https://technillogue.github.io/works/shitposts-tw.html]] (2017)
 * [[The Madman Shoots Lasers From his Eyes: Heliocentricism and the Marketplace|https://technillogue.github.io/works/heliocentrism.pdf]] (2016)</pre>
