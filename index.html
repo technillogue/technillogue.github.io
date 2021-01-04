@@ -704,8 +704,6 @@ Error message and password prompt
 
 <li>Draft of '9-Me-BC'</li>
 
-<li>Draft of 'footer'</li>
-
 <li>Draft of 'Psychedelic'</li>
 
 <li>Draft of 'Psychology'</li>
@@ -10363,7 +10361,7 @@ Error message and password prompt
 
 </pre>
 </div>
-<div created="20201226204741442" modified="20210104211450110" tags="" title="$:/core/templates/full">
+<div created="20201226204741442" modified="20210104211627049" tags="" title="$:/core/templates/full">
 <pre>! &lt;$link to=&lt;&lt;currentTiddler&gt;&gt;&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
 &lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;match&quot; text=&quot;true&quot;&gt; 
 priority: &lt;$edit field=&quot;priority&quot;/&gt;
@@ -10371,7 +10369,11 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 &lt;!--&lt;$set name=&quot;preview&quot; filter=&quot;[is[current]get[text]split[ ]first[100]join[ ]]&quot;&gt;&lt;&lt;preview&gt;&gt;&lt;/$set&gt;--&gt;
 &lt;/$reveal&gt;
 &lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;nomatch&quot; text=&quot;true&quot;&gt; 
+
+
 &lt;$transclude/&gt;
+
+
 &lt;/$reveal&gt;</pre>
 </div>
 <div created="20190730195524463" modified="20190810144110138" title="$:/DefaultTiddlers">
@@ -10798,8 +10800,8 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20190819214337411" modified="20190819214337411" title="$:/state/add-plugin-info/$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html/$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/plugins/tiddlywiki/twitter">
 <pre>yes</pre>
 </div>
-<div created="20210104205616875" modified="20210104210827349" title="$:/state/edit_index">
-<pre>true</pre>
+<div created="20210104205616875" modified="20210104211602593" title="$:/state/edit_index">
+<pre>false</pre>
 </div>
 <div created="20190820160834173" modified="20190820160834173" title="$:/state/edit/references--1211665211">
 <pre>show</pre>
@@ -11005,7 +11007,7 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20210104201027299" list="[[Priority Manager]]" modified="20210104211244037" title="$:/StoryList">
+<div created="20210104201027299" list="Index [[Priority Manager]]" modified="20210104211520243" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -13301,35 +13303,6 @@ but what level of stagnation is acceptable?
 </div>
 <div modified="20201223181140900" title="Draft of '9-Me-BC'">
 <pre></pre>
-</div>
-<div created="20170215223235012" draft.of="footer" draft.title="footer" modified="20210104210631091" tags="$:/tags/ViewTemplate" title="Draft of 'footer'">
-<pre>\define url(name) &quot;
-\define comments(name)         
-&lt;a class=&quot;twitter-timeline&quot; data-dnt=&quot;true&quot; href=&quot;https://twitter.com/search?q=%23grimoiretw%20%23$name$&quot;&gt;View twitter comments&lt;/a&gt; or 
-&lt;a href=&quot;https://twitter.com/intent/tweet?dnt=true&amp;text=&amp;url=https%3A%2F%2Ftechnillogue.github.io%2F%23$name$&amp;hashtags=grimoiretw%2C$name$&amp;related=technillogue&quot; class=&quot;twitter-share-button&quot;&gt;
-share on twitter&lt;/a&gt;.
-\end
-
-&lt;hr&gt;
-
-&lt;!---backlinks---&gt;
-&lt;$list filter=&quot;[&lt;currentTiddler&gt;backlinks[]limit[1]]&quot; variable=&quot;PlsNo&quot;&gt;
-sections that link here: &lt;&lt;list-links &quot;[&lt;currentTiddler&gt;backlinks[]]&quot;&gt;&gt;
-&lt;/$list&gt;
-
-&lt;!---navigation--&gt;
-&lt;div id=&quot;tagsNavigation&quot;&gt;
-&lt;$list filter='[is[current]tags[]]' variable=CurrentTag&gt;
-&lt;span class=&quot;tagNavigation&quot;&gt;
-&lt;$list variable=PreviousTiddler filter='[tag&lt;CurrentTag&gt;sort[created]before&lt;currentTiddler&gt;]'&gt;&lt;$button&gt;←&lt;$action-navigate $to=&lt;&lt;PreviousTiddler&gt;&gt;/&gt;&lt;/$button&gt;&lt;/$list&gt;
-&lt;$tiddler tiddler=&lt;&lt;CurrentTag&gt;&gt;&gt;&lt;&lt;tag&gt;&gt;&lt;/$tiddler&gt;
-&lt;$list variable=NextTiddler filter='[tag&lt;CurrentTag&gt;sort[created]after&lt;currentTiddler&gt;]'&gt;
-&lt;$button&gt;→&lt;$action-navigate $to=&lt;&lt;NextTiddler&gt;&gt;/&gt;&lt;/$button&gt;&lt;/$list&gt;
-&lt;/span&gt;
-&lt;/$list&gt;
-&lt;/div&gt;
-
-&lt;$macrocall $name=&quot;comments&quot; name=&lt;&lt;currentTiddler&gt;&gt;/&gt;</pre>
 </div>
 <div modified="20200206220403969" title="Draft of 'Psychedelic'">
 <pre></pre>
