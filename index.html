@@ -196,8 +196,6 @@ Error message and password prompt
 
 <li>$:/config/RelinkOnRename</li>
 
-<li>$:/config/SaverFilter</li>
-
 <li>$:/config/TimestampDisable</li>
 
 <li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/close-others</li>
@@ -742,8 +740,6 @@ Error message and password prompt
 
 <li>Friday 6th of September 2019</li>
 
-<li>FullTemplateEditor</li>
-
 <li>FunctionalSystemsTheory</li>
 
 <li>GlobusPallidus</li>
@@ -833,6 +829,8 @@ Error message and password prompt
 <li>Priorities-09-02</li>
 
 <li>Priorities-09-02 </li>
+
+<li>Priority Manager</li>
 
 <li>PRL-8-53</li>
 
@@ -989,9 +987,6 @@ Error message and password prompt
 </div>
 <div created="20190803020125851" modified="20190803020125851" title="$:/config/RelinkOnRename">
 <pre>yes</pre>
-</div>
-<div created="20210104214532419" modified="20210104215049508" title="$:/config/SaverFilter">
-<pre>[all[]] -[[$:/HistoryList]] -[[$:/StoryList]] -[[$:/Import]] -[[$:/isEncrypted]] -[[$:/UploadName]] -[prefix[$:/state/]] -[prefix[$:/temp/]]</pre>
 </div>
 <div created="20190818193957988" modified="20190818194153146" title="$:/config/TimestampDisable">
 <pre>no</pre>
@@ -10368,9 +10363,8 @@ Error message and password prompt
 
 </pre>
 </div>
-<div created="20201226204741442" modified="20210104214102512" tags="" title="$:/core/templates/full">
-<pre>&lt;$reveal stateTitle=&quot;storyTiddler&quot; type=&quot;nomatch&quot; text=&quot;$:/core/templates/full&quot;&gt;
-
+<div created="20201226204741442" modified="20210104213802751" tags="" title="$:/core/templates/full">
+<pre>
 ! &lt;$link to=&lt;&lt;currentTiddler&gt;&gt;&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
 &lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;match&quot; text=&quot;true&quot;&gt; 
 priority: &lt;$edit field=&quot;priority&quot;/&gt;
@@ -10387,10 +10381,6 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 &lt;$transclude/&gt;
 
 
-&lt;/$reveal&gt;
-&lt;/$reveal&gt;
-&lt;$reveal stateTitle=&quot;storyTiddler&quot; type=&quot;match&quot; text=&quot;$:/core/templates/full&quot;&gt;
-hiding recursion
 &lt;/$reveal&gt;</pre>
 </div>
 <div created="20190730195524463" modified="20190810144110138" title="$:/DefaultTiddlers">
@@ -10817,7 +10807,7 @@ hiding recursion
 <div created="20190819214337411" modified="20190819214337411" title="$:/state/add-plugin-info/$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html/$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/plugins/tiddlywiki/twitter">
 <pre>yes</pre>
 </div>
-<div created="20210104205616875" modified="20210104214202760" title="$:/state/edit_index">
+<div created="20210104205616875" modified="20210104215152201" title="$:/state/edit_index">
 <pre>false</pre>
 </div>
 <div created="20190820160834173" modified="20190820160834173" title="$:/state/edit/references--1211665211">
@@ -10952,7 +10942,7 @@ hiding recursion
 <div created="20190818204301709" modified="20201226212404584" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20200206212917740" modified="20210104214932608" title="$:/state/tab--1498284803">
+<div created="20200206212917740" modified="20210104211847967" title="$:/state/tab--1498284803">
 <pre>$:/core/ui/AdvancedSearch/Filter</pre>
 </div>
 <div created="20190730195811423" modified="20201226200405758" title="$:/state/tab--1963855381">
@@ -10973,8 +10963,8 @@ hiding recursion
 <div created="20190730195539665" modified="20201220013202338" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
-<div created="20190810135005842" modified="20210104213924266" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20190810135005842" modified="20210104213732008" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20190730195820129" modified="20201226200431368" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
@@ -11003,8 +10993,8 @@ hiding recursion
 <div created="20201226202705458" modified="20201226202706523" title="$:/state/toc/Index/Noteworthy-Hypermnesiac-1395960319">
 <pre>close</pre>
 </div>
-<div created="20201226201311288" modified="20210104214658069" title="$:/state/toc/Index/Science-Pharmacology-1395960319">
-<pre>close</pre>
+<div created="20201226201311288" modified="20210104201039240" title="$:/state/toc/Index/Science-Pharmacology-1395960319">
+<pre>open</pre>
 </div>
 <div created="20210104200953558" modified="20210104201003480" title="$:/state/toc/Index/Science/Pharmacology-ADHD-1395960319">
 <pre>close</pre>
@@ -11024,7 +11014,7 @@ hiding recursion
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20210104213927195" list="Hacks Index" modified="20210104214929864" title="$:/StoryList">
+<div created="20210104215155669" list="Index Hacks" modified="20210104215155669" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -11033,8 +11023,8 @@ hiding recursion
 <div created="20190819220648527" list="$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/close $:/core/ui/Buttons/fold-bar $:/core/ui/Buttons/fold" modified="20190819220747990" title="$:/tags/ViewToolbar">
 <pre></pre>
 </div>
-<div created="20200206212920369" modified="20210104215027384" title="$:/temp/advancedsearch">
-<pre> [all[]!prefix[$:/state/]] -$:/HistoryList -$:/StoryList -$:/Import -$:/isEncrypted -$:/UploadName -[prefix[$:/state/]] -[prefix[$:/temp/]]</pre>
+<div created="20200206212920369" modified="20210104212847638" title="$:/temp/advancedsearch">
+<pre>$:/config/SaverFilter </pre>
 </div>
 <div created="20190819220224387" modified="20190819220224387" title="$:/temp/HidePluginWarning">
 <pre>yes</pre>
@@ -11781,7 +11771,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190903172309883" modified="20190903172309883" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html" url="https://tiddlywiki.com/library/v5.1.19/index.html">
 <pre>loaded</pre>
 </div>
-<div created="20201226194949960" modified="20210104214720410" title="$:/temp/toc/selectedIndex">
+<div created="20201226194949960" modified="20210104215147272" title="$:/temp/toc/selectedIndex">
 <pre>Presentations</pre>
 </div>
 <div created="20201226210224051" modified="20210104210827993" title="$:/temp/toc/selectedNoteworthy">
@@ -13939,11 +13929,6 @@ this has been sylvie's feels.
 
 i'm also just really really really frustrated and hopeless that i'm doing fucking everything and things just went and got worse again. what the fuck is that. </pre>
 </div>
-<div created="20210104202305890" modified="20210104214304092" tags="Tools" title="FullTemplateEditor">
-<pre>&quot;full&quot;  template:
-
-&lt;$edit tiddler=&quot;$:/core/templates/full&quot; style=&quot;width:90%&quot;/&gt;</pre>
-</div>
 <div created="20190827182135792" modified="20190827182224817" tags="Physiology Psychology" title="FunctionalSystemsTheory">
 <pre>https://www.ncbi.nlm.nih.gov/pubmed/23166990
 
@@ -13998,14 +13983,12 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3071421/
 * The time it took participants to reach 95% of their asymptote of automaticity ranged from 18 to 254 days
 </pre>
 </div>
-<div created="20210104212149383" modified="20210104215059476" tags="Meta" title="Hacks">
+<div created="20210104212149383" modified="20210104215214092" tags="Meta" title="Hacks">
 <pre>Here are some of the features on this wiki:
 
 [[footer]] adds navigating to next/previous items in tags, a tweet button that adds wiki and tiddler tags, and a button to search for tweets tagged with the wiki and tiddler which are probably comments
 
-[[Index]] is just a TOC. I was trying to edit the toc-tabbed-external-nav widget such that empty tiddlers were not linked (since that's pretty counter-intuitive) but couldn't get it to work. it uses the [[$:/core/templates/full]] template to include a title link and, conditional on manager mode, allow editing the tags and priority field and only showing the first 100 words of the tiddler. it stores selected tiddler in a different place than [[Bestof]] so that navigating one doesn't change the other.
-
-$:/config/SaverFilter omits state tiddlers. i will probably add a button to toggle that, so that the default index state can be changed but not accidentally
+The index is just a TOC. I was trying to edit the toc-tabbed-external-nav widget such that empty tiddlers were not linked (since that's pretty counter-intuitive) but couldn't get it to work. it uses the [[$:/core/templates/full]] template to include a title link and, conditional on manager mode, allow editing the tags and priority field and only showing the first 100 words of the tiddler. it stores selected tiddler in a different place than [[BestOf]] so that navigating one doesn't change the other.
 
 [[https://github.com/technillogue/technillogue.github.io]] is forked from the github saver i'm using. i want to migrate to a node.js that saves tiddlers in individual files (and also commits them... perhaps even shows edit history inline? o: o: o:)</pre>
 </div>
@@ -14175,7 +14158,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 [img[https://technillogue.github.io/images/black-lives-matter-protest-in-times-sq.jpg]]
 </pre>
 </div>
-<div created="20190810142007037" modified="20210104214105498" tags="Meta" title="Index">
+<div created="20190810142007037" modified="20210104212843657" tags="Meta" title="Index">
 <pre>&lt;$vars 
    compare-by-wc=&quot;[get[text]split[ ]count[]]&quot;
   not-working =&quot;sortsub:number&lt;compare-by-wc&gt;&quot;
@@ -15062,6 +15045,16 @@ money
 * not normie job, not school
 * not mina or renovations
 * not art or writing</pre>
+</div>
+<div created="20210104202305890" modified="20210104212147531" tags="Tools" title="Priority Manager">
+<pre>&lt;$list filter=&quot;[!field:priority[]nsort[priority]]&quot;&gt;
+
+&lt;li&gt; &lt;&lt;currentTiddler&gt;&gt; priority: &lt;$edit field=&quot;priority&quot;/&gt; &lt;/li&gt;
+
+&lt;/$list&gt;
+
+&quot;full&quot;  template:
+&lt;$edit tiddler=&quot;$:/core/templates/full&quot;/&gt;</pre>
 </div>
 <div created="20190810144835707" modified="20190818200641773" tags="Hypermnesiac" title="PRL-8-53">
 <pre>* [[PRL-8-53 Enhanced Learning and Subsequent Retention in Humans as a Result of Low Oral Doses of New Psychotropic Agent|https://sci-hub.tw/10.1007/BF00432846]]  (1978)
