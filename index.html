@@ -196,6 +196,8 @@ Error message and password prompt
 
 <li>$:/config/RelinkOnRename</li>
 
+<li>$:/config/SaverFilter</li>
+
 <li>$:/config/TimestampDisable</li>
 
 <li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/close-others</li>
@@ -395,6 +397,8 @@ Error message and password prompt
 <li>$:/state/toc/Index/Science-Neuroscience-1395960319</li>
 
 <li>$:/state/toc/Index/Science-Pharmacology-1395960319</li>
+
+<li>$:/state/toc/Index/Science/Neuroscience-BrainAnatomy-1395960319</li>
 
 <li>$:/state/toc/Index/Science/Pharmacology-ADHD-1395960319</li>
 
@@ -989,6 +993,9 @@ Error message and password prompt
 </div>
 <div created="20190803020125851" modified="20190803020125851" title="$:/config/RelinkOnRename">
 <pre>yes</pre>
+</div>
+<div created="20210111021111215" modified="20210111021112390" title="$:/config/SaverFilter">
+<pre>[all[]] -[[$:/HistoryList]] -[[$:/StoryList]] -[[$:/Import]] -[[$:/isEncrypted]] -[[$:/UploadName]]  -[prefix[$:/temp/]]</pre>
 </div>
 <div created="20190818193957988" modified="20190818194153146" title="$:/config/TimestampDisable">
 <pre>no</pre>
@@ -10994,10 +11001,13 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20201226202705458" modified="20201226202706523" title="$:/state/toc/Index/Noteworthy-Hypermnesiac-1395960319">
 <pre>close</pre>
 </div>
-<div created="20210108181621410" modified="20210108181621410" title="$:/state/toc/Index/Science-Neuroscience-1395960319">
-<pre>open</pre>
+<div created="20210108181621410" modified="20210111020928491" title="$:/state/toc/Index/Science-Neuroscience-1395960319">
+<pre>close</pre>
 </div>
-<div created="20201226201311288" modified="20210104201039240" title="$:/state/toc/Index/Science-Pharmacology-1395960319">
+<div created="20201226201311288" modified="20210111020930202" title="$:/state/toc/Index/Science-Pharmacology-1395960319">
+<pre>close</pre>
+</div>
+<div created="20210111020927182" modified="20210111020927182" title="$:/state/toc/Index/Science/Neuroscience-BrainAnatomy-1395960319">
 <pre>open</pre>
 </div>
 <div created="20210104200953558" modified="20210104201003480" title="$:/state/toc/Index/Science/Pharmacology-ADHD-1395960319">
@@ -11018,7 +11028,7 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20210108181631633" list="Index MiscNeurosci" modified="20210108181631633" title="$:/StoryList">
+<div created="20210111020940058" list="$:/AdvancedSearch $:/config/SaverFilter Hacks Index" modified="20210111021032455" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -11769,7 +11779,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190819214322594" modified="20201226212846259" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre></pre>
 </div>
-<div created="20190820131939822" modified="20210104213036702" title="$:/temp/search">
+<div created="20190820131939822" modified="20210111021029814" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20190903172309883" modified="20190903172309883" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html" url="https://tiddlywiki.com/library/v5.1.19/index.html">
@@ -13987,12 +13997,14 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3071421/
 * The time it took participants to reach 95% of their asymptote of automaticity ranged from 18 to 254 days
 </pre>
 </div>
-<div created="20210104212149383" modified="20210104215214092" tags="Meta" title="Hacks">
+<div created="20210104212149383" modified="20210111021100231" tags="Meta" title="Hacks">
 <pre>Here are some of the features on this wiki:
 
 [[footer]] adds navigating to next/previous items in tags, a tweet button that adds wiki and tiddler tags, and a button to search for tweets tagged with the wiki and tiddler which are probably comments
 
 The index is just a TOC. I was trying to edit the toc-tabbed-external-nav widget such that empty tiddlers were not linked (since that's pretty counter-intuitive) but couldn't get it to work. it uses the [[$:/core/templates/full]] template to include a title link and, conditional on manager mode, allow editing the tags and priority field and only showing the first 100 words of the tiddler. it stores selected tiddler in a different place than [[BestOf]] so that navigating one doesn't change the other.
+
+[[$:/config/SaverFilter]] controls whether state tiddlers are saved i.e. the default TOC state.
 
 [[https://github.com/technillogue/technillogue.github.io]] is forked from the github saver i'm using. i want to migrate to a node.js that saves tiddlers in individual files (and also commits them... perhaps even shows edit history inline? o: o: o:)</pre>
 </div>
