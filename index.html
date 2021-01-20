@@ -218,6 +218,8 @@ Error message and password prompt
 
 <li>$:/core/templates/full</li>
 
+<li>$:/core/ui/EditTemplate/tags</li>
+
 <li>$:/DefaultTiddlers</li>
 
 <li>$:/GitHub/Branch</li>
@@ -406,8 +408,6 @@ Error message and password prompt
 
 <li>$:/state/toc/Index/Science/Pharmacology-Drug-1395960319</li>
 
-<li>$:/state/toc/Index/Science/Pharmacology-Signal-1395960319</li>
-
 <li>$:/state/toc/Index/Science/Pharmacology/Drug-Antidepressant-1395960319</li>
 
 <li>$:/state/toc/Noteworthy-BestOf-1280649240</li>
@@ -427,6 +427,8 @@ Error message and password prompt
 <li>$:/temp/HidePluginWarning</li>
 
 <li>$:/temp/info-plugin</li>
+
+<li>$:/temp/NewTagName</li>
 
 <li>$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/languages/ca-ES</li>
 
@@ -713,8 +715,6 @@ Error message and password prompt
 <li>DopaminePathways</li>
 
 <li>Draft of '9-Me-BC'</li>
-
-<li>Draft of 'Index'</li>
 
 <li>Draft of 'Psychedelic'</li>
 
@@ -10378,11 +10378,11 @@ Error message and password prompt
 
 </pre>
 </div>
-<div created="20201226204741442" modified="20210104213802751" tags="" title="$:/core/templates/full">
+<div created="20201226204741442" modified="20210120184340082" tags="" title="$:/core/templates/full">
 <pre>! &lt;$link to=&lt;&lt;currentTiddler&gt;&gt;&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
 &lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;match&quot; text=&quot;true&quot;&gt; 
 priority: &lt;$edit field=&quot;priority&quot;/&gt;
-{{$:/core/ui/EditTemplate/tags}}
+{{||$:/core/ui/EditTemplate/tags}}
 &lt;$set name=&quot;preview&quot; filter=&quot;[is[current]get[text]split[ ]first[100]join[ ]]&quot; select=&quot;0&quot;&gt;
 
 &lt;&lt;preview&gt;&gt;
@@ -10396,6 +10396,51 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 
 
 &lt;/$reveal&gt;</pre>
+</div>
+<div created="20210120184126616" modified="20210120184200865" tags="$:/tags/EditTemplate" title="$:/core/ui/EditTemplate/tags">
+<pre>\whitespace trim
+
+\define lingo-base() $:/language/EditTemplate/
+
+\define tag-styles()
+background-color:$(backgroundColor)$;
+fill:$(foregroundColor)$;
+color:$(foregroundColor)$;
+\end
+
+\define tag-body-inner(colour,fallbackTarget,colourA,colourB,icon)
+\whitespace trim
+&lt;$vars foregroundColor=&lt;&lt;contrastcolour target:&quot;&quot;&quot;$colour$&quot;&quot;&quot; fallbackTarget:&quot;&quot;&quot;$fallbackTarget$&quot;&quot;&quot; colourA:&quot;&quot;&quot;$colourA$&quot;&quot;&quot; colourB:&quot;&quot;&quot;$colourB$&quot;&quot;&quot;&gt;&gt; backgroundColor=&quot;&quot;&quot;$colour$&quot;&quot;&quot;&gt;
+&lt;span style=&lt;&lt;tag-styles&gt;&gt; class=&quot;tc-tag-label tc-tag-list-item&quot;&gt;
+&lt;$transclude tiddler=&quot;&quot;&quot;$icon$&quot;&quot;&quot;/&gt;&amp;nbsp;&lt;$view field=&quot;title&quot; format=&quot;text&quot; /&gt;
+&lt;$button message=&quot;tm-remove-tag&quot; param={{!!title}} class=&quot;tc-btn-invisible tc-remove-tag-button&quot;&gt;{{$:/core/images/close-button}}&lt;/$button&gt;
+&lt;/span&gt;
+&lt;/$vars&gt;
+\end
+
+\define tag-body(colour,palette,icon)
+&lt;$macrocall $name=&quot;tag-body-inner&quot; colour=&quot;&quot;&quot;$colour$&quot;&quot;&quot; fallbackTarget={{$palette$##tag-background}} colourA={{$palette$##foreground}} colourB={{$palette$##background}} icon=&quot;&quot;&quot;$icon$&quot;&quot;&quot;/&gt;
+\end
+
+\define tag-picker-actions()
+&lt;$action-listops
+	$tiddler=&lt;&lt;currentTiddler&gt;&gt;
+	$field=&quot;tags&quot;
+	$subfilter=&quot;[&lt;tag&gt;] [all[current]tags[]]&quot;
+/&gt;
+\end
+
+&lt;div class=&quot;tc-edit-tags&quot;&gt;
+&lt;$fieldmangler&gt;
+&lt;$list filter=&quot;[all[current]tags[]sort[title]]&quot; storyview=&quot;pop&quot;&gt;
+&lt;$macrocall $name=&quot;tag-body&quot; colour={{!!color}} palette={{$:/palette}} icon={{!!icon}}/&gt;
+&lt;/$list&gt;
+&lt;/$fieldmangler&gt;
+&lt;$set name=&quot;tabIndex&quot; value={{$:/config/EditTabIndex}}&gt;
+&lt;$macrocall $name=&quot;tag-picker&quot; actions=&lt;&lt;tag-picker-actions&gt;&gt;/&gt;
+&lt;/$set&gt;
+&lt;/div&gt;
+</pre>
 </div>
 <div created="20190730195524463" modified="20190810144110138" title="$:/DefaultTiddlers">
 <pre>Index</pre>
@@ -10821,8 +10866,8 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20190819214337411" modified="20190819214337411" title="$:/state/add-plugin-info/$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html/$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/plugins/tiddlywiki/twitter">
 <pre>yes</pre>
 </div>
-<div created="20210104205616875" modified="20210104215152201" title="$:/state/edit_index">
-<pre>false</pre>
+<div created="20210104205616875" modified="20210120183734626" title="$:/state/edit_index">
+<pre>true</pre>
 </div>
 <div created="20190820160834173" modified="20190820160834173" title="$:/state/edit/references--1211665211">
 <pre>show</pre>
@@ -10977,8 +11022,8 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20190730195539665" modified="20201220013202338" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
-<div created="20190810135005842" modified="20210104213732008" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20190810135005842" modified="20210120184214926" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div created="20190730195820129" modified="20201226200431368" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
@@ -10989,44 +11034,41 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20201226194720448" modified="20210111021215517" title="$:/state/toc/Index-Noteworthy-1395960319">
 <pre>open</pre>
 </div>
-<div created="20201226194736659" modified="20210120183232966" title="$:/state/toc/Index-Science-1395960319">
-<pre>close</pre>
-</div>
-<div created="20201226194754827" modified="20201226212606924" title="$:/state/toc/Index/Misc-Meta-1395960319">
-<pre>close</pre>
-</div>
-<div created="20201226194756558" modified="20201226201153645" title="$:/state/toc/Index/Misc-Scratchpad-1395960319">
-<pre>close</pre>
-</div>
-<div created="20201226194723735" modified="20210111021214223" title="$:/state/toc/Index/Noteworthy-BestOf-1395960319">
+<div created="20201226194736659" modified="20210111021217383" title="$:/state/toc/Index-Science-1395960319">
 <pre>open</pre>
 </div>
-<div created="20201226194731914" modified="20201226195948807" title="$:/state/toc/Index/Noteworthy-EffectivenessPrinciples-1395960319">
+<div created="20201226194754827" modified="20210120184351715" title="$:/state/toc/Index/Misc-Meta-1395960319">
+<pre>open</pre>
+</div>
+<div created="20201226194756558" modified="20210120184550234" title="$:/state/toc/Index/Misc-Scratchpad-1395960319">
+<pre>open</pre>
+</div>
+<div created="20201226194723735" modified="20210120183744534" title="$:/state/toc/Index/Noteworthy-BestOf-1395960319">
 <pre>close</pre>
+</div>
+<div created="20201226194731914" modified="20210120184347744" title="$:/state/toc/Index/Noteworthy-EffectivenessPrinciples-1395960319">
+<pre>open</pre>
 </div>
 <div created="20201226202705458" modified="20201226202706523" title="$:/state/toc/Index/Noteworthy-Hypermnesiac-1395960319">
 <pre>close</pre>
 </div>
-<div created="20210120183051835" modified="20210120183051835" title="$:/state/toc/Index/Science-Endocrinology-1395960319">
-<pre>open</pre>
-</div>
-<div created="20210108181621410" modified="20210120183111802" title="$:/state/toc/Index/Science-Neuroscience-1395960319">
-<pre>open</pre>
-</div>
-<div created="20201226201311288" modified="20210120183153528" title="$:/state/toc/Index/Science-Pharmacology-1395960319">
-<pre>open</pre>
-</div>
-<div created="20210111020927182" modified="20210120183117435" title="$:/state/toc/Index/Science/Neuroscience-BrainAnatomy-1395960319">
+<div created="20210120184500344" modified="20210120184503028" title="$:/state/toc/Index/Science-Endocrinology-1395960319">
 <pre>close</pre>
 </div>
-<div created="20210104200953558" modified="20210120183203641" title="$:/state/toc/Index/Science/Pharmacology-ADHD-1395960319">
+<div created="20210108181621410" modified="20210120184503662" title="$:/state/toc/Index/Science-Neuroscience-1395960319">
+<pre>open</pre>
+</div>
+<div created="20201226201311288" modified="20210120184536819" title="$:/state/toc/Index/Science-Pharmacology-1395960319">
 <pre>close</pre>
 </div>
-<div created="20201226201317837" modified="20210120183204518" title="$:/state/toc/Index/Science/Pharmacology-Drug-1395960319">
-<pre>open</pre>
+<div created="20210111020927182" modified="20210120184509296" title="$:/state/toc/Index/Science/Neuroscience-BrainAnatomy-1395960319">
+<pre>close</pre>
 </div>
-<div created="20210120183210149" modified="20210120183210149" title="$:/state/toc/Index/Science/Pharmacology-Signal-1395960319">
-<pre>open</pre>
+<div created="20210104200953558" modified="20210104201003480" title="$:/state/toc/Index/Science/Pharmacology-ADHD-1395960319">
+<pre>close</pre>
+</div>
+<div created="20201226201317837" modified="20210104201017268" title="$:/state/toc/Index/Science/Pharmacology-Drug-1395960319">
+<pre>close</pre>
 </div>
 <div created="20201226201319547" modified="20210104201005604" title="$:/state/toc/Index/Science/Pharmacology/Drug-Antidepressant-1395960319">
 <pre>close</pre>
@@ -11040,7 +11082,7 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20210120183024169" list="[[Draft of 'Index']] IndividualDevOps" modified="20210120183235489" title="$:/StoryList">
+<div created="20210120184135630" list="Index EffectivenessScratchpad" modified="20210120184219961" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -11112,6 +11154,9 @@ priority: &lt;$edit field=&quot;priority&quot;/&gt;
         }
     }
 }</pre>
+</div>
+<div created="20210120184544838" modified="20210120184544838" title="$:/temp/NewTagName">
+<pre></pre>
 </div>
 <div author="Paco Rivière" core-version="&gt;=5.0.0" created="20190819214318839" dependents="" description="Catalan (Spain)" icon="data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22810%22%20height%3D%22540%22%3E%0A%3Crect%20width%3D%22810%22%20height%3D%22540%22%20fill%3D%22%23FCDD09%22%2F%3E%0A%3Cpath%20stroke%3D%22%23DA121A%22%20stroke-width%3D%2260%22%20d%3D%22M0%2C90H810m0%2C120H0m0%2C120H810m0%2C120H0%22%2F%3E%0A%3C%2Fsvg%3E" modified="20190819214318839" name="ca-ES" original-plugin-type="language" original-tags="" original-title="$:/languages/ca-ES" original-type="application/json" server-url="https://tiddlywiki.com/library/v5.1.19/index.html" tags="$:/tags/RemoteAssetInfo" title="$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/languages/ca-ES" type="text/vnd.tiddlywiki" version="5.1.19">
 <pre></pre>
@@ -11791,14 +11836,14 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190819214322594" modified="20201226212846259" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre></pre>
 </div>
-<div created="20190820131939822" modified="20210111021259830" title="$:/temp/search">
-<pre>Covi</pre>
+<div created="20190820131939822" modified="20210120184208130" title="$:/temp/search">
+<pre>hacks</pre>
 </div>
 <div created="20190903172309883" modified="20190903172309883" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html" url="https://tiddlywiki.com/library/v5.1.19/index.html">
 <pre>loaded</pre>
 </div>
-<div created="20201226194949960" modified="20210120183234362" title="$:/temp/toc/selectedIndex">
-<pre>IndividualDevOps</pre>
+<div created="20201226194949960" modified="20210120184557032" title="$:/temp/toc/selectedIndex">
+<pre>ToRead</pre>
 </div>
 <div created="20201226210224051" modified="20210104210827993" title="$:/temp/toc/selectedNoteworthy">
 <pre>EffectivenessPrinciples</pre>
@@ -13348,28 +13393,6 @@ but what level of stagnation is acceptable?
 <div modified="20201223181140900" title="Draft of '9-Me-BC'">
 <pre></pre>
 </div>
-<div created="20190810142007037" draft.of="Index" draft.title="Index" modified="20210120183241454" tags="Meta" title="Draft of 'Index'">
-<pre>&lt;$vars 
-   compare-by-wc=&quot;[get[text]split[ ]count[]]&quot;
-  not-working =&quot;sortsub:number&lt;compare-by-wc&gt;&quot;
-&gt;
-
-&lt;!-- it would be cool to hack toc to not put a link to empty tiddlers, but it's super confusing --&gt;
-
-&lt;$macrocall
-	$name=&quot;toc-tabbed-external-nav&quot;
-	tag=&quot;Index&quot;
-	selectedTiddler=&quot;$:/temp/toc/selectedIndex&quot;
-	unselectedText=&quot;&lt;p&gt;Select a topic in the table of contents. Click the arrow to expand topics.&lt;/p&gt;&quot;
-	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
-         sort=&quot;!nsort[priority]&quot;
-        template=&quot;$:/core/templates/full&quot;
-/&gt;
-
-&lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;nomatch&quot; text=&quot;true&quot;&gt;&lt;$button set=&quot;$:/state/edit_index&quot; setTo=&quot;true&quot;&gt;Turn on manager mode&lt;/$button&gt;&lt;/$reveal&gt;
-
-&lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;match&quot; text=&quot;true&quot;&gt;&lt;$button set=&quot;$:/state/edit_index&quot; setTo=&quot;false&quot;&gt;Turn off manager mode&lt;/$button&gt;&lt;/$reveal&gt;</pre>
-</div>
 <div modified="20200206220403969" title="Draft of 'Psychedelic'">
 <pre></pre>
 </div>
@@ -13436,7 +13459,7 @@ a (very) rough sketch:
   * do use good memory strategies for learning skills: relate to what you know, use different mediums, use spaced repetition, reflect and summarize continuously. most importantly, know your learning style
   * for some people, have an overview of the general topic and &quot;zoom in&quot; on what you need to learn or are interested in instead of a linear curriculum</pre>
 </div>
-<div created="20200129155456078" modified="20200129160734927" tags="Scratchpad EffectivenessPrinciples" title="EffectivenessScratchpad">
+<div created="20200129155456078" modified="20210120184145520" tags="Scratchpad EffectivenessPrinciples Personal" title="EffectivenessScratchpad">
 <pre>* it's difficult to find where the information is in a new domain
 * &quot;start with an overview and zoom in&quot; vs &quot;start with the smallest working version and zoom out&quot;
 * tools for seeing state and control flow are extremely nontrivial
@@ -14042,12 +14065,12 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3071421/
 * The time it took participants to reach 95% of their asymptote of automaticity ranged from 18 to 254 days
 </pre>
 </div>
-<div created="20210104212149383" modified="20210111021100231" tags="Meta" title="Hacks">
+<div created="20210104212149383" modified="20210120184452085" tags="Meta" title="Hacks">
 <pre>Here are some of the features on this wiki:
 
 [[footer]] adds navigating to next/previous items in tags, a tweet button that adds wiki and tiddler tags, and a button to search for tweets tagged with the wiki and tiddler which are probably comments
 
-The index is just a TOC. I was trying to edit the toc-tabbed-external-nav widget such that empty tiddlers were not linked (since that's pretty counter-intuitive) but couldn't get it to work. it uses the [[$:/core/templates/full]] template to include a title link and, conditional on manager mode, allow editing the tags and priority field and only showing the first 100 words of the tiddler. it stores selected tiddler in a different place than [[BestOf]] so that navigating one doesn't change the other.
+The index is just a TOC. I was trying to edit the toc-tabbed-external-nav widget such that empty tiddlers were not linked (since that's pretty counter-intuitive) but couldn't get it to work. it uses the [[$:/core/templates/full]] template to include a title link and, conditional on manager mode, allow editing the tags and priority field and only showing the first 100 words of the tiddler. It stores selected tiddler in a different place than [[BestOf]] so that navigating one doesn't change the other. Editing that template directly can cause TW to crash, so it can be edited through [[Priority Manager]], which it otherwise obsoletes.
 
 [[$:/config/SaverFilter]] controls whether state tiddlers are saved i.e. the default TOC state.
 
@@ -14219,7 +14242,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 [img[https://technillogue.github.io/images/black-lives-matter-protest-in-times-sq.jpg]]
 </pre>
 </div>
-<div created="20190810142007037" modified="20210104212843657" tags="Meta" title="Index">
+<div created="20190810142007037" modified="20210120184119637" tags="Meta" title="Index">
 <pre>&lt;$vars 
    compare-by-wc=&quot;[get[text]split[ ]count[]]&quot;
   not-working =&quot;sortsub:number&lt;compare-by-wc&gt;&quot;
@@ -14233,7 +14256,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 	selectedTiddler=&quot;$:/temp/toc/selectedIndex&quot;
 	unselectedText=&quot;&lt;p&gt;Select a topic in the table of contents. Click the arrow to expand topics.&lt;/p&gt;&quot;
 	missingText=&quot;&lt;p&gt;Missing tiddler.&lt;/p&gt;&quot;
-         sort=&quot;!nsort[priority]&quot;
+         sort=&quot;!nsort[priority]!tag[Personal]&quot;
         template=&quot;$:/core/templates/full&quot;
 /&gt;
 
@@ -14241,7 +14264,7 @@ The idea is that dexamethasone is supposed to trigger the inhibition loop and su
 
 &lt;$reveal stateTitle=&quot;$:/state/edit_index&quot; type=&quot;match&quot; text=&quot;true&quot;&gt;&lt;$button set=&quot;$:/state/edit_index&quot; setTo=&quot;false&quot;&gt;Turn off manager mode&lt;/$button&gt;&lt;/$reveal&gt;</pre>
 </div>
-<div created="20190910122440304" modified="20210120183335921" tags="Personal" title="IndividualDevOps">
+<div created="20190910122440304" modified="20210120184544838" tags="Personal Misc" title="IndividualDevOps">
 <pre>&lt;&lt;&lt;
 The First Way is about the left-to-right flow of work from Development to IT Operations to the customer. In order to maximize flow, we need small batch sizes and intervals of work, never passing defects to downstream work centers, and to constantly optimize for the global goals (as opposed to local goals ... ) 
 The necessary practices include continuous build, integration, and deployment ... limiting work in process, and building safe systems
@@ -14584,7 +14607,7 @@ To return to:
 * pretty terrible study, otherwise
 </pre>
 </div>
-<div created="20190820164357595" modified="20190820164359374" tags="Neuroscience" title="MediumSpinyNeuron">
+<div created="20190820164357595" modified="20210120184529220" tags="Personal Neuroscience" title="MediumSpinyNeuron">
 <pre></pre>
 </div>
 <div created="20190818200657818" modified="20190818200706784" tags="Misc" title="Meta">
