@@ -1,0 +1,1165 @@
+<!--
+ * Copyright (c) 2015 Mountainstorm
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ * Original from https://github.com/mountainstorm/jquery.graphviz.svg/blob/master/demo.html
+ -->
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="css/graphviz.svg.css"> -->
+	</head>
+
+	<style>
+        #instructions {
+            color: #000000;
+            position: absolute;
+            z-index: 100;
+            bottom: 0px;
+            left: 0px;
+        }
+    </style>
+	<body>
+		<h4 id="instructions">Click node to highlight; Shift-scroll to zoom; Esc to unhighlight</h4>
+		<div id="graph" style="width: 100%; height: 100%; overflow: scroll;"></div>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="https://cdn.rawgit.com/jquery/jquery-mousewheel/master/jquery.mousewheel.min.js"></script>
+		<script type="text/javascript" src="https://cdn.rawgit.com/jquery/jquery-color/master/jquery.color.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script type="text/javascript">!function(t){"use strict";String.prototype.startsWith=function(t){return 0==this.indexOf(t)},String.prototype.endsWith=function(t){return-1!==this.indexOf(t,this.length-t.length)};var e=function(t,e){this.type=null,this.options=null,this.enabled=null,this.$element=null,this.init("graphviz.svg",t,e)};e.VERSION="1.0.1",e.GVPT_2_PX=32.5,e.DEFAULTS={url:null,svg:null,shrink:"0.125pt",tooltips:{init:function(e){var i=t(this);i.tooltip({container:e,placement:"auto left",animation:!1,viewport:null}).on("hide.bs.tooltip",function(){if(i.attr("data-tooltip-keepvisible"))return!1})},show:function(){var e=t(this);e.attr("data-tooltip-keepvisible",!0),e.tooltip("show")},hide:function(){var e=t(this);e.removeAttr("data-tooltip-keepvisible"),e.tooltip("hide")},update:function(){var e=t(this);e.attr("data-tooltip-keepvisible")&&e.tooltip("show")}},zoom:!0,highlight:{selected:function(t,e){return t},unselected:function(t,e){return jQuery.Color(t).transition(e,.9)}},ready:null},e.prototype.init=function(e,i,n){if(this.enabled=!0,this.type=e,this.$element=t(i),this.options=this.getOptions(n),n.url){var o=this;t.get(n.url,null,function(e){var i=t("svg",e);o.$element.html(document.adoptNode(i[0])),o.setup()},"xml")}else n.svg&&this.$element.html(n.svg),this.setup()},e.prototype.getDefaults=function(){return e.DEFAULTS},e.prototype.getOptions=function(e){return(e=t.extend({},this.getDefaults(),this.$element.data(),e)).shrink&&("object"!=typeof e.shrink&&(e.shrink={x:e.shrink,y:e.shrink}),e.shrink.x=this.convertToPx(e.shrink.x),e.shrink.y=this.convertToPx(e.shrink.y)),e},e.prototype.setup=function(){var e=this.options,i=t(this.$element.children("svg")),n=i.children("g:first");this.$svg=i,this.$graph=n,this.$background=n.children("polygon:first"),this.$nodes=n.children(".node"),this.$edges=n.children(".edge"),this._nodesByName={},this._edgesByName={},this.$element.addClass("graphviz-svg"),this.$background.length&&this.$element.css("background",this.$background.attr("fill"));var o=this;this.$nodes.each(function(){o.setupNodesEdges(t(this),!0)}),this.$edges.each(function(){o.setupNodesEdges(t(this),!1)});var r=this.$graph.children("title");this.$graph.attr("data-name",r.text()),r.remove(),e.zoom&&this.setupZoom(),e.ready&&e.ready.call(this)},e.prototype.setupNodesEdges=function(e,i){var n=this,o=this.options;e.find("polygon, ellipse, path").each(function(){var e=t(this);e.data("graphviz.svg.color",{fill:e.attr("fill"),stroke:e.attr("stroke")}),i&&o.shrink&&n.scaleNode(e)});var r,s,h=e.children("title");if(h[0]){var a=h.text().replace(/:[snew][ew]?/g,"");e.attr("data-name",a),h.remove(),i?this._nodesByName[a]=e[0]:this._edgesByName[a]=e[0];for(var l=e[0].previousSibling;l&&8!=l.nodeType;)l=l.previousSibling;if(null!=l&&8==l.nodeType){var p=(r=l.nodeValue.trim(),(s=document.createElement("div")).innerHTML=r,s.childNodes[0].nodeValue);p!=a&&e.attr("data-comment",p)}}e.children("a").filter(function(){return t(this).attr("xlink:title")}).each(function(){var e=t(this);e.attr("title",e.attr("xlink:title")),e.removeAttr("xlink:title"),o.tooltips&&o.tooltips.init.call(this,n.$element)})},e.prototype.setupZoom=function(){var t=this,e=this.$element,i=this.$svg;this.zoom={width:i.attr("width"),height:i.attr("height"),percentage:null},this.scaleView(100),e.mousewheel(function(n){if(n.shiftKey){var o=t.zoom.percentage;(o-=n.deltaY*n.deltaFactor)<100&&(o=100);var r=n.pageX-i.offset().left,s=n.pageY-i.offset().top,h=r/i.width(),a=s/i.height(),l=n.pageX-e.offset().left,p=n.pageY-e.offset().top;return t.scaleView(o),e.scrollLeft(h*i.width()+.5-l),e.scrollTop(a*i.height()+.5-p),!1}})},e.prototype.scaleView=function(t){var e=this,i=this.$svg;i.attr("width",t+"%"),i.attr("height",t+"%"),this.zoom.percentage=t,this.$nodes.add(this.$edges).children("a[title]").each(function(){e.options.tooltips.update.call(this)})},e.prototype.scaleNode=function(t){var e=this.options.shrink.x,i=this.options.shrink.y,n=t.prop("tagName");if("ellipse"==n)t.attr("rx",parseFloat(t.attr("rx"))-e),t.attr("ry",parseFloat(t.attr("ry"))-i);else if("polygon"==n){var o=t[0].getBBox(),r=o.x+o.width/2,s=o.y+o.height/2,h=t.attr("points").split(" "),a="";for(var l in h){var p=h[l].split(","),d=parseFloat(p[0]),u=parseFloat(p[1]);a+=(r-d)/(o.width/2)*e+d+","+((s-u)/(o.height/2)*i+u)+" "}t.attr("points",a)}},e.prototype.convertToPx=function(t){var i=t;if("string"==typeof t){var n=t.length,o=1;t.endsWith("px")?n-=2:t.endsWith("pt")&&(n-=2,o=e.GVPT_2_PX),i=parseFloat(t.substring(0,n))*o}return i},e.prototype.findEdge=function(t,e,i){var n=[];for(var o in this._edgesByName){var r=e(t,o);r&&(i&&i.push(this._edgesByName[o]),n.push(r))}return n},e.prototype.findLinked=function(e,i,n,o){var r=t(e),s=null;i&&(s=o);var h=this.findEdge(r.attr("data-name"),n,s);for(var a in h){var l=this._nodesByName[h[a]];o.is(l)||(o.push(l),this.findLinked(l,i,n,o))}},e.prototype.colorElement=function(e,i){var n=this.$element.css("background");e.find("polygon, ellipse, path").each(function(){var e=t(this),o=e.data("graphviz.svg.color");o.fill&&"path"!=e.prop("tagName")&&e.attr("fill",i(o.fill,n)),o.stroke&&e.attr("stroke",i(o.stroke,n))})},e.prototype.restoreElement=function(e){e.find("polygon, ellipse, path").each(function(){var e=t(this),i=e.data("graphviz.svg.color");i.fill&&e.attr("fill",i.fill),i.stroke&&e.attr("stroke",i.stroke)})},e.prototype.nodes=function(){return this.$nodes},e.prototype.edges=function(){return this.$edges},e.prototype.nodesByName=function(){return this._nodesByName},e.prototype.edgesByName=function(){return this._edgesByName},e.prototype.linkedTo=function(e,i){var n=t();return this.findLinked(e,i,function(t,e){var i=null,n="->"+t;return e.endsWith(n)&&(i=e.substring(0,e.length-n.length)),i},n),n},e.prototype.linkedFrom=function(e,i){var n=t();return this.findLinked(e,i,function(t,e){var i=null,n=t+"->";return e.startsWith(n)&&(i=e.substring(n.length)),i},n),n},e.prototype.linked=function(e,i){var n=t();return this.findLinked(e,i,function(t,e){return"^"+name+"--(.*)$"},n),this.findLinked(e,i,function(t,e){return"^(.*)--"+name+"$"},n),n},e.prototype.tooltip=function(e,i){var n=this.options;e.each(function(){t(this).children("a[title]").each(function(){i?n.tooltips.show.call(this):n.tooltips.hide.call(this)})})},e.prototype.bringToFront=function(t){t.detach().appendTo(this.$graph)},e.prototype.sendToBack=function(t){this.$background.length?$element.insertAfter(this.$background):t.detach().prependTo(this.$graph)},e.prototype.highlight=function(e,i){var n=this,o=this.options,r=this.$nodes.add(this.$edges);e&&e.length>0?(r.not(e).each(function(){n.colorElement(t(this),o.highlight.unselected),n.tooltip(t(this))}),e.each(function(){n.colorElement(t(this),o.highlight.selected)}),i&&this.tooltip(e,!0)):(r.each(function(){n.restoreElement(t(this))}),this.tooltip(r))},e.prototype.destroy=function(){var t=this;this.hide(function(){t.$element.off("."+t.type).removeData(t.type)})};var i=t.fn.graphviz;t.fn.graphviz=function(i){return this.each(function(){var n=t(this),o=n.data("graphviz.svg"),r="object"==typeof i&&i;!o&&/destroy/.test(i)||(o||n.data("graphviz.svg",o=new e(this,r)),"string"==typeof i&&o[i]())})},t.fn.graphviz.Constructor=e,t.fn.graphviz.noConflict=function(){return t.fn.graphviz=i,this}}(jQuery);</script>
+		<script type="text/javascript">
+ 			$(document).ready(function(){
+                $("#graph").graphviz({
+                    svg: `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="6425pt" height="666pt"
+ viewBox="0.00 0.00 6425.00 666.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 662)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-662 6421,-662 6421,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_G</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M20,-8C20,-8 6397,-8 6397,-8 6403,-8 6409,-14 6409,-20 6409,-20 6409,-638 6409,-638 6409,-644 6403,-650 6397,-650 6397,-650 20,-650 20,-650 14,-650 8,-644 8,-638 8,-638 8,-20 8,-20 8,-14 14,-8 20,-8"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_echopay</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M1220,-492C1220,-492 1388,-492 1388,-492 1394,-492 1400,-498 1400,-504 1400,-504 1400,-630 1400,-630 1400,-636 1394,-642 1388,-642 1388,-642 1220,-642 1220,-642 1214,-642 1208,-636 1208,-630 1208,-630 1208,-504 1208,-504 1208,-498 1214,-492 1220,-492"/>
+<text text-anchor="middle" x="1304" y="-626.8" font-family="Times,serif" font-size="14.00">echopay</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_echopay__AuthorizedPayer</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M532,-409C532,-409 1066,-409 1066,-409 1072,-409 1078,-415 1078,-421 1078,-421 1078,-555 1078,-555 1078,-561 1072,-567 1066,-567 1066,-567 532,-567 532,-567 526,-567 520,-561 520,-555 520,-555 520,-421 520,-421 520,-415 526,-409 532,-409"/>
+<text text-anchor="middle" x="799" y="-551.8" font-family="Times,serif" font-size="14.00">echopay.AuthorizedPayer</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_forest__core</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M1098,-254C1098,-254 2226,-254 2226,-254 2232,-254 2238,-260 2238,-266 2238,-266 2238,-472 2238,-472 2238,-478 2232,-484 2226,-484 2226,-484 1098,-484 1098,-484 1092,-484 1086,-478 1086,-472 1086,-472 1086,-266 1086,-266 1086,-260 1092,-254 1098,-254"/>
+<text text-anchor="middle" x="1662" y="-468.8" font-family="Times,serif" font-size="14.00">forest.core</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_forest__core__Bot</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M2523,-88C2523,-88 4182,-88 4182,-88 4188,-88 4194,-94 4194,-100 4194,-100 4194,-472 4194,-472 4194,-478 4188,-484 4182,-484 4182,-484 2523,-484 2523,-484 2517,-484 2511,-478 2511,-472 2511,-472 2511,-100 2511,-100 2511,-94 2517,-88 2523,-88"/>
+<text text-anchor="middle" x="3352.5" y="-468.8" font-family="Times,serif" font-size="14.00">forest.core.Bot</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_forest__core__PayBot</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M80,-171C80,-171 974,-171 974,-171 980,-171 986,-177 986,-183 986,-183 986,-389 986,-389 986,-395 980,-401 974,-401 974,-401 80,-401 80,-401 74,-401 68,-395 68,-389 68,-389 68,-183 68,-183 68,-177 74,-171 80,-171"/>
+<text text-anchor="middle" x="527" y="-385.8" font-family="Times,serif" font-size="14.00">forest.core.PayBot</text>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_forest__core__Signal</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M1020,-16C1020,-16 2477,-16 2477,-16 2483,-16 2489,-22 2489,-28 2489,-28 2489,-234 2489,-234 2489,-240 2483,-246 2477,-246 2477,-246 1020,-246 1020,-246 1014,-246 1008,-240 1008,-234 1008,-234 1008,-28 1008,-28 1008,-22 1014,-16 1020,-16"/>
+<text text-anchor="middle" x="1748.5" y="-230.8" font-family="Times,serif" font-size="14.00">forest.core.Signal</text>
+</g>
+<g id="clust8" class="cluster">
+<title>cluster_forest__payments_monitor</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M4214,-88C4214,-88 4682,-88 4682,-88 4688,-88 4694,-94 4694,-100 4694,-100 4694,-151 4694,-151 4694,-157 4688,-163 4682,-163 4682,-163 4214,-163 4214,-163 4208,-163 4202,-157 4202,-151 4202,-151 4202,-100 4202,-100 4202,-94 4208,-88 4214,-88"/>
+<text text-anchor="middle" x="4448" y="-147.8" font-family="Times,serif" font-size="14.00">forest.payments_monitor</text>
+</g>
+<g id="clust9" class="cluster">
+<title>cluster_forest__payments_monitor__InvoiceManager</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M4714,-88C4714,-88 5004,-88 5004,-88 5010,-88 5016,-94 5016,-100 5016,-100 5016,-151 5016,-151 5016,-157 5010,-163 5004,-163 5004,-163 4714,-163 4714,-163 4708,-163 4702,-157 4702,-151 4702,-151 4702,-100 4702,-100 4702,-94 4708,-88 4714,-88"/>
+<text text-anchor="middle" x="4859" y="-147.8" font-family="Times,serif" font-size="14.00">forest.payments_monitor.InvoiceManager</text>
+</g>
+<g id="clust10" class="cluster">
+<title>cluster_forest__payments_monitor__LedgerManager</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M5036,-88C5036,-88 5325,-88 5325,-88 5331,-88 5337,-94 5337,-100 5337,-100 5337,-151 5337,-151 5337,-157 5331,-163 5325,-163 5325,-163 5036,-163 5036,-163 5030,-163 5024,-157 5024,-151 5024,-151 5024,-100 5024,-100 5024,-94 5030,-88 5036,-88"/>
+<text text-anchor="middle" x="5180.5" y="-147.8" font-family="Times,serif" font-size="14.00">forest.payments_monitor.LedgerManager</text>
+</g>
+<g id="clust11" class="cluster">
+<title>cluster_forest__payments_monitor__Mobster</title>
+<path fill="#808080" fill-opacity="0.094118" stroke="black" d="M5357,-16C5357,-16 6389,-16 6389,-16 6395,-16 6401,-22 6401,-28 6401,-28 6401,-234 6401,-234 6401,-240 6395,-246 6389,-246 6389,-246 5357,-246 5357,-246 5351,-246 5345,-240 5345,-234 5345,-234 5345,-28 5345,-28 5345,-22 5351,-16 5357,-16"/>
+<text text-anchor="middle" x="5873" y="-230.8" font-family="Times,serif" font-size="14.00">forest.payments_monitor.Mobster</text>
+</g>
+<!-- echopay -->
+<g id="node1" class="node">
+<title>echopay</title>
+<ellipse fill="#ffffff" fill-opacity="0.698039" stroke="black" cx="1458" cy="-518" rx="48.99" ry="18"/>
+<text text-anchor="middle" x="1458" y="-514.3" font-family="Times,serif" font-size="14.00" fill="#000000">echopay</text>
+</g>
+<!-- forest__core__PayBot -->
+<g id="node11" class="node">
+<title>forest__core__PayBot</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="1381" cy="-435" rx="43.59" ry="18"/>
+<text text-anchor="middle" x="1381" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">PayBot</text>
+</g>
+<!-- echopay&#45;&gt;forest__core__PayBot -->
+<g id="edge1" class="edge">
+<title>echopay&#45;&gt;forest__core__PayBot</title>
+<path fill="none" stroke="#000000" d="M1442.42,-500.61C1431.18,-488.78 1415.84,-472.65 1403.3,-459.46"/>
+<polygon fill="#000000" stroke="#000000" points="1405.72,-456.93 1396.3,-452.09 1400.65,-461.75 1405.72,-456.93"/>
+</g>
+<!-- forest__core -->
+<g id="node2" class="node">
+<title>forest__core</title>
+<ellipse fill="#ffffff" fill-opacity="0.698039" stroke="black" cx="1902" cy="-518" rx="61.19" ry="18"/>
+<text text-anchor="middle" x="1902" y="-514.3" font-family="Times,serif" font-size="14.00" fill="#000000">forest.core</text>
+</g>
+<!-- forest__payments_monitor -->
+<g id="node3" class="node">
+<title>forest__payments_monitor</title>
+<ellipse fill="#ffffff" fill-opacity="0.698039" stroke="black" cx="2376" cy="-435" rx="127.28" ry="18"/>
+<text text-anchor="middle" x="2376" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">forest.payments_monitor</text>
+</g>
+<!-- forest__core&#45;&gt;forest__payments_monitor -->
+<g id="edge12" class="edge">
+<title>forest__core&#45;&gt;forest__payments_monitor</title>
+<path fill="none" stroke="#000000" d="M1962.59,-515.62C2031.15,-513.03 2145.79,-505.55 2242,-484 2271.72,-477.34 2303.89,-465.97 2329.25,-455.96"/>
+<polygon fill="#000000" stroke="#000000" points="2330.64,-459.18 2338.62,-452.21 2328.03,-452.68 2330.64,-459.18"/>
+</g>
+<!-- forest__core__admin_handler -->
+<g id="node13" class="node">
+<title>forest__core__admin_handler</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="2151" cy="-435" rx="79.09" ry="18"/>
+<text text-anchor="middle" x="2151" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">admin_handler</text>
+</g>
+<!-- forest__core&#45;&gt;forest__core__admin_handler -->
+<g id="edge15" class="edge">
+<title>forest__core&#45;&gt;forest__core__admin_handler</title>
+<path fill="none" stroke="#000000" d="M1956.78,-509.91C1988.45,-504.8 2028.7,-496.55 2063,-484 2081.72,-477.15 2101.3,-466.82 2117.23,-457.5"/>
+<polygon fill="#000000" stroke="#000000" points="2119.36,-460.3 2126.15,-452.16 2115.77,-454.29 2119.36,-460.3"/>
+</g>
+<!-- forest__core__metrics -->
+<g id="node15" class="node">
+<title>forest__core__metrics</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="2008" cy="-435" rx="46.29" ry="18"/>
+<text text-anchor="middle" x="2008" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">metrics</text>
+</g>
+<!-- forest__core&#45;&gt;forest__core__metrics -->
+<g id="edge14" class="edge">
+<title>forest__core&#45;&gt;forest__core__metrics</title>
+<path fill="none" stroke="#000000" d="M1927.39,-501.58C1935.72,-496.26 1944.92,-490.09 1953,-484 1963.44,-476.13 1974.39,-466.81 1983.75,-458.49"/>
+<polygon fill="#000000" stroke="#000000" points="1986.1,-461.08 1991.19,-451.79 1981.42,-455.88 1986.1,-461.08"/>
+</g>
+<!-- forest__core__no_get -->
+<g id="node16" class="node">
+<title>forest__core__no_get</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="1902" cy="-435" rx="41.69" ry="18"/>
+<text text-anchor="middle" x="1902" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">no_get</text>
+</g>
+<!-- forest__core&#45;&gt;forest__core__no_get -->
+<g id="edge10" class="edge">
+<title>forest__core&#45;&gt;forest__core__no_get</title>
+<path fill="none" stroke="#000000" d="M1902,-499.82C1902,-489.19 1902,-475.31 1902,-463.2"/>
+<polygon fill="#000000" stroke="#000000" points="1905.5,-463.15 1902,-453.15 1898.5,-463.15 1905.5,-463.15"/>
+</g>
+<!-- forest__core__pong_handler -->
+<g id="node17" class="node">
+<title>forest__core__pong_handler</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="1769" cy="-435" rx="73.39" ry="18"/>
+<text text-anchor="middle" x="1769" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">pong_handler</text>
+</g>
+<!-- forest__core&#45;&gt;forest__core__pong_handler -->
+<g id="edge13" class="edge">
+<title>forest__core&#45;&gt;forest__core__pong_handler</title>
+<path fill="none" stroke="#000000" d="M1876.67,-501.57C1856.04,-489.01 1826.71,-471.14 1803.86,-457.23"/>
+<polygon fill="#000000" stroke="#000000" points="1805.51,-454.13 1795.14,-451.92 1801.86,-460.11 1805.51,-454.13"/>
+</g>
+<!-- forest__core__send_message_handler -->
+<g id="node19" class="node">
+<title>forest__core__send_message_handler</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="1560" cy="-435" rx="117.78" ry="18"/>
+<text text-anchor="middle" x="1560" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">send_message_handler</text>
+</g>
+<!-- forest__core&#45;&gt;forest__core__send_message_handler -->
+<g id="edge11" class="edge">
+<title>forest__core&#45;&gt;forest__core__send_message_handler</title>
+<path fill="none" stroke="#000000" d="M1844.75,-511.51C1801.05,-506.53 1739.6,-497.81 1687,-484 1659.55,-476.79 1629.83,-465.74 1606.04,-456.06"/>
+<polygon fill="#000000" stroke="#000000" points="1607.15,-452.74 1596.57,-452.16 1604.48,-459.21 1607.15,-452.74"/>
+</g>
+<!-- echopay__AuthorizedPayer -->
+<g id="node4" class="node">
+<title>echopay__AuthorizedPayer</title>
+<ellipse fill="#fecccc" fill-opacity="0.698039" stroke="black" cx="1304" cy="-518" rx="87.99" ry="18"/>
+<text text-anchor="middle" x="1304" y="-514.3" font-family="Times,serif" font-size="14.00" fill="#000000">AuthorizedPayer</text>
+</g>
+<!-- echopay__AuthorizedPayer&#45;&gt;forest__core__PayBot -->
+<g id="edge2" class="edge">
+<title>echopay__AuthorizedPayer&#45;&gt;forest__core__PayBot</title>
+<path fill="none" stroke="#000000" d="M1319.95,-500.22C1331.22,-488.36 1346.47,-472.33 1358.91,-459.24"/>
+<polygon fill="#000000" stroke="#000000" points="1361.5,-461.59 1365.85,-451.94 1356.43,-456.77 1361.5,-461.59"/>
+</g>
+<!-- echopay__start_wrapper -->
+<g id="node5" class="node">
+<title>echopay__start_wrapper</title>
+<ellipse fill="#fecccc" fill-opacity="0.698039" stroke="black" cx="1304" cy="-593" rx="76.89" ry="18"/>
+<text text-anchor="middle" x="1304" y="-589.3" font-family="Times,serif" font-size="14.00" fill="#000000">start_wrapper</text>
+</g>
+<!-- echopay__start_wrapper&#45;&gt;echopay__AuthorizedPayer -->
+<g id="edge9" class="edge">
+<title>echopay__start_wrapper&#45;&gt;echopay__AuthorizedPayer</title>
+<path fill="none" stroke="#000000" d="M1304,-574.7C1304,-566.25 1304,-555.87 1304,-546.37"/>
+<polygon fill="#000000" stroke="#000000" points="1307.5,-546.18 1304,-536.18 1300.5,-546.18 1307.5,-546.18"/>
+</g>
+<!-- echopay__AuthorizedPayer__do_no_repay -->
+<g id="node6" class="node">
+<title>echopay__AuthorizedPayer__do_no_repay</title>
+<ellipse fill="#ff9999" fill-opacity="0.698039" stroke="black" cx="1002" cy="-518" rx="68.49" ry="18"/>
+<text text-anchor="middle" x="1002" y="-514.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_no_repay</text>
+</g>
+<!-- echopay__AuthorizedPayer__do_pay -->
+<g id="node7" class="node">
+<title>echopay__AuthorizedPayer__do_pay</title>
+<ellipse fill="#ff9999" fill-opacity="0.698039" stroke="black" cx="615" cy="-435" rx="42.79" ry="18"/>
+<text text-anchor="middle" x="615" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_pay</text>
+</g>
+<!-- forest__core__PayBot__send_payment -->
+<g id="node42" class="node">
+<title>forest__core__PayBot__send_payment</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="275" cy="-352" rx="77.19" ry="18"/>
+<text text-anchor="middle" x="275" y="-348.3" font-family="Times,serif" font-size="14.00" fill="#000000">send_payment</text>
+</g>
+<!-- echopay__AuthorizedPayer__do_pay&#45;&gt;forest__core__PayBot__send_payment -->
+<g id="edge5" class="edge">
+<title>echopay__AuthorizedPayer__do_pay&#45;&gt;forest__core__PayBot__send_payment</title>
+<path fill="none" stroke="#000000" d="M588.21,-420.81C578.82,-416.58 568.1,-412.17 558,-409 489.03,-387.34 407.88,-372.3 350.2,-363.3"/>
+<polygon fill="#000000" stroke="#000000" points="350.48,-359.81 340.07,-361.75 349.42,-366.73 350.48,-359.81"/>
+</g>
+<!-- forest__core__Signal__admin -->
+<g id="node44" class="node">
+<title>forest__core__Signal__admin</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1354" cy="-197" rx="39.79" ry="18"/>
+<text text-anchor="middle" x="1354" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">admin</text>
+</g>
+<!-- echopay__AuthorizedPayer__do_pay&#45;&gt;forest__core__Signal__admin -->
+<g id="edge6" class="edge">
+<title>echopay__AuthorizedPayer__do_pay&#45;&gt;forest__core__Signal__admin</title>
+<path fill="none" stroke="#000000" d="M657.74,-432.48C750.19,-428.86 962.64,-418.72 990,-401 1052.79,-360.32 1008.15,-292.98 1072,-254 1094.11,-240.5 1281.19,-256.2 1305,-246 1316.85,-240.92 1327.45,-231.55 1335.72,-222.43"/>
+<polygon fill="#000000" stroke="#000000" points="1338.57,-224.48 1342.37,-214.59 1333.24,-219.95 1338.57,-224.48"/>
+</g>
+<!-- echopay__AuthorizedPayer__handle_message -->
+<g id="node8" class="node">
+<title>echopay__AuthorizedPayer__handle_message</title>
+<ellipse fill="#ff9999" fill-opacity="0.698039" stroke="black" cx="615" cy="-518" rx="87.18" ry="18"/>
+<text text-anchor="middle" x="615" y="-514.3" font-family="Times,serif" font-size="14.00" fill="#000000">handle_message</text>
+</g>
+<!-- echopay__AuthorizedPayer__handle_message&#45;&gt;echopay__AuthorizedPayer__do_pay -->
+<g id="edge3" class="edge">
+<title>echopay__AuthorizedPayer__handle_message&#45;&gt;echopay__AuthorizedPayer__do_pay</title>
+<path fill="none" stroke="#000000" d="M615,-499.82C615,-489.19 615,-475.31 615,-463.2"/>
+<polygon fill="#000000" stroke="#000000" points="618.5,-463.15 615,-453.15 611.5,-463.15 618.5,-463.15"/>
+</g>
+<!-- forest__core__PayBot__handle_message -->
+<g id="node38" class="node">
+<title>forest__core__PayBot__handle_message</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="891" cy="-352" rx="87.18" ry="18"/>
+<text text-anchor="middle" x="891" y="-348.3" font-family="Times,serif" font-size="14.00" fill="#000000">handle_message</text>
+</g>
+<!-- echopay__AuthorizedPayer__handle_message&#45;&gt;forest__core__PayBot__handle_message -->
+<g id="edge4" class="edge">
+<title>echopay__AuthorizedPayer__handle_message&#45;&gt;forest__core__PayBot__handle_message</title>
+<path fill="none" stroke="#000000" d="M579.57,-501.38C572.93,-496.77 566.86,-491.03 563,-484 546.94,-454.79 539.85,-432.98 563,-409 571.8,-399.88 778.69,-404.03 791,-401 813.72,-395.41 837.39,-384.32 856,-374.2"/>
+<polygon fill="#000000" stroke="#000000" points="857.94,-377.12 864.97,-369.19 854.53,-371.01 857.94,-377.12"/>
+</g>
+<!-- echopay__AuthorizedPayer__payment_response -->
+<g id="node9" class="node">
+<title>echopay__AuthorizedPayer__payment_response</title>
+<ellipse fill="#ff9999" fill-opacity="0.698039" stroke="black" cx="818" cy="-518" rx="97.48" ry="18"/>
+<text text-anchor="middle" x="818" y="-514.3" font-family="Times,serif" font-size="14.00" fill="#000000">payment_response</text>
+</g>
+<!-- echopay__AuthorizedPayer__payment_response&#45;&gt;forest__core__PayBot__send_payment -->
+<g id="edge7" class="edge">
+<title>echopay__AuthorizedPayer__payment_response&#45;&gt;forest__core__PayBot__send_payment</title>
+<path fill="none" stroke="#000000" d="M765.56,-502.81C748.3,-498.66 728.94,-494.56 711,-492 645.79,-482.69 626.98,-499.69 563,-484 466.62,-460.37 362.85,-404.85 310.11,-374.22"/>
+<polygon fill="#000000" stroke="#000000" points="311.58,-371.02 301.18,-368.99 308.04,-377.06 311.58,-371.02"/>
+</g>
+<!-- echopay__AuthorizedPayer__payment_response&#45;&gt;forest__core__Signal__admin -->
+<g id="edge8" class="edge">
+<title>echopay__AuthorizedPayer__payment_response&#45;&gt;forest__core__Signal__admin</title>
+<path fill="none" stroke="#000000" d="M858.9,-501.46C902.31,-483.19 970.52,-449.11 1014,-401 1020.03,-394.32 1074.51,-258.98 1082,-254 1102.65,-240.27 1282.22,-255.78 1305,-246 1316.85,-240.91 1327.44,-231.54 1335.72,-222.42"/>
+<polygon fill="#000000" stroke="#000000" points="1338.57,-224.47 1342.37,-214.58 1333.23,-219.94 1338.57,-224.47"/>
+</g>
+<!-- forest__core__Bot -->
+<g id="node10" class="node">
+<title>forest__core__Bot</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="1312" cy="-352" rx="27" ry="18"/>
+<text text-anchor="middle" x="1312" y="-348.3" font-family="Times,serif" font-size="14.00" fill="#000000">Bot</text>
+</g>
+<!-- forest__core__Signal -->
+<g id="node12" class="node">
+<title>forest__core__Signal</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="1312" cy="-280" rx="40.09" ry="18"/>
+<text text-anchor="middle" x="1312" y="-276.3" font-family="Times,serif" font-size="14.00" fill="#000000">Signal</text>
+</g>
+<!-- forest__core__Bot&#45;&gt;forest__core__Signal -->
+<g id="edge29" class="edge">
+<title>forest__core__Bot&#45;&gt;forest__core__Signal</title>
+<path fill="none" stroke="#000000" d="M1312,-333.7C1312,-325.98 1312,-316.71 1312,-308.11"/>
+<polygon fill="#000000" stroke="#000000" points="1315.5,-308.1 1312,-298.1 1308.5,-308.1 1315.5,-308.1"/>
+</g>
+<!-- forest__core__PayBot&#45;&gt;forest__core__Bot -->
+<g id="edge47" class="edge">
+<title>forest__core__PayBot&#45;&gt;forest__core__Bot</title>
+<path fill="none" stroke="#000000" d="M1367.04,-417.61C1356.8,-405.59 1342.76,-389.11 1331.43,-375.81"/>
+<polygon fill="#000000" stroke="#000000" points="1333.93,-373.34 1324.78,-368 1328.6,-377.88 1333.93,-373.34"/>
+</g>
+<!-- forest__core__fmt_ms -->
+<g id="node14" class="node">
+<title>forest__core__fmt_ms</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="2185" cy="-352" rx="44.69" ry="18"/>
+<text text-anchor="middle" x="2185" y="-348.3" font-family="Times,serif" font-size="14.00" fill="#000000">fmt_ms</text>
+</g>
+<!-- forest__core__metrics&#45;&gt;forest__core__fmt_ms -->
+<g id="edge67" class="edge">
+<title>forest__core__metrics&#45;&gt;forest__core__fmt_ms</title>
+<path fill="none" stroke="#000000" d="M2036.83,-420.81C2066.88,-407.06 2114.1,-385.45 2147.14,-370.33"/>
+<polygon fill="#000000" stroke="#000000" points="2148.84,-373.4 2156.47,-366.05 2145.92,-367.03 2148.84,-373.4"/>
+</g>
+<!-- forest__core__rpc -->
+<g id="node18" class="node">
+<title>forest__core__rpc</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="1121" cy="-435" rx="27" ry="18"/>
+<text text-anchor="middle" x="1121" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">rpc</text>
+</g>
+<!-- forest__core__start_wrapper -->
+<g id="node20" class="node">
+<title>forest__core__start_wrapper</title>
+<ellipse fill="#ccff99" fill-opacity="0.698039" stroke="black" cx="1243" cy="-435" rx="76.89" ry="18"/>
+<text text-anchor="middle" x="1243" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">start_wrapper</text>
+</g>
+<!-- forest__core__start_wrapper&#45;&gt;forest__core__Bot -->
+<g id="edge69" class="edge">
+<title>forest__core__start_wrapper&#45;&gt;forest__core__Bot</title>
+<path fill="none" stroke="#000000" d="M1257.3,-417.22C1267.5,-405.24 1281.33,-389 1292.54,-375.85"/>
+<polygon fill="#000000" stroke="#000000" points="1295.3,-378 1299.12,-368.12 1289.97,-373.47 1295.3,-378"/>
+</g>
+<!-- forest__core__Bot____init__ -->
+<g id="node21" class="node">
+<title>forest__core__Bot____init__</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="3903" cy="-435" rx="44.39" ry="18"/>
+<text text-anchor="middle" x="3903" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">__init__</text>
+</g>
+<!-- forest__core__start_wrapper&#45;&gt;forest__core__Bot____init__ -->
+<g id="edge68" class="edge">
+<title>forest__core__start_wrapper&#45;&gt;forest__core__Bot____init__</title>
+<path fill="none" stroke="#000000" d="M1264.96,-452.53C1283.06,-465.66 1310.06,-482.28 1337,-488 1354.01,-491.61 3823.99,-491.61 3841,-488 3858.04,-484.38 3873.03,-472 3883.99,-460.11"/>
+<polygon fill="#000000" stroke="#000000" points="3886.71,-462.32 3890.6,-452.47 3881.41,-457.74 3886.71,-462.32"/>
+</g>
+<!-- forest__core__Bot__handle_messages -->
+<g id="node33" class="node">
+<title>forest__core__Bot__handle_messages</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2611" cy="-352" rx="91.78" ry="18"/>
+<text text-anchor="middle" x="2611" y="-348.3" font-family="Times,serif" font-size="14.00" fill="#000000">handle_messages</text>
+</g>
+<!-- forest__core__Bot____init__&#45;&gt;forest__core__Bot__handle_messages -->
+<g id="edge35" class="edge">
+<title>forest__core__Bot____init__&#45;&gt;forest__core__Bot__handle_messages</title>
+<path fill="none" stroke="#000000" d="M3878.72,-419.89C3869.96,-415.53 3859.81,-411.27 3850,-409 3820.12,-402.08 3328.64,-402.29 3298,-401 3084.66,-392.01 2834.62,-372.2 2702.92,-361.04"/>
+<polygon fill="#000000" stroke="#000000" points="2703.14,-357.55 2692.88,-360.19 2702.54,-364.52 2703.14,-357.55"/>
+</g>
+<!-- forest__core__Signal____init__ -->
+<g id="node43" class="node">
+<title>forest__core__Signal____init__</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1997" cy="-42" rx="44.39" ry="18"/>
+<text text-anchor="middle" x="1997" y="-38.3" font-family="Times,serif" font-size="14.00" fill="#000000">__init__</text>
+</g>
+<!-- forest__core__Bot____init__&#45;&gt;forest__core__Signal____init__ -->
+<g id="edge32" class="edge">
+<title>forest__core__Bot____init__&#45;&gt;forest__core__Signal____init__</title>
+<path fill="none" stroke="#000000" d="M3901.12,-416.59C3898.22,-388.22 3893,-330.25 3893,-281 3893,-281 3893,-281 3893,-196 3893,-58.36 2796.32,-97.33 2659,-88 2402.4,-70.56 2336.21,-91.82 2081,-60 2069.12,-58.52 2056.42,-56.29 2044.58,-53.93"/>
+<polygon fill="#000000" stroke="#000000" points="2044.94,-50.43 2034.43,-51.84 2043.52,-57.29 2044.94,-50.43"/>
+</g>
+<!-- forest__core__Signal__start_process -->
+<g id="node55" class="node">
+<title>forest__core__Signal__start_process</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2177" cy="-197" rx="73.39" ry="18"/>
+<text text-anchor="middle" x="2177" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">start_process</text>
+</g>
+<!-- forest__core__Bot____init__&#45;&gt;forest__core__Signal__start_process -->
+<g id="edge31" class="edge">
+<title>forest__core__Bot____init__&#45;&gt;forest__core__Signal__start_process</title>
+<path fill="none" stroke="#000000" d="M3878.73,-419.84C3869.97,-415.48 3859.82,-411.23 3850,-409 3777.4,-392.51 2581.61,-421.34 2510,-401 2383,-364.93 2256.27,-266.04 2203.09,-220.95"/>
+<polygon fill="#000000" stroke="#000000" points="2205.36,-218.29 2195.49,-214.45 2200.81,-223.61 2205.36,-218.29"/>
+</g>
+<!-- forest__payments_monitor__Mobster -->
+<g id="node61" class="node">
+<title>forest__payments_monitor__Mobster</title>
+<ellipse fill="#99feff" fill-opacity="0.698039" stroke="black" cx="4260" cy="-114" rx="50.09" ry="18"/>
+<text text-anchor="middle" x="4260" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">Mobster</text>
+</g>
+<!-- forest__core__Bot____init__&#45;&gt;forest__payments_monitor__Mobster -->
+<g id="edge30" class="edge">
+<title>forest__core__Bot____init__&#45;&gt;forest__payments_monitor__Mobster</title>
+<path fill="none" stroke="#000000" d="M3914.81,-417.52C3929.94,-396.93 3957.5,-361.11 3985,-334 4006.99,-312.33 4166.02,-188.09 4231.72,-136.97"/>
+<polygon fill="#000000" stroke="#000000" points="4233.88,-139.73 4239.62,-130.83 4229.58,-134.2 4233.88,-139.73"/>
+</g>
+<!-- forest__payments_monitor__Mobster____init__ -->
+<g id="node64" class="node">
+<title>forest__payments_monitor__Mobster____init__</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5397" cy="-197" rx="44.39" ry="18"/>
+<text text-anchor="middle" x="5397" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">__init__</text>
+</g>
+<!-- forest__core__Bot____init__&#45;&gt;forest__payments_monitor__Mobster____init__ -->
+<g id="edge33" class="edge">
+<title>forest__core__Bot____init__&#45;&gt;forest__payments_monitor__Mobster____init__</title>
+<path fill="none" stroke="#000000" d="M3928.82,-420.38C3937.58,-416.22 3947.54,-411.96 3957,-409 4338.07,-289.67 4446.42,-308.52 4842,-254 5025.69,-228.68 5245.08,-209.91 5344.01,-202.05"/>
+<polygon fill="#000000" stroke="#000000" points="5344.36,-205.54 5354.05,-201.26 5343.8,-198.56 5344.36,-205.54"/>
+</g>
+<!-- forest__payments_monitor__Mobster__monitor_wallet -->
+<g id="node73" class="node">
+<title>forest__payments_monitor__Mobster__monitor_wallet</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5712" cy="-197" rx="79.89" ry="18"/>
+<text text-anchor="middle" x="5712" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">monitor_wallet</text>
+</g>
+<!-- forest__core__Bot____init__&#45;&gt;forest__payments_monitor__Mobster__monitor_wallet -->
+<g id="edge34" class="edge">
+<title>forest__core__Bot____init__&#45;&gt;forest__payments_monitor__Mobster__monitor_wallet</title>
+<path fill="none" stroke="#000000" d="M3927.82,-420.09C3936.75,-415.75 3947.07,-411.45 3957,-409 3990.91,-400.62 4079.17,-403.67 4114,-401 4786.22,-349.38 4978.62,-444.26 5623,-246 5642.68,-239.95 5663.01,-229.36 5679.26,-219.67"/>
+<polygon fill="#000000" stroke="#000000" points="5681.14,-222.63 5687.84,-214.42 5677.48,-216.66 5681.14,-222.63"/>
+</g>
+<!-- forest__core__Bot__check_target_number -->
+<g id="node22" class="node">
+<title>forest__core__Bot__check_target_number</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="4076" cy="-435" rx="110.48" ry="18"/>
+<text text-anchor="middle" x="4076" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">check_target_number</text>
+</g>
+<!-- forest__core__Signal__send_message -->
+<g id="node52" class="node">
+<title>forest__core__Signal__send_message</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1407" cy="-114" rx="77.19" ry="18"/>
+<text text-anchor="middle" x="1407" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">send_message</text>
+</g>
+<!-- forest__core__Bot__check_target_number&#45;&gt;forest__core__Signal__send_message -->
+<g id="edge46" class="edge">
+<title>forest__core__Bot__check_target_number&#45;&gt;forest__core__Signal__send_message</title>
+<path fill="none" stroke="#000000" d="M4011.26,-420.38C3993.36,-416.65 3973.94,-412.64 3956,-409 3787.29,-374.78 3745.06,-366.45 3576,-334 3187.94,-259.52 3095.33,-208.84 2702,-171 2583.21,-159.57 1746.61,-176.18 1628,-163 1571.59,-156.73 1508.41,-142.24 1464.1,-130.8"/>
+<polygon fill="#000000" stroke="#000000" points="1464.94,-127.41 1454.38,-128.27 1463.17,-134.18 1464.94,-127.41"/>
+</g>
+<!-- forest__core__Bot__default -->
+<g id="node23" class="node">
+<title>forest__core__Bot__default</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2606" cy="-114" rx="43.59" ry="18"/>
+<text text-anchor="middle" x="2606" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">default</text>
+</g>
+<!-- forest__core__Bot__do_average_metric -->
+<g id="node24" class="node">
+<title>forest__core__Bot__do_average_metric</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="3743" cy="-435" rx="98.28" ry="18"/>
+<text text-anchor="middle" x="3743" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_average_metric</text>
+</g>
+<!-- forest__core__Bot__do_dump_metric_csv -->
+<g id="node25" class="node">
+<title>forest__core__Bot__do_dump_metric_csv</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="3520" cy="-435" rx="106.68" ry="18"/>
+<text text-anchor="middle" x="3520" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_dump_metric_csv</text>
+</g>
+<!-- forest__core__Bot__do_dump_metric_csv&#45;&gt;forest__core__fmt_ms -->
+<g id="edge44" class="edge">
+<title>forest__core__Bot__do_dump_metric_csv&#45;&gt;forest__core__fmt_ms</title>
+<path fill="none" stroke="#000000" d="M3464.33,-419.58C3445.33,-415.31 3423.86,-411.19 3404,-409 3285.49,-395.93 2448.65,-420.29 2331,-401 2293.62,-394.87 2252.81,-380.78 2223.86,-369.44"/>
+<polygon fill="#000000" stroke="#000000" points="2225.1,-366.17 2214.52,-365.72 2222.51,-372.67 2225.1,-366.17"/>
+</g>
+<!-- forest__core__Bot__do_dump_roundtrip -->
+<g id="node26" class="node">
+<title>forest__core__Bot__do_dump_roundtrip</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="3294" cy="-435" rx="101.28" ry="18"/>
+<text text-anchor="middle" x="3294" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_dump_roundtrip</text>
+</g>
+<!-- forest__core__Bot__do_dump_roundtrip&#45;&gt;forest__core__fmt_ms -->
+<g id="edge45" class="edge">
+<title>forest__core__Bot__do_dump_roundtrip&#45;&gt;forest__core__fmt_ms</title>
+<path fill="none" stroke="#000000" d="M3240.76,-419.6C3222.58,-415.33 3202.03,-411.21 3183,-409 3088.96,-398.09 2424.41,-416.41 2331,-401 2293.63,-394.83 2252.81,-380.75 2223.86,-369.42"/>
+<polygon fill="#000000" stroke="#000000" points="2225.1,-366.15 2214.52,-365.7 2222.51,-372.65 2225.1,-366.15"/>
+</g>
+<!-- forest__core__Bot__do_exception -->
+<g id="node27" class="node">
+<title>forest__core__Bot__do_exception</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="3103" cy="-435" rx="71.49" ry="18"/>
+<text text-anchor="middle" x="3103" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_exception</text>
+</g>
+<!-- forest__core__Bot__do_help -->
+<g id="node28" class="node">
+<title>forest__core__Bot__do_help</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2967" cy="-435" rx="46.29" ry="18"/>
+<text text-anchor="middle" x="2967" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_help</text>
+</g>
+<!-- forest__core__Bot__do_ping -->
+<g id="node29" class="node">
+<title>forest__core__Bot__do_ping</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2856" cy="-435" rx="46.59" ry="18"/>
+<text text-anchor="middle" x="2856" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_ping</text>
+</g>
+<!-- forest__core__Bot__do_pong -->
+<g id="node30" class="node">
+<title>forest__core__Bot__do_pong</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2742" cy="-435" rx="49.29" ry="18"/>
+<text text-anchor="middle" x="2742" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_pong</text>
+</g>
+<!-- forest__core__Bot__do_printerfact -->
+<g id="node31" class="node">
+<title>forest__core__Bot__do_printerfact</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2598" cy="-435" rx="76.89" ry="18"/>
+<text text-anchor="middle" x="2598" y="-431.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_printerfact</text>
+</g>
+<!-- forest__core__Bot__handle_message -->
+<g id="node32" class="node">
+<title>forest__core__Bot__handle_message</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2606" cy="-197" rx="87.18" ry="18"/>
+<text text-anchor="middle" x="2606" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">handle_message</text>
+</g>
+<!-- forest__core__Bot__handle_message&#45;&gt;forest__core__Bot__default -->
+<g id="edge43" class="edge">
+<title>forest__core__Bot__handle_message&#45;&gt;forest__core__Bot__default</title>
+<path fill="none" stroke="#000000" d="M2606,-178.82C2606,-168.19 2606,-154.31 2606,-142.2"/>
+<polygon fill="#000000" stroke="#000000" points="2609.5,-142.15 2606,-132.15 2602.5,-142.15 2609.5,-142.15"/>
+</g>
+<!-- forest__core__Bot__time_response -->
+<g id="node34" class="node">
+<title>forest__core__Bot__time_response</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2602" cy="-280" rx="77.99" ry="18"/>
+<text text-anchor="middle" x="2602" y="-276.3" font-family="Times,serif" font-size="14.00" fill="#000000">time_response</text>
+</g>
+<!-- forest__core__Bot__handle_messages&#45;&gt;forest__core__Bot__time_response -->
+<g id="edge37" class="edge">
+<title>forest__core__Bot__handle_messages&#45;&gt;forest__core__Bot__time_response</title>
+<path fill="none" stroke="#000000" d="M2608.78,-333.7C2607.78,-325.98 2606.59,-316.71 2605.49,-308.11"/>
+<polygon fill="#000000" stroke="#000000" points="2608.95,-307.58 2604.2,-298.1 2602,-308.47 2608.95,-307.58"/>
+</g>
+<!-- forest__core__Signal__auxincli_output_iter -->
+<g id="node48" class="node">
+<title>forest__core__Signal__auxincli_output_iter</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2378" cy="-197" rx="102.88" ry="18"/>
+<text text-anchor="middle" x="2378" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">auxincli_output_iter</text>
+</g>
+<!-- forest__core__Bot__handle_messages&#45;&gt;forest__core__Signal__auxincli_output_iter -->
+<g id="edge36" class="edge">
+<title>forest__core__Bot__handle_messages&#45;&gt;forest__core__Signal__auxincli_output_iter</title>
+<path fill="none" stroke="#000000" d="M2579.73,-335.02C2560.68,-324.97 2536.03,-311.41 2515,-298 2476.52,-273.47 2434.42,-241.99 2407.19,-220.97"/>
+<polygon fill="#000000" stroke="#000000" points="2409.28,-218.16 2399.24,-214.8 2404.99,-223.7 2409.28,-218.16"/>
+</g>
+<!-- forest__core__Bot__time_response&#45;&gt;forest__core__Bot____init__ -->
+<g id="edge41" class="edge">
+<title>forest__core__Bot__time_response&#45;&gt;forest__core__Bot____init__</title>
+<path fill="none" stroke="#000000" d="M2676.89,-285.36C2910.97,-299.49 3626.53,-346.8 3850,-409 3856.24,-410.74 3862.65,-413.16 3868.77,-415.81"/>
+<polygon fill="#000000" stroke="#000000" points="3867.52,-419.09 3878.06,-420.11 3870.46,-412.73 3867.52,-419.09"/>
+</g>
+<!-- forest__core__Bot__time_response&#45;&gt;forest__core__Bot__handle_message -->
+<g id="edge39" class="edge">
+<title>forest__core__Bot__time_response&#45;&gt;forest__core__Bot__handle_message</title>
+<path fill="none" stroke="#000000" d="M2602.85,-261.82C2603.37,-251.19 2604.06,-237.31 2604.66,-225.2"/>
+<polygon fill="#000000" stroke="#000000" points="2608.16,-225.31 2605.15,-215.15 2601.16,-224.97 2608.16,-225.31"/>
+</g>
+<!-- forest__core__Bot__time_response&#45;&gt;forest__core__Signal__admin -->
+<g id="edge38" class="edge">
+<title>forest__core__Bot__time_response&#45;&gt;forest__core__Signal__admin</title>
+<path fill="none" stroke="#000000" d="M2530.35,-272.76C2457.75,-266.73 2342.16,-257.95 2242,-254 2218.71,-253.08 1424.54,-254.91 1403,-246 1391.08,-241.07 1380.48,-231.72 1372.21,-222.58"/>
+<polygon fill="#000000" stroke="#000000" points="1374.7,-220.09 1365.58,-214.71 1369.35,-224.61 1374.7,-220.09"/>
+</g>
+<!-- forest__core__Signal__respond -->
+<g id="node51" class="node">
+<title>forest__core__Signal__respond</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1460" cy="-197" rx="48.19" ry="18"/>
+<text text-anchor="middle" x="1460" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">respond</text>
+</g>
+<!-- forest__core__Bot__time_response&#45;&gt;forest__core__Signal__respond -->
+<g id="edge40" class="edge">
+<title>forest__core__Bot__time_response&#45;&gt;forest__core__Signal__respond</title>
+<path fill="none" stroke="#000000" d="M2528.93,-273.6C2456.22,-268.31 2341.42,-260.16 2242,-254 2176.7,-249.96 2160.29,-250.24 2095,-246 1881.51,-232.12 1627.95,-211.8 1516.88,-202.7"/>
+<polygon fill="#000000" stroke="#000000" points="1516.83,-199.19 1506.58,-201.86 1516.26,-206.16 1516.83,-199.19"/>
+</g>
+<!-- forest__core__Signal__wait_resp -->
+<g id="node57" class="node">
+<title>forest__core__Signal__wait_resp</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1191" cy="-114" rx="55.79" ry="18"/>
+<text text-anchor="middle" x="1191" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">wait_resp</text>
+</g>
+<!-- forest__core__Bot__time_response&#45;&gt;forest__core__Signal__wait_resp -->
+<g id="edge42" class="edge">
+<title>forest__core__Bot__time_response&#45;&gt;forest__core__Signal__wait_resp</title>
+<path fill="none" stroke="#000000" d="M2544.37,-267.82C2531.62,-262.96 2519.19,-255.99 2510,-246 2486.65,-220.61 2517.28,-192.11 2490,-171 2477.16,-161.06 1336.97,-165.91 1321,-163 1289.31,-157.22 1255.21,-144.36 1229.88,-133.4"/>
+<polygon fill="#000000" stroke="#000000" points="1231.19,-130.15 1220.63,-129.31 1228.36,-136.56 1231.19,-130.15"/>
+</g>
+<!-- forest__core__PayBot__do_address -->
+<g id="node35" class="node">
+<title>forest__core__PayBot__do_address</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="719" cy="-352" rx="63.09" ry="18"/>
+<text text-anchor="middle" x="719" y="-348.3" font-family="Times,serif" font-size="14.00" fill="#000000">do_address</text>
+</g>
+<!-- forest__core__PayBot__get_address -->
+<g id="node37" class="node">
+<title>forest__core__PayBot__get_address</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="719" cy="-280" rx="66.89" ry="18"/>
+<text text-anchor="middle" x="719" y="-276.3" font-family="Times,serif" font-size="14.00" fill="#000000">get_address</text>
+</g>
+<!-- forest__core__PayBot__do_address&#45;&gt;forest__core__PayBot__get_address -->
+<g id="edge55" class="edge">
+<title>forest__core__PayBot__do_address&#45;&gt;forest__core__PayBot__get_address</title>
+<path fill="none" stroke="#000000" d="M719,-333.7C719,-325.98 719,-316.71 719,-308.11"/>
+<polygon fill="#000000" stroke="#000000" points="722.5,-308.1 719,-298.1 715.5,-308.1 722.5,-308.1"/>
+</g>
+<!-- forest__core__PayBot__fs_receipt_to_payment_message_content -->
+<g id="node36" class="node">
+<title>forest__core__PayBot__fs_receipt_to_payment_message_content</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="275" cy="-280" rx="198.76" ry="18"/>
+<text text-anchor="middle" x="275" y="-276.3" font-family="Times,serif" font-size="14.00" fill="#000000">fs_receipt_to_payment_message_content</text>
+</g>
+<!-- forest__core__Signal__auxin_req -->
+<g id="node46" class="node">
+<title>forest__core__Signal__auxin_req</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1072" cy="-197" rx="55.79" ry="18"/>
+<text text-anchor="middle" x="1072" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">auxin_req</text>
+</g>
+<!-- forest__core__PayBot__fs_receipt_to_payment_message_content&#45;&gt;forest__core__Signal__auxin_req -->
+<g id="edge59" class="edge">
+<title>forest__core__PayBot__fs_receipt_to_payment_message_content&#45;&gt;forest__core__Signal__auxin_req</title>
+<path fill="none" stroke="#000000" d="M377.42,-264.55C411,-260.38 448.53,-256.34 483,-254 511.11,-252.09 962.87,-253.59 990,-246 1009.12,-240.65 1028.39,-229.72 1043.44,-219.64"/>
+<polygon fill="#000000" stroke="#000000" points="1045.56,-222.43 1051.78,-213.85 1041.57,-216.68 1045.56,-222.43"/>
+</g>
+<!-- forest__core__PayBot__get_address&#45;&gt;forest__core__Signal__auxin_req -->
+<g id="edge54" class="edge">
+<title>forest__core__PayBot__get_address&#45;&gt;forest__core__Signal__auxin_req</title>
+<path fill="none" stroke="#000000" d="M755.19,-264.83C767.62,-260.58 781.74,-256.4 795,-254 837.67,-246.26 948.38,-258.21 990,-246 1008.92,-240.45 1028.05,-229.62 1043.07,-219.65"/>
+<polygon fill="#000000" stroke="#000000" points="1045.14,-222.47 1051.4,-213.92 1041.18,-216.7 1045.14,-222.47"/>
+</g>
+<!-- forest__core__PayBot__handle_message&#45;&gt;forest__core__Bot__handle_message -->
+<g id="edge49" class="edge">
+<title>forest__core__PayBot__handle_message&#45;&gt;forest__core__Bot__handle_message</title>
+<path fill="none" stroke="#000000" d="M920.67,-334.98C969.97,-308.5 1065.01,-258.12 1082,-254 1158.18,-235.53 2416.23,-261.86 2493,-246 2519,-240.63 2546.45,-229.12 2567.79,-218.72"/>
+<polygon fill="#000000" stroke="#000000" points="2569.45,-221.8 2576.83,-214.2 2566.32,-215.54 2569.45,-221.8"/>
+</g>
+<!-- forest__core__PayBot__handle_payment -->
+<g id="node39" class="node">
+<title>forest__core__PayBot__handle_payment</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="891" cy="-280" rx="87.18" ry="18"/>
+<text text-anchor="middle" x="891" y="-276.3" font-family="Times,serif" font-size="14.00" fill="#000000">handle_payment</text>
+</g>
+<!-- forest__core__PayBot__handle_message&#45;&gt;forest__core__PayBot__handle_payment -->
+<g id="edge48" class="edge">
+<title>forest__core__PayBot__handle_message&#45;&gt;forest__core__PayBot__handle_payment</title>
+<path fill="none" stroke="#000000" d="M891,-333.7C891,-325.98 891,-316.71 891,-308.11"/>
+<polygon fill="#000000" stroke="#000000" points="894.5,-308.1 891,-298.1 887.5,-308.1 894.5,-308.1"/>
+</g>
+<!-- forest__core__PayBot__payment_response -->
+<g id="node41" class="node">
+<title>forest__core__PayBot__payment_response</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="881" cy="-197" rx="97.48" ry="18"/>
+<text text-anchor="middle" x="881" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">payment_response</text>
+</g>
+<!-- forest__core__PayBot__handle_payment&#45;&gt;forest__core__PayBot__payment_response -->
+<g id="edge52" class="edge">
+<title>forest__core__PayBot__handle_payment&#45;&gt;forest__core__PayBot__payment_response</title>
+<path fill="none" stroke="#000000" d="M888.88,-261.82C887.57,-251.19 885.85,-237.31 884.36,-225.2"/>
+<polygon fill="#000000" stroke="#000000" points="887.82,-224.65 883.12,-215.15 880.87,-225.51 887.82,-224.65"/>
+</g>
+<!-- forest__core__PayBot__handle_payment&#45;&gt;forest__core__Signal__respond -->
+<g id="edge50" class="edge">
+<title>forest__core__PayBot__handle_payment&#45;&gt;forest__core__Signal__respond</title>
+<path fill="none" stroke="#000000" d="M938.62,-264.9C955.34,-260.56 974.36,-256.33 992,-254 1014.64,-251.02 1381.62,-254.04 1403,-246 1416.38,-240.97 1428.82,-231.34 1438.65,-222.02"/>
+<polygon fill="#000000" stroke="#000000" points="1441.36,-224.26 1445.94,-214.71 1436.4,-219.32 1441.36,-224.26"/>
+</g>
+<!-- forest__core__PayBot__handle_payment&#45;&gt;forest__payments_monitor__Mobster -->
+<g id="edge51" class="edge">
+<title>forest__core__PayBot__handle_payment&#45;&gt;forest__payments_monitor__Mobster</title>
+<path fill="none" stroke="#000000" d="M954.37,-267.4C966.59,-262.56 978.29,-255.71 987,-246 1009.83,-220.56 977.32,-192.36 1004,-171 1021.31,-157.14 4177.02,-170.2 4198,-163 4212.71,-157.95 4226.64,-147.85 4237.56,-138.2"/>
+<polygon fill="#000000" stroke="#000000" points="4240,-140.72 4244.94,-131.34 4235.23,-135.59 4240,-140.72"/>
+</g>
+<!-- forest__core__PayBot__handle_payment&#45;&gt;forest__payments_monitor__Mobster____init__ -->
+<g id="edge53" class="edge">
+<title>forest__core__PayBot__handle_payment&#45;&gt;forest__payments_monitor__Mobster____init__</title>
+<path fill="none" stroke="#000000" d="M938.34,-264.79C955.12,-260.42 974.25,-256.19 992,-254 1080.39,-243.11 4108.96,-247.89 4198,-246 4640.7,-236.59 5174.81,-209.72 5343.36,-200.87"/>
+<polygon fill="#000000" stroke="#000000" points="5343.66,-204.35 5353.47,-200.33 5343.3,-197.36 5343.66,-204.35"/>
+</g>
+<!-- forest__core__PayBot__mob_request -->
+<g id="node40" class="node">
+<title>forest__core__PayBot__mob_request</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="563" cy="-280" rx="70.69" ry="18"/>
+<text text-anchor="middle" x="563" y="-276.3" font-family="Times,serif" font-size="14.00" fill="#000000">mob_request</text>
+</g>
+<!-- forest__core__PayBot__mob_request&#45;&gt;forest__core__Signal__admin -->
+<g id="edge57" class="edge">
+<title>forest__core__PayBot__mob_request&#45;&gt;forest__core__Signal__admin</title>
+<path fill="none" stroke="#000000" d="M600.71,-264.74C613.89,-260.42 628.92,-256.24 643,-254 679.33,-248.23 1271.03,-260.11 1305,-246 1316.91,-241.05 1327.51,-231.71 1335.78,-222.56"/>
+<polygon fill="#000000" stroke="#000000" points="1338.64,-224.6 1342.42,-214.7 1333.29,-220.08 1338.64,-224.6"/>
+</g>
+<!-- forest__core__PayBot__mob_request&#45;&gt;forest__payments_monitor__Mobster -->
+<g id="edge56" class="edge">
+<title>forest__core__PayBot__mob_request&#45;&gt;forest__payments_monitor__Mobster</title>
+<path fill="none" stroke="#000000" d="M585.73,-262.82C623.08,-237.34 700.71,-188.92 775,-171 821.22,-159.85 4153.03,-178.43 4198,-163 4212.71,-157.95 4226.64,-147.85 4237.56,-138.21"/>
+<polygon fill="#000000" stroke="#000000" points="4240,-140.72 4244.94,-131.35 4235.23,-135.59 4240,-140.72"/>
+</g>
+<!-- forest__core__PayBot__mob_request&#45;&gt;forest__payments_monitor__Mobster____init__ -->
+<g id="edge58" class="edge">
+<title>forest__core__PayBot__mob_request&#45;&gt;forest__payments_monitor__Mobster____init__</title>
+<path fill="none" stroke="#000000" d="M600.7,-264.66C613.88,-260.34 628.91,-256.17 643,-254 691.8,-246.5 4148.64,-247.04 4198,-246 4640.7,-236.64 5174.81,-209.74 5343.36,-200.87"/>
+<polygon fill="#000000" stroke="#000000" points="5343.66,-204.36 5353.47,-200.34 5343.3,-197.37 5343.66,-204.36"/>
+</g>
+<!-- forest__core__PayBot__send_payment&#45;&gt;forest__core__PayBot__fs_receipt_to_payment_message_content -->
+<g id="edge64" class="edge">
+<title>forest__core__PayBot__send_payment&#45;&gt;forest__core__PayBot__fs_receipt_to_payment_message_content</title>
+<path fill="none" stroke="#000000" d="M275,-333.7C275,-325.98 275,-316.71 275,-308.11"/>
+<polygon fill="#000000" stroke="#000000" points="278.5,-308.1 275,-298.1 271.5,-308.1 278.5,-308.1"/>
+</g>
+<!-- forest__core__PayBot__send_payment&#45;&gt;forest__core__PayBot__get_address -->
+<g id="edge61" class="edge">
+<title>forest__core__PayBot__send_payment&#45;&gt;forest__core__PayBot__get_address</title>
+<path fill="none" stroke="#000000" d="M342.07,-342.92C416.02,-333.64 538.4,-317.2 643,-298 648.71,-296.95 654.64,-295.78 660.56,-294.55"/>
+<polygon fill="#000000" stroke="#000000" points="661.41,-297.95 670.46,-292.44 659.95,-291.1 661.41,-297.95"/>
+</g>
+<!-- forest__core__PayBot__send_payment&#45;&gt;forest__core__PayBot__mob_request -->
+<g id="edge63" class="edge">
+<title>forest__core__PayBot__send_payment&#45;&gt;forest__core__PayBot__mob_request</title>
+<path fill="none" stroke="#000000" d="M326.49,-338.49C376.19,-326.4 451.4,-308.13 503.61,-295.44"/>
+<polygon fill="#000000" stroke="#000000" points="504.51,-298.82 513.4,-293.06 502.86,-292.02 504.51,-298.82"/>
+</g>
+<!-- forest__core__PayBot__send_payment&#45;&gt;forest__core__Signal__send_message -->
+<g id="edge66" class="edge">
+<title>forest__core__PayBot__send_payment&#45;&gt;forest__core__Signal__send_message</title>
+<path fill="none" stroke="#000000" d="M205.77,-343.88C147.59,-336.29 70.97,-322 52,-298 34.5,-275.86 32.11,-191.02 52,-171 63.79,-159.14 1239.48,-165.62 1256,-163 1292.13,-157.27 1331.46,-144.55 1360.93,-133.64"/>
+<polygon fill="#000000" stroke="#000000" points="1362.4,-136.82 1370.52,-130.02 1359.93,-130.27 1362.4,-136.82"/>
+</g>
+<!-- forest__core__PayBot__send_payment&#45;&gt;forest__core__Signal__wait_resp -->
+<g id="edge62" class="edge">
+<title>forest__core__PayBot__send_payment&#45;&gt;forest__core__Signal__wait_resp</title>
+<path fill="none" stroke="#000000" d="M203.32,-345.16C139.56,-338.31 53.23,-324.36 32,-298 -3.41,-254.04 -6.94,-211.86 32,-171 69.89,-131.23 884.69,-118.58 1124.91,-115.7"/>
+<polygon fill="#000000" stroke="#000000" points="1125.28,-119.2 1135.24,-115.58 1125.2,-112.2 1125.28,-119.2"/>
+</g>
+<!-- forest__core__PayBot__send_payment&#45;&gt;forest__payments_monitor__Mobster -->
+<g id="edge60" class="edge">
+<title>forest__core__PayBot__send_payment&#45;&gt;forest__payments_monitor__Mobster</title>
+<path fill="none" stroke="#000000" d="M207.43,-343.22C130.96,-331.76 22.49,-305.85 67,-254 146.37,-161.55 487.51,-180.38 609,-171 633.85,-169.08 4174.43,-171.09 4198,-163 4212.71,-157.95 4226.64,-147.85 4237.56,-138.21"/>
+<polygon fill="#000000" stroke="#000000" points="4240,-140.72 4244.94,-131.35 4235.23,-135.59 4240,-140.72"/>
+</g>
+<!-- forest__core__PayBot__send_payment&#45;&gt;forest__payments_monitor__Mobster____init__ -->
+<g id="edge65" class="edge">
+<title>forest__core__PayBot__send_payment&#45;&gt;forest__payments_monitor__Mobster____init__</title>
+<path fill="none" stroke="#000000" d="M349.53,-346.97C519.65,-337.55 926.52,-313.7 987,-298 1032.04,-286.31 1036.57,-264.07 1082,-254 1124.25,-244.63 4154.73,-246.92 4198,-246 4640.7,-236.57 5174.81,-209.71 5343.36,-200.86"/>
+<polygon fill="#000000" stroke="#000000" points="5343.66,-204.35 5353.47,-200.33 5343.3,-197.36 5343.66,-204.35"/>
+</g>
+<!-- forest__core__Signal__admin&#45;&gt;forest__core__Signal__send_message -->
+<g id="edge26" class="edge">
+<title>forest__core__Signal__admin&#45;&gt;forest__core__Signal__send_message</title>
+<path fill="none" stroke="#000000" d="M1364.73,-179.61C1372.1,-168.34 1382.03,-153.16 1390.42,-140.34"/>
+<polygon fill="#000000" stroke="#000000" points="1393.38,-142.21 1395.93,-131.92 1387.52,-138.38 1393.38,-142.21"/>
+</g>
+<!-- forest__core__Signal__async_shutdown -->
+<g id="node45" class="node">
+<title>forest__core__Signal__async_shutdown</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2177" cy="-42" rx="87.18" ry="18"/>
+<text text-anchor="middle" x="2177" y="-38.3" font-family="Times,serif" font-size="14.00" fill="#000000">async_shutdown</text>
+</g>
+<!-- forest__core__Signal__auxin_req&#45;&gt;forest__core__rpc -->
+<g id="edge24" class="edge">
+<title>forest__core__Signal__auxin_req&#45;&gt;forest__core__rpc</title>
+<path fill="none" stroke="#000000" d="M1075.56,-215.14C1083.99,-255.77 1105.27,-358.22 1115.43,-407.16"/>
+<polygon fill="#000000" stroke="#000000" points="1112.02,-407.95 1117.48,-417.03 1118.87,-406.52 1112.02,-407.95"/>
+</g>
+<!-- forest__core__Signal__auxin_req&#45;&gt;forest__core__Signal__wait_resp -->
+<g id="edge23" class="edge">
+<title>forest__core__Signal__auxin_req&#45;&gt;forest__core__Signal__wait_resp</title>
+<path fill="none" stroke="#000000" d="M1094.94,-180.38C1113.38,-167.83 1139.47,-150.08 1159.8,-136.24"/>
+<polygon fill="#000000" stroke="#000000" points="1161.83,-139.09 1168.13,-130.57 1157.89,-133.3 1161.83,-139.09"/>
+</g>
+<!-- forest__core__Signal__auxincli_input_iter -->
+<g id="node47" class="node">
+<title>forest__core__Signal__auxincli_input_iter</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2384" cy="-42" rx="96.68" ry="18"/>
+<text text-anchor="middle" x="2384" y="-38.3" font-family="Times,serif" font-size="14.00" fill="#000000">auxincli_input_iter</text>
+</g>
+<!-- forest__core__Signal__handle_auxincli_raw_line -->
+<g id="node49" class="node">
+<title>forest__core__Signal__handle_auxincli_raw_line</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1777" cy="-42" rx="126.18" ry="18"/>
+<text text-anchor="middle" x="1777" y="-38.3" font-family="Times,serif" font-size="14.00" fill="#000000">handle_auxincli_raw_line</text>
+</g>
+<!-- forest__core__Signal__handle_auxincli_raw_output -->
+<g id="node50" class="node">
+<title>forest__core__Signal__handle_auxincli_raw_output</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1777" cy="-114" rx="139.98" ry="18"/>
+<text text-anchor="middle" x="1777" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">handle_auxincli_raw_output</text>
+</g>
+<!-- forest__core__Signal__handle_auxincli_raw_output&#45;&gt;forest__core__Signal__handle_auxincli_raw_line -->
+<g id="edge21" class="edge">
+<title>forest__core__Signal__handle_auxincli_raw_output&#45;&gt;forest__core__Signal__handle_auxincli_raw_line</title>
+<path fill="none" stroke="#000000" d="M1777,-95.7C1777,-87.98 1777,-78.71 1777,-70.11"/>
+<polygon fill="#000000" stroke="#000000" points="1780.5,-70.1 1777,-60.1 1773.5,-70.1 1780.5,-70.1"/>
+</g>
+<!-- forest__core__Signal__respond&#45;&gt;forest__core__Signal__send_message -->
+<g id="edge27" class="edge">
+<title>forest__core__Signal__respond&#45;&gt;forest__core__Signal__send_message</title>
+<path fill="none" stroke="#000000" d="M1449.02,-179.22C1441.75,-168.1 1432.07,-153.32 1423.84,-140.73"/>
+<polygon fill="#000000" stroke="#000000" points="1426.55,-138.49 1418.15,-132.04 1420.7,-142.32 1426.55,-138.49"/>
+</g>
+<!-- forest__core__Signal__send_message&#45;&gt;forest__core__Signal__send_message -->
+<g id="edge25" class="edge">
+<title>forest__core__Signal__send_message&#45;&gt;forest__core__Signal__send_message</title>
+<path fill="none" stroke="#000000" d="M1459.46,-127.31C1482.51,-128.49 1502.34,-124.05 1502.34,-114 1502.34,-105.48 1488.09,-100.99 1469.71,-100.54"/>
+<polygon fill="#000000" stroke="#000000" points="1469.41,-97.04 1459.46,-100.69 1469.51,-104.04 1469.41,-97.04"/>
+</g>
+<!-- forest__core__Signal__send_reaction -->
+<g id="node53" class="node">
+<title>forest__core__Signal__send_reaction</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1221" cy="-197" rx="75.29" ry="18"/>
+<text text-anchor="middle" x="1221" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">send_reaction</text>
+</g>
+<!-- forest__core__Signal__set_profile -->
+<g id="node54" class="node">
+<title>forest__core__Signal__set_profile</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="1995" cy="-114" rx="59.59" ry="18"/>
+<text text-anchor="middle" x="1995" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">set_profile</text>
+</g>
+<!-- forest__core__Signal__start_process&#45;&gt;forest__core__Signal__handle_auxincli_raw_output -->
+<g id="edge17" class="edge">
+<title>forest__core__Signal__start_process&#45;&gt;forest__core__Signal__handle_auxincli_raw_output</title>
+<path fill="none" stroke="#000000" d="M2108.5,-190.37C2057.71,-185.38 1987,-176.72 1926,-163 1893.51,-155.69 1857.98,-144.38 1829.76,-134.57"/>
+<polygon fill="#000000" stroke="#000000" points="1830.7,-131.19 1820.11,-131.18 1828.38,-137.8 1830.7,-131.19"/>
+</g>
+<!-- forest__core__Signal__start_process&#45;&gt;forest__core__Signal__set_profile -->
+<g id="edge19" class="edge">
+<title>forest__core__Signal__start_process&#45;&gt;forest__core__Signal__set_profile</title>
+<path fill="none" stroke="#000000" d="M2124.22,-184.38C2104.78,-179.13 2082.9,-172.04 2064,-163 2049.59,-156.11 2034.89,-146.34 2022.78,-137.41"/>
+<polygon fill="#000000" stroke="#000000" points="2024.55,-134.36 2014.47,-131.11 2020.33,-139.94 2024.55,-134.36"/>
+</g>
+<!-- forest__core__Signal__sync_signal_handler -->
+<g id="node56" class="node">
+<title>forest__core__Signal__sync_signal_handler</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2177" cy="-114" rx="103.98" ry="18"/>
+<text text-anchor="middle" x="2177" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">sync_signal_handler</text>
+</g>
+<!-- forest__core__Signal__start_process&#45;&gt;forest__core__Signal__sync_signal_handler -->
+<g id="edge18" class="edge">
+<title>forest__core__Signal__start_process&#45;&gt;forest__core__Signal__sync_signal_handler</title>
+<path fill="none" stroke="#000000" d="M2177,-178.82C2177,-168.19 2177,-154.31 2177,-142.2"/>
+<polygon fill="#000000" stroke="#000000" points="2180.5,-142.15 2177,-132.15 2173.5,-142.15 2180.5,-142.15"/>
+</g>
+<!-- forest__core__Signal__write_commands -->
+<g id="node58" class="node">
+<title>forest__core__Signal__write_commands</title>
+<ellipse fill="#b2ff65" fill-opacity="0.698039" stroke="black" cx="2388" cy="-114" rx="89.08" ry="18"/>
+<text text-anchor="middle" x="2388" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">write_commands</text>
+</g>
+<!-- forest__core__Signal__start_process&#45;&gt;forest__core__Signal__write_commands -->
+<g id="edge16" class="edge">
+<title>forest__core__Signal__start_process&#45;&gt;forest__core__Signal__write_commands</title>
+<path fill="none" stroke="#000000" d="M2224.06,-183.13C2249.33,-176.04 2277.76,-167.75 2290,-163 2310.16,-155.19 2331.82,-144.8 2349.63,-135.69"/>
+<polygon fill="#000000" stroke="#000000" points="2351.3,-138.77 2358.57,-131.06 2348.08,-132.55 2351.3,-138.77"/>
+</g>
+<!-- forest__core__Signal__sync_signal_handler&#45;&gt;forest__core__Signal__async_shutdown -->
+<g id="edge20" class="edge">
+<title>forest__core__Signal__sync_signal_handler&#45;&gt;forest__core__Signal__async_shutdown</title>
+<path fill="none" stroke="#000000" d="M2177,-95.7C2177,-87.98 2177,-78.71 2177,-70.11"/>
+<polygon fill="#000000" stroke="#000000" points="2180.5,-70.1 2177,-60.1 2173.5,-70.1 2180.5,-70.1"/>
+</g>
+<!-- forest__core__Signal__wait_resp&#45;&gt;forest__core__Signal____init__ -->
+<g id="edge22" class="edge">
+<title>forest__core__Signal__wait_resp&#45;&gt;forest__core__Signal____init__</title>
+<path fill="none" stroke="#000000" d="M1235.28,-102.86C1260.3,-97.54 1292.25,-91.43 1321,-88 1582.11,-56.87 1651.01,-92.1 1912,-60 1924.25,-58.49 1937.38,-56.21 1949.56,-53.79"/>
+<polygon fill="#000000" stroke="#000000" points="1950.44,-57.19 1959.54,-51.75 1949.04,-50.33 1950.44,-57.19"/>
+</g>
+<!-- forest__core__Signal__write_commands&#45;&gt;forest__core__Signal__auxincli_input_iter -->
+<g id="edge28" class="edge">
+<title>forest__core__Signal__write_commands&#45;&gt;forest__core__Signal__auxincli_input_iter</title>
+<path fill="none" stroke="#000000" d="M2387.01,-95.7C2386.57,-87.98 2386.04,-78.71 2385.55,-70.11"/>
+<polygon fill="#000000" stroke="#000000" points="2389.04,-69.89 2384.98,-60.1 2382.05,-70.29 2389.04,-69.89"/>
+</g>
+<!-- forest__payments_monitor__InvoiceManager -->
+<g id="node59" class="node">
+<title>forest__payments_monitor__InvoiceManager</title>
+<ellipse fill="#99feff" fill-opacity="0.698039" stroke="black" cx="4601" cy="-114" rx="85.29" ry="18"/>
+<text text-anchor="middle" x="4601" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">InvoiceManager</text>
+</g>
+<!-- forest__payments_monitor__LedgerManager -->
+<g id="node60" class="node">
+<title>forest__payments_monitor__LedgerManager</title>
+<ellipse fill="#99feff" fill-opacity="0.698039" stroke="black" cx="4413" cy="-114" rx="85.29" ry="18"/>
+<text text-anchor="middle" x="4413" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">LedgerManager</text>
+</g>
+<!-- forest__payments_monitor__InvoiceManager____init__ -->
+<g id="node62" class="node">
+<title>forest__payments_monitor__InvoiceManager____init__</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="4964" cy="-114" rx="44.39" ry="18"/>
+<text text-anchor="middle" x="4964" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">__init__</text>
+</g>
+<!-- forest__payments_monitor__LedgerManager____init__ -->
+<g id="node63" class="node">
+<title>forest__payments_monitor__LedgerManager____init__</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5285" cy="-114" rx="44.39" ry="18"/>
+<text text-anchor="middle" x="5285" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">__init__</text>
+</g>
+<!-- forest__payments_monitor__Mobster____init__&#45;&gt;forest__payments_monitor__InvoiceManager -->
+<g id="edge70" class="edge">
+<title>forest__payments_monitor__Mobster____init__&#45;&gt;forest__payments_monitor__InvoiceManager</title>
+<path fill="none" stroke="#000000" d="M5352.73,-196.27C5219.29,-196.72 4822.52,-195.24 4698,-163 4676.16,-157.35 4653.47,-146.44 4635.53,-136.44"/>
+<polygon fill="#000000" stroke="#000000" points="4637.03,-133.27 4626.61,-131.34 4633.55,-139.34 4637.03,-133.27"/>
+</g>
+<!-- forest__payments_monitor__Mobster____init__&#45;&gt;forest__payments_monitor__LedgerManager -->
+<g id="edge71" class="edge">
+<title>forest__payments_monitor__Mobster____init__&#45;&gt;forest__payments_monitor__LedgerManager</title>
+<path fill="none" stroke="#000000" d="M5352.89,-195.48C5184.72,-193.35 4589.11,-184.37 4507,-163 4485.71,-157.46 4463.71,-146.56 4446.35,-136.54"/>
+<polygon fill="#000000" stroke="#000000" points="4448.11,-133.51 4437.73,-131.42 4444.54,-139.53 4448.11,-133.51"/>
+</g>
+<!-- forest__payments_monitor__Mobster____init__&#45;&gt;forest__payments_monitor__InvoiceManager____init__ -->
+<g id="edge72" class="edge">
+<title>forest__payments_monitor__Mobster____init__&#45;&gt;forest__payments_monitor__InvoiceManager____init__</title>
+<path fill="none" stroke="#000000" d="M5352.71,-195.49C5266.4,-193.96 5078.98,-187.79 5020,-163 5006.96,-157.52 4994.75,-147.83 4985.07,-138.58"/>
+<polygon fill="#000000" stroke="#000000" points="4987.42,-135.98 4977.89,-131.36 4982.46,-140.92 4987.42,-135.98"/>
+</g>
+<!-- forest__payments_monitor__Mobster____init__&#45;&gt;forest__payments_monitor__LedgerManager____init__ -->
+<g id="edge73" class="edge">
+<title>forest__payments_monitor__Mobster____init__&#45;&gt;forest__payments_monitor__LedgerManager____init__</title>
+<path fill="none" stroke="#000000" d="M5371.32,-182.13C5361.58,-176.55 5350.55,-169.82 5341,-163 5330.26,-155.32 5319.08,-146.04 5309.57,-137.69"/>
+<polygon fill="#000000" stroke="#000000" points="5311.8,-135 5302.01,-130.96 5307.15,-140.22 5311.8,-135"/>
+</g>
+<!-- forest__payments_monitor__Mobster__create_invoice -->
+<g id="node65" class="node">
+<title>forest__payments_monitor__Mobster__create_invoice</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5537" cy="-197" rx="77.19" ry="18"/>
+<text text-anchor="middle" x="5537" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">create_invoice</text>
+</g>
+<!-- forest__payments_monitor__Mobster__create_invoice&#45;&gt;forest__payments_monitor__InvoiceManager -->
+<g id="edge78" class="edge">
+<title>forest__payments_monitor__Mobster__create_invoice&#45;&gt;forest__payments_monitor__InvoiceManager</title>
+<path fill="none" stroke="#000000" d="M5495.9,-181.73C5481.56,-177.41 5465.24,-173.23 5450,-171 5408.66,-164.95 4738.63,-172.73 4698,-163 4675.9,-157.71 4653.04,-146.71 4635.06,-136.57"/>
+<polygon fill="#000000" stroke="#000000" points="4636.54,-133.38 4626.14,-131.38 4633.03,-139.43 4636.54,-133.38"/>
+</g>
+<!-- forest__payments_monitor__Mobster__create_invoice&#45;&gt;forest__payments_monitor__InvoiceManager____init__ -->
+<g id="edge79" class="edge">
+<title>forest__payments_monitor__Mobster__create_invoice&#45;&gt;forest__payments_monitor__InvoiceManager____init__</title>
+<path fill="none" stroke="#000000" d="M5495.45,-181.67C5481.22,-177.4 5465.07,-173.27 5450,-171 5426.37,-167.45 5042.33,-171.5 5020,-163 5006.59,-157.9 4994.19,-148.07 4984.49,-138.62"/>
+<polygon fill="#000000" stroke="#000000" points="4986.79,-135.97 4977.31,-131.23 4981.77,-140.85 4986.79,-135.97"/>
+</g>
+<!-- forest__payments_monitor__Mobster__usd2mob -->
+<g id="node77" class="node">
+<title>forest__payments_monitor__Mobster__usd2mob</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5406" cy="-114" rx="53.09" ry="18"/>
+<text text-anchor="middle" x="5406" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">usd2mob</text>
+</g>
+<!-- forest__payments_monitor__Mobster__create_invoice&#45;&gt;forest__payments_monitor__Mobster__usd2mob -->
+<g id="edge77" class="edge">
+<title>forest__payments_monitor__Mobster__create_invoice&#45;&gt;forest__payments_monitor__Mobster__usd2mob</title>
+<path fill="none" stroke="#000000" d="M5501.84,-180.95C5490.75,-175.74 5478.63,-169.55 5468,-163 5455.72,-155.43 5442.98,-145.9 5432.27,-137.33"/>
+<polygon fill="#000000" stroke="#000000" points="5434.48,-134.62 5424.51,-131.01 5430.05,-140.04 5434.48,-134.62"/>
+</g>
+<!-- forest__payments_monitor__Mobster__get_account -->
+<g id="node66" class="node">
+<title>forest__payments_monitor__Mobster__get_account</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5873" cy="-114" rx="66.09" ry="18"/>
+<text text-anchor="middle" x="5873" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">get_account</text>
+</g>
+<!-- forest__payments_monitor__Mobster__req -->
+<g id="node75" class="node">
+<title>forest__payments_monitor__Mobster__req</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5978" cy="-42" rx="27" ry="18"/>
+<text text-anchor="middle" x="5978" y="-38.3" font-family="Times,serif" font-size="14.00" fill="#000000">req</text>
+</g>
+<!-- forest__payments_monitor__Mobster__get_account&#45;&gt;forest__payments_monitor__Mobster__req -->
+<g id="edge84" class="edge">
+<title>forest__payments_monitor__Mobster__get_account&#45;&gt;forest__payments_monitor__Mobster__req</title>
+<path fill="none" stroke="#000000" d="M5896.83,-97.12C5912.86,-86.43 5934.03,-72.31 5950.74,-61.18"/>
+<polygon fill="#000000" stroke="#000000" points="5953.12,-63.8 5959.49,-55.34 5949.23,-57.97 5953.12,-63.8"/>
+</g>
+<!-- forest__payments_monitor__Mobster__get_address -->
+<g id="node67" class="node">
+<title>forest__payments_monitor__Mobster__get_address</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="6247" cy="-114" rx="66.89" ry="18"/>
+<text text-anchor="middle" x="6247" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">get_address</text>
+</g>
+<!-- forest__payments_monitor__Mobster__get_address&#45;&gt;forest__payments_monitor__Mobster__req -->
+<g id="edge81" class="edge">
+<title>forest__payments_monitor__Mobster__get_address&#45;&gt;forest__payments_monitor__Mobster__req</title>
+<path fill="none" stroke="#000000" d="M6207.9,-99.2C6196.4,-95.35 6183.76,-91.32 6172,-88 6117.17,-72.54 6052.55,-58.34 6013.46,-50.18"/>
+<polygon fill="#000000" stroke="#000000" points="6014.12,-46.74 6003.62,-48.14 6012.7,-53.6 6014.12,-46.74"/>
+</g>
+<!-- forest__payments_monitor__Mobster__get_balance -->
+<g id="node68" class="node">
+<title>forest__payments_monitor__Mobster__get_balance</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5917" cy="-197" rx="65.79" ry="18"/>
+<text text-anchor="middle" x="5917" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">get_balance</text>
+</g>
+<!-- forest__payments_monitor__Mobster__get_balance&#45;&gt;forest__payments_monitor__Mobster__get_account -->
+<g id="edge85" class="edge">
+<title>forest__payments_monitor__Mobster__get_balance&#45;&gt;forest__payments_monitor__Mobster__get_account</title>
+<path fill="none" stroke="#000000" d="M5907.67,-178.82C5901.68,-167.79 5893.79,-153.27 5887.05,-140.86"/>
+<polygon fill="#000000" stroke="#000000" points="5890.02,-138.99 5882.17,-131.88 5883.86,-142.33 5890.02,-138.99"/>
+</g>
+<!-- forest__payments_monitor__Mobster__get_balance&#45;&gt;forest__payments_monitor__Mobster__req -->
+<g id="edge86" class="edge">
+<title>forest__payments_monitor__Mobster__get_balance&#45;&gt;forest__payments_monitor__Mobster__req</title>
+<path fill="none" stroke="#000000" d="M5935.57,-179.52C5940.2,-174.61 5944.76,-168.93 5948,-163 5964.02,-133.64 5971.65,-95.59 5975.17,-70.29"/>
+<polygon fill="#000000" stroke="#000000" points="5978.65,-70.65 5976.44,-60.29 5971.71,-69.77 5978.65,-70.65"/>
+</g>
+<!-- forest__payments_monitor__Mobster__get_rate -->
+<g id="node69" class="node">
+<title>forest__payments_monitor__Mobster__get_rate</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5471" cy="-42" rx="49.29" ry="18"/>
+<text text-anchor="middle" x="5471" y="-38.3" font-family="Times,serif" font-size="14.00" fill="#000000">get_rate</text>
+</g>
+<!-- forest__payments_monitor__Mobster__get_receipt_amount_pmob -->
+<g id="node70" class="node">
+<title>forest__payments_monitor__Mobster__get_receipt_amount_pmob</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="6190" cy="-197" rx="132.68" ry="18"/>
+<text text-anchor="middle" x="6190" y="-193.3" font-family="Times,serif" font-size="14.00" fill="#000000">get_receipt_amount_pmob</text>
+</g>
+<!-- forest__payments_monitor__Mobster__get_receipt_amount_pmob&#45;&gt;forest__payments_monitor__Mobster__get_address -->
+<g id="edge82" class="edge">
+<title>forest__payments_monitor__Mobster__get_receipt_amount_pmob&#45;&gt;forest__payments_monitor__Mobster__get_address</title>
+<path fill="none" stroke="#000000" d="M6202.09,-178.82C6210,-167.58 6220.47,-152.7 6229.32,-140.13"/>
+<polygon fill="#000000" stroke="#000000" points="6232.23,-142.07 6235.12,-131.88 6226.51,-138.04 6232.23,-142.07"/>
+</g>
+<!-- forest__payments_monitor__Mobster__get_receipt_amount_pmob&#45;&gt;forest__payments_monitor__Mobster__req -->
+<g id="edge83" class="edge">
+<title>forest__payments_monitor__Mobster__get_receipt_amount_pmob&#45;&gt;forest__payments_monitor__Mobster__req</title>
+<path fill="none" stroke="#000000" d="M6071.46,-188.92C6034.53,-184.17 6000.24,-176.24 5988,-163 5965.08,-138.2 5967.1,-96.91 5971.72,-69.82"/>
+<polygon fill="#000000" stroke="#000000" points="5975.18,-70.34 5973.64,-59.85 5968.31,-69.01 5975.18,-70.34"/>
+</g>
+<!-- forest__payments_monitor__Mobster__get_transactions -->
+<g id="node71" class="node">
+<title>forest__payments_monitor__Mobster__get_transactions</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5701" cy="-114" rx="87.99" ry="18"/>
+<text text-anchor="middle" x="5701" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">get_transactions</text>
+</g>
+<!-- forest__payments_monitor__Mobster__get_transactions&#45;&gt;forest__payments_monitor__Mobster__req -->
+<g id="edge87" class="edge">
+<title>forest__payments_monitor__Mobster__get_transactions&#45;&gt;forest__payments_monitor__Mobster__req</title>
+<path fill="none" stroke="#000000" d="M5753.08,-99.5C5767.62,-95.76 5783.42,-91.7 5798,-88 5848.3,-75.23 5906.57,-60.71 5942.87,-51.7"/>
+<polygon fill="#000000" stroke="#000000" points="5944.08,-55.01 5952.94,-49.2 5942.39,-48.21 5944.08,-55.01"/>
+</g>
+<!-- forest__payments_monitor__Mobster__import_account -->
+<g id="node72" class="node">
+<title>forest__payments_monitor__Mobster__import_account</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="6080" cy="-114" rx="82.59" ry="18"/>
+<text text-anchor="middle" x="6080" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">import_account</text>
+</g>
+<!-- forest__payments_monitor__Mobster__import_account&#45;&gt;forest__payments_monitor__Mobster__req -->
+<g id="edge80" class="edge">
+<title>forest__payments_monitor__Mobster__import_account&#45;&gt;forest__payments_monitor__Mobster__req</title>
+<path fill="none" stroke="#000000" d="M6056.09,-96.59C6040.68,-86.02 6020.64,-72.26 6004.72,-61.33"/>
+<polygon fill="#000000" stroke="#000000" points="6006.57,-58.36 5996.35,-55.59 6002.61,-64.14 6006.57,-58.36"/>
+</g>
+<!-- forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__InvoiceManager -->
+<g id="edge88" class="edge">
+<title>forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__InvoiceManager</title>
+<path fill="none" stroke="#000000" d="M5669.49,-181.58C5654.92,-177.31 5638.41,-173.19 5623,-171 5572.12,-163.77 4747.99,-174.92 4698,-163 4675.9,-157.73 4653.03,-146.73 4635.06,-136.59"/>
+<polygon fill="#000000" stroke="#000000" points="4636.54,-133.4 4626.13,-131.4 4633.02,-139.45 4636.54,-133.4"/>
+</g>
+<!-- forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__LedgerManager -->
+<g id="edge89" class="edge">
+<title>forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__LedgerManager</title>
+<path fill="none" stroke="#000000" d="M5669.49,-181.57C5654.93,-177.3 5638.41,-173.18 5623,-171 5561.61,-162.32 4567.23,-177.72 4507,-163 4485.48,-157.74 4463.31,-146.74 4445.92,-136.6"/>
+<polygon fill="#000000" stroke="#000000" points="4447.66,-133.56 4437.28,-131.4 4444.05,-139.56 4447.66,-133.56"/>
+</g>
+<!-- forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__InvoiceManager____init__ -->
+<g id="edge90" class="edge">
+<title>forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__InvoiceManager____init__</title>
+<path fill="none" stroke="#000000" d="M5669.48,-181.63C5654.92,-177.36 5638.41,-173.23 5623,-171 5589.84,-166.21 5051.34,-174.83 5020,-163 5006.58,-157.93 4994.18,-148.11 4984.47,-138.66"/>
+<polygon fill="#000000" stroke="#000000" points="4986.78,-136 4977.3,-131.26 4981.75,-140.88 4986.78,-136"/>
+</g>
+<!-- forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__LedgerManager____init__ -->
+<g id="edge92" class="edge">
+<title>forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__LedgerManager____init__</title>
+<path fill="none" stroke="#000000" d="M5669.46,-181.76C5654.9,-177.5 5638.39,-173.34 5623,-171 5592.01,-166.28 5370.24,-174.29 5341,-163 5327.62,-157.83 5315.22,-147.99 5305.51,-138.56"/>
+<polygon fill="#000000" stroke="#000000" points="5307.81,-135.91 5298.33,-131.18 5302.8,-140.79 5307.81,-135.91"/>
+</g>
+<!-- forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__Mobster__get_account -->
+<g id="edge91" class="edge">
+<title>forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__Mobster__get_account</title>
+<path fill="none" stroke="#000000" d="M5754.29,-181.72C5768.45,-176.43 5784.15,-170 5798,-163 5812.91,-155.47 5828.6,-145.74 5841.75,-137.01"/>
+<polygon fill="#000000" stroke="#000000" points="5844.07,-139.67 5850.41,-131.17 5840.16,-133.86 5844.07,-139.67"/>
+</g>
+<!-- forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__Mobster__get_transactions -->
+<g id="edge93" class="edge">
+<title>forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__Mobster__get_transactions</title>
+<path fill="none" stroke="#000000" d="M5709.67,-178.82C5708.22,-168.19 5706.34,-154.31 5704.69,-142.2"/>
+<polygon fill="#000000" stroke="#000000" points="5708.14,-141.59 5703.33,-132.15 5701.21,-142.53 5708.14,-141.59"/>
+</g>
+<!-- forest__payments_monitor__Mobster__pmob2usd -->
+<g id="node74" class="node">
+<title>forest__payments_monitor__Mobster__pmob2usd</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="5536" cy="-114" rx="59.29" ry="18"/>
+<text text-anchor="middle" x="5536" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">pmob2usd</text>
+</g>
+<!-- forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__Mobster__pmob2usd -->
+<g id="edge94" class="edge">
+<title>forest__payments_monitor__Mobster__monitor_wallet&#45;&gt;forest__payments_monitor__Mobster__pmob2usd</title>
+<path fill="none" stroke="#000000" d="M5663.03,-182.67C5639.77,-176 5614.74,-168.26 5604,-163 5589.8,-156.04 5575.31,-146.26 5563.38,-137.34"/>
+<polygon fill="#000000" stroke="#000000" points="5565.25,-134.36 5555.18,-131.05 5560.99,-139.92 5565.25,-134.36"/>
+</g>
+<!-- forest__payments_monitor__Mobster__pmob2usd&#45;&gt;forest__payments_monitor__Mobster__get_rate -->
+<g id="edge75" class="edge">
+<title>forest__payments_monitor__Mobster__pmob2usd&#45;&gt;forest__payments_monitor__Mobster__get_rate</title>
+<path fill="none" stroke="#000000" d="M5520.6,-96.41C5512.42,-87.61 5502.23,-76.63 5493.21,-66.92"/>
+<polygon fill="#000000" stroke="#000000" points="5495.66,-64.42 5486.29,-59.47 5490.53,-69.18 5495.66,-64.42"/>
+</g>
+<!-- forest__payments_monitor__Mobster__req_ -->
+<g id="node76" class="node">
+<title>forest__payments_monitor__Mobster__req_</title>
+<ellipse fill="#65feff" fill-opacity="0.698039" stroke="black" cx="6362" cy="-114" rx="30.59" ry="18"/>
+<text text-anchor="middle" x="6362" y="-110.3" font-family="Times,serif" font-size="14.00" fill="#000000">req_</text>
+</g>
+<!-- forest__payments_monitor__Mobster__req_&#45;&gt;forest__payments_monitor__Mobster__req -->
+<g id="edge74" class="edge">
+<title>forest__payments_monitor__Mobster__req_&#45;&gt;forest__payments_monitor__Mobster__req</title>
+<path fill="none" stroke="#000000" d="M6344.23,-99.27C6337.85,-95 6330.4,-90.7 6323,-88 6216.3,-49.07 6080.22,-43.05 6015.48,-42.6"/>
+<polygon fill="#000000" stroke="#000000" points="6015.36,-39.1 6005.35,-42.57 6015.34,-46.1 6015.36,-39.1"/>
+</g>
+<!-- forest__payments_monitor__Mobster__usd2mob&#45;&gt;forest__payments_monitor__Mobster__get_rate -->
+<g id="edge76" class="edge">
+<title>forest__payments_monitor__Mobster__usd2mob&#45;&gt;forest__payments_monitor__Mobster__get_rate</title>
+<path fill="none" stroke="#000000" d="M5421.4,-96.41C5429.58,-87.61 5439.77,-76.63 5448.79,-66.92"/>
+<polygon fill="#000000" stroke="#000000" points="5451.47,-69.18 5455.71,-59.47 5446.34,-64.42 5451.47,-69.18"/>
+</g>
+</g>
+</svg>
+`,
+                    ready: function() {
+                        var gv = this
+                        gv.nodes().click(function () {
+                            var $set = $()
+                            $set.push(this)
+                            $set = $set.add(gv.linkedFrom(this, true))
+                            $set = $set.add(gv.linkedTo(this, true))
+                            gv.highlight($set, true)
+                            gv.bringToFront($set)
+                        })
+                        $(document).keydown(function (evt) {
+                            if (evt.keyCode == 27) {
+                                gv.highlight()
+                            }
+                        })
+                    }
+                });
+            });
+		</script>
+	</body>
+</html>
