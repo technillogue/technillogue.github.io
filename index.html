@@ -196,6 +196,8 @@ Error message and password prompt
 
 <li>$:/config/RelinkOnRename</li>
 
+<li>$:/config/SaverFilter</li>
+
 <li>$:/config/TimestampDisable</li>
 
 <li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/close-others</li>
@@ -1035,6 +1037,9 @@ Error message and password prompt
 </div>
 <div created="20190803020125851" modified="20190803020125851" title="$:/config/RelinkOnRename">
 <pre>yes</pre>
+</div>
+<div created="20240517191800188" modified="20240517191802372" title="$:/config/SaverFilter">
+<pre>[all[]] -[[$:/HistoryList]] -[[$:/StoryList]] -[[$:/Import]] -[[$:/isEncrypted]] -[[$:/UploadName]]</pre>
 </div>
 <div created="20190818193957988" modified="20190818194153146" title="$:/config/TimestampDisable">
 <pre>no</pre>
@@ -10899,7 +10904,7 @@ color:$(foregroundColor)$;
 <div created="20190819214337411" modified="20190819214337411" title="$:/state/add-plugin-info/$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.19/index.html/$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.19/index.html/$:/plugins/tiddlywiki/twitter">
 <pre>yes</pre>
 </div>
-<div created="20210104205616875" modified="20220620040009173" title="$:/state/edit_index">
+<div created="20210104205616875" modified="20240517191725229" title="$:/state/edit_index">
 <pre>false</pre>
 </div>
 <div created="20190820160834173" modified="20190820160834173" title="$:/state/edit/references--1211665211">
@@ -11088,8 +11093,8 @@ color:$(foregroundColor)$;
 <div created="20201226194754827" modified="20220610132149094" title="$:/state/toc/Index/Misc-Meta-1395960319">
 <pre>close</pre>
 </div>
-<div created="20201226194756558" modified="20220620035249877" title="$:/state/toc/Index/Misc-Scratchpad-1395960319">
-<pre>open</pre>
+<div created="20201226194756558" modified="20240517191818386" title="$:/state/toc/Index/Misc-Scratchpad-1395960319">
+<pre>close</pre>
 </div>
 <div created="20201226194723735" modified="20210127023518477" title="$:/state/toc/Index/Noteworthy-BestOf-1395960319">
 <pre>open</pre>
@@ -11133,7 +11138,7 @@ color:$(foregroundColor)$;
 <div created="20210127024231110" modified="20210127024231110" title="$:/state/toc/selectedBest">
 <pre>Presentations</pre>
 </div>
-<div created="20210127024030297" modified="20221108001235273" title="$:/state/toc/selectedIndex">
+<div created="20210127024030297" modified="20240517191911236" title="$:/state/toc/selectedIndex">
 <pre>Presentations</pre>
 </div>
 <div created="20210127024234460" modified="20210127024234460" title="$:/state/toc/selectedNoteworthy">
@@ -11145,7 +11150,7 @@ color:$(foregroundColor)$;
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20230924044453051" list="Index" modified="20230924053611961" title="$:/StoryList">
+<div created="20240517191536487" list="Index" modified="20240517191841452" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -11205,11 +11210,11 @@ color:$(foregroundColor)$;
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1280&quot;
+            &quot;text&quot;: &quot;1920&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;800&quot;
+            &quot;text&quot;: &quot;1200&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
@@ -11896,7 +11901,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190819214322594" modified="20201226212846259" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre></pre>
 </div>
-<div created="20190820131939822" modified="20230924053608631" title="$:/temp/search">
+<div created="20190820131939822" modified="20240517191835018" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20210127022459886" modified="20210127022502867" title="$:/temp/selectedIndex">
@@ -16031,7 +16036,7 @@ but i actually really get off on brainstorming, it's really enjoyable
 9:43
 i should= fear of punishment (being judged), boredom, loneliness, exiles </pre>
 </div>
-<div created="20220620035337607" modified="20220620035339129" tags="Index" title="Tech">
+<div created="20220620035337607" modified="20240517191711152" priority="2" tags="Index" title="Tech">
 <pre></pre>
 </div>
 <div created="20190812134346590" modified="20190818193814614" tags="Scratchpad Tech" title="Tech Scratchpad">
