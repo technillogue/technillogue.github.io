@@ -196,6 +196,8 @@ Error message and password prompt
 
 <li>$:/config/RelinkOnRename</li>
 
+<li>$:/config/SaverFilter</li>
+
 <li>$:/config/TimestampDisable</li>
 
 <li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/close-others</li>
@@ -1033,6 +1035,9 @@ Error message and password prompt
 </div>
 <div created="20190803020125851" modified="20190803020125851" title="$:/config/RelinkOnRename">
 <pre>yes</pre>
+</div>
+<div created="20240517192826004" modified="20240517192828092" title="$:/config/SaverFilter">
+<pre>[all[]] -[[$:/HistoryList]] -[[$:/StoryList]] -[[$:/Import]] -[[$:/isEncrypted]] -[[$:/UploadName]] </pre>
 </div>
 <div created="20190818193957988" modified="20190818194153146" title="$:/config/TimestampDisable">
 <pre>no</pre>
@@ -11065,8 +11070,8 @@ color:$(foregroundColor)$;
 <div created="20190730195539665" modified="20221108000434595" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
 </div>
-<div created="20190810135005842" modified="20240517192348818" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20190810135005842" modified="20240517192836634" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20190730195820129" modified="20201226200431368" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
@@ -11143,7 +11148,7 @@ color:$(foregroundColor)$;
 <div created="20201220013846894" modified="20201220013849665" title="$:/state/Writing Copy">
 <pre>show</pre>
 </div>
-<div created="20240517191536487" list="Index" modified="20240517192419430" title="$:/StoryList">
+<div created="20240517192817614" list="Index" modified="20240517192819179" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20201226200448047" list="$:/core/ui/Buttons/home $:/core/ui/Buttons/fold-all $:/core/ui/Buttons/unfold-all $:/core/ui/Buttons/permaview $:/core/ui/Buttons/new-tiddler $:/plugins/tiddlywiki/markdown/new-markdown-button $:/core/ui/Buttons/new-journal $:/core/ui/Buttons/new-image $:/core/ui/Buttons/import $:/core/ui/Buttons/export-page $:/core/ui/Buttons/control-panel $:/core/ui/Buttons/advanced-search $:/core/ui/Buttons/manager $:/core/ui/Buttons/tag-manager $:/core/ui/Buttons/language $:/core/ui/Buttons/close-all $:/core/ui/Buttons/palette $:/core/ui/Buttons/theme $:/core/ui/Buttons/storyview $:/core/ui/Buttons/encryption $:/core/ui/Buttons/timestamp $:/core/ui/Buttons/full-screen $:/core/ui/Buttons/print $:/core/ui/Buttons/save-wiki $:/core/ui/Buttons/refresh $:/core/ui/Buttons/more-page-actions" modified="20201226200448047" title="$:/tags/PageControls">
@@ -11894,7 +11899,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190819214322594" modified="20201226212846259" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre></pre>
 </div>
-<div created="20190820131939822" modified="20240517192348178" title="$:/temp/search">
+<div created="20190820131939822" modified="20240517192832517" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20210127022459886" modified="20210127022502867" title="$:/temp/selectedIndex">
